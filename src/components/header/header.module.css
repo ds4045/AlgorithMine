@@ -1,0 +1,46 @@
+.header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.header_btn_group {
+  display: flex;
+  justify-content: center;
+}
+.header_login_icon {
+  font-size: 25px;
+  opacity: 0.5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header_login_icon:hover {
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+}
+.width90 {
+  width: 90px;
+}
+.cart {
+  font-size: 35px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.cart:hover {
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+}
+.dark {
+  color: white;
+}
+.light {
+  color: black;
+}
+.home_icon {
+  font-size: 20px;
+}
+.ava {
+  cursor: pointer;
+}

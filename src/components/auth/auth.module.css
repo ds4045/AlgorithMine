@@ -1,0 +1,112 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.form_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 500px;
+  height: 100%;
+}
+
+.form_container h3 {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.form_container input[type='email'],
+.form_container input[type='password'] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.form_container button[type='submit'],
+.form_container button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background-color: #505051;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.form_container button:hover {
+  background-color: #1d1f2f;
+}
+
+.form_container button:active {
+  background-color: #0d0f1f;
+}
+
+.form_container button:focus {
+  outline: none;
+  box-shadow: 0px 0px 2px #2b2d42;
+}
+
+.login_with_Google {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 400px;
+  height: 100%;
+}
+
+.login_with_Google h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.login_with_Google button {
+  padding: 10px;
+  border: none;
+  color: #fff;
+  background-color: #d85a4e;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 15px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.google_icon {
+  margin-left: 10px;
+}
+.login_with_Google button:hover {
+  background-color: #c43228;
+}
+
+.login_with_Google button:active {
+  background-color: #9e2a22;
+}
+
+.login_with_Google button:focus {
+  outline: none;
+  box-shadow: 0px 0px 2px #db4437;
+}
+.links {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.links a {
+  font-size: 18px;
+  color: inherit;
+}

@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.personal_data {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.title_email {
+  opacity: 0.6;
+  margin-bottom: 30px;
+}
+.inp_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.inp_wrapper div {
+  margin: 5px;
+}
+.wrapper_pk_settings {
+  width: 256px;
+  position: fixed;
+}
+.btn_open_settings {
+  width: 70px;
+  margin: 4px;
+  background: white;
+  color: black;
+}
