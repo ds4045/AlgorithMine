@@ -5,7 +5,7 @@ import { signInWithPopup } from 'firebase/auth';
 import styles from './auth.module.css';
 import { FcGoogle } from 'react-icons/fc';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { confirmAuthorizedUser } from '../../helpers/confirmAuthorizedUser';
+import { confirmAuthorizedUser } from '../../firbase/confirmAuthorizedUser';
 import { addUsers } from '../../redux/allUsersSlice';
 import { addDataForDB } from '../../firbase/firebaseAPI';
 

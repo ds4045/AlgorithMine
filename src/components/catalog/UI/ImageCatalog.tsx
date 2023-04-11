@@ -6,9 +6,7 @@ type ImageCatalogProps = {
   setVisible: any;
   images: string[];
 };
-
 const ImageCatalog: FC<ImageCatalogProps> = ({ visible, setVisible, images }) => {
-  console.log(images);
   return (
     <>
       <Image

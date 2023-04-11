@@ -6,7 +6,7 @@ import Form from '../UI/Form';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleForm from './GoogleAuth';
 import { useAppDispatch } from '../../redux/hooks';
-import { confirmAuthorizedUser } from '../../helpers/confirmAuthorizedUser';
+import { confirmAuthorizedUser } from '../../firbase/confirmAuthorizedUser';
 import { FormattedMessage } from 'react-intl';
 
 const Login: FC = () => {

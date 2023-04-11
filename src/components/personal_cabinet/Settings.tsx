@@ -5,7 +5,7 @@ import styles from './personal_cabinet.module.css';
 import defaultImage from '../../assets/defaultImage.jpeg';
 import useAlert from '../../hooks/useAlert';
 import InputField from './InputField';
-import { updateForFirestoreDB } from '../../firbase/firebaseAPI';
+import { updateForFirestore } from '../../firbase/firebaseAPI';
 
 type SettingsProps = {
   me: any;
@@ -49,7 +49,15 @@ const Settings: FC<SettingsProps> = ({ me }) => {
   const changeFieldOnDB = (field: FieldsUserType) => {
     console.log(me);
     if (me?.id) {
-      updateForFirestoreDB(me.id, field, fields[field], setIsLoading, alertSuccess, alertError);
+      updateForFirestore(
+        'users',
+        me.id,
+        field,
+        fields[field],
+        setIsLoading,
+        alertSuccess,
+        alertError,
+      );
     }
   };
   const inputs = [

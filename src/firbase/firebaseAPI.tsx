@@ -8,30 +8,23 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { DB } from './firebaseConfig';
-import {
-  FieldsUserType,
-  Item,
-  ReviewsType,
-  UserFirestoreDB,
-  UserTemplatesPCLoadingType,
-} from '../types/types';
+import { Item, UserFirestoreDB, UserTemplatesPCLoadingType } from '../types/types';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { FormattedMessage } from 'react-intl';
-const users = collection(DB, 'users');
-export const getDataFromDB = async (nameDB: string) => {
-  let db = null;
+
+const switchNameDB = (nameDB: string) => {
   switch (nameDB) {
-    case 'items': {
-      db = collection(DB, 'items');
-      break;
-    }
-    case 'users': {
-      db = collection(DB, 'users');
-      break;
-    }
+    case 'items':
+      return collection(DB, 'items');
+    case 'users':
+      return collection(DB, 'users');
     default:
       return alert('Something went wrong');
   }
+};
+
+export const getDataFromDB = async (nameDB: string) => {
+  const db = switchNameDB(nameDB);
   try {
     const data = await getDocs(db as CollectionReference<DocumentData>);
     return data.docs.map((el) => ({ ...el.data(), id: el.id }));
@@ -40,19 +33,7 @@ export const getDataFromDB = async (nameDB: string) => {
   }
 };
 export const addDataForDB = async (nameDB: string, user: Item | UserFirestoreDB) => {
-  let db = null;
-  switch (nameDB) {
-    case 'items': {
-      db = collection(DB, 'items');
-      break;
-    }
-    case 'users': {
-      db = collection(DB, 'users');
-      break;
-    }
-    default:
-      return alert('Something went wrong');
-  }
+  const db = switchNameDB(nameDB);
   try {
     await addDoc(db as CollectionReference<DocumentData>, user);
   } catch (err) {
@@ -60,17 +41,19 @@ export const addDataForDB = async (nameDB: string, user: Item | UserFirestoreDB)
   }
 };
 
-export const updateForFirestoreDB = async (
+export const updateForFirestore = async (
+  nameDB: string,
   id: string,
-  field: FieldsUserType,
-  newValue: string | number | ReviewsType[],
+  field: string,
+  newValue: any,
   setIsLoading: Dispatch<SetStateAction<UserTemplatesPCLoadingType>>,
   alertSuccess: (text: ReactNode) => void,
   alertError: (text: ReactNode) => void,
 ) => {
+  const db = switchNameDB(nameDB);
   try {
     setIsLoading((prev) => ({ ...prev, [field]: true }));
-    const updateUser = doc(users, id);
+    const updateUser = doc(db as CollectionReference<DocumentData>, id);
     await updateDoc(updateUser, { [field]: newValue });
     setIsLoading((prev) => ({ ...prev, [field]: false }));
     alertSuccess(<FormattedMessage id="pc.alert_succ_change" />);

@@ -17,7 +17,6 @@ const CardTable: FC<CardTableProps> = ({ loading, item }) => {
   const showLargeDrawer = () => {
     setOpen(true);
   };
-
   const onClose = () => {
     setOpen(false);
   };

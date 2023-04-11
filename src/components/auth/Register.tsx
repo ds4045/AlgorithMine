@@ -5,7 +5,7 @@ import styles from './auth.module.css';
 import Form from '../UI/Form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { confirmAuthorizedUser } from '../../helpers/confirmAuthorizedUser';
+import { confirmAuthorizedUser } from '../../firbase/confirmAuthorizedUser';
 import { addUsers } from '../../redux/allUsersSlice';
 import { FormattedMessage } from 'react-intl';
 import GoogleAuth from './GoogleAuth';
