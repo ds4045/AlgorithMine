@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { FC, FormEvent, useState } from 'react';
-import { auth } from '../../config/firebase';
+import { FC, FormEvent, useState } from 'react';
+import { auth } from '../../firbase/firebaseConfig';
 import styles from './auth.module.css';
 import Form from '../UI/Form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -31,6 +31,9 @@ const Login: FC = () => {
         orders: [],
         city: '',
         phone: '',
+        cart: [],
+        isAdmin: false,
+        favorites: [],
       };
       confirmAuthorizedUser(auth, loginEmail, loginPassword, dispatch, navigate, newUser);
     } catch (err: any) {

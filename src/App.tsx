@@ -13,13 +13,13 @@ import Register from './components/auth/Register';
 import { useAutoSignIn } from './hooks/useAutoSignIn';
 import Login from './components/auth/Login';
 import PersonalCabinet from './components/personal_cabinet/PersonalCabinet';
-import { getDBFromFirestoreDB } from './helpers/firestoreDBUsers';
 import { pushAllUsers } from './redux/allUsersSlice';
 import { UserFirestoreDB } from './types/types';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import Footer from './components/footer/Footer';
 import Catalog from './components/catalog/Catalog';
 import { useCurrentUser } from './hooks/useCurrentUser';
+import { getDataFromDB } from './firbase/firebaseAPI';
 
 function App() {
   useAutoSignIn();
@@ -27,18 +27,18 @@ function App() {
   const isAuth = useAppSelector((state) => state.auth.isAuth);
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
+
   const handleLocaleChange = () => {
     locale === 'en' ? setLocale('ru') : setLocale('en');
   };
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await getDBFromFirestoreDB();
+      const res = await getDataFromDB('users');
       if (res) dispatch(pushAllUsers(res as UserFirestoreDB[]));
     };
     if (isAuth) fetchUsers();
   }, [dispatch, isAuth]);
   const me = useCurrentUser();
-
   return (
     <ConfigProvider locale={locale === 'ru' ? ruRU : enUS}>
       <IntlProvider locale={locale} messages={messages[locale]}>

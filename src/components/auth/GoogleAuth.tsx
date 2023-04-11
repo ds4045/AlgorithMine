@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, googleAuth } from '../../config/firebase';
+import { auth, googleAuth } from '../../firbase/firebaseConfig';
 import { signInWithPopup } from 'firebase/auth';
 import styles from './auth.module.css';
 import { FcGoogle } from 'react-icons/fc';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { confirmAuthorizedUser } from '../../helpers/confirmAuthorizedUser';
 import { addUsers } from '../../redux/allUsersSlice';
-import { addUsersForFirestoreDB } from '../../helpers/firestoreDBUsers';
+import { addDataForDB } from '../../firbase/firebaseAPI';
 
 type GoogleFormProps = {
   buttonName: any;
@@ -30,6 +30,9 @@ const GoogleAuth: FC<GoogleFormProps> = ({ buttonName }) => {
         orders: [],
         city: '',
         phone: '',
+        cart: [],
+        isAdmin: false,
+        favorites: [],
       };
       confirmAuthorizedUser(
         auth,
@@ -43,7 +46,7 @@ const GoogleAuth: FC<GoogleFormProps> = ({ buttonName }) => {
       else if (!newUser.email) return;
       else {
         dispatch(addUsers(newUser));
-        addUsersForFirestoreDB(newUser);
+        addDataForDB('users', newUser);
       }
     } catch (err: any) {
       alert(err.message);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   ClusterOutlined,
   EyeOutlined,
@@ -14,9 +14,12 @@ import styles from './catalog.module.css';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import CatalogNavigation from './CatalogNavigation';
-// import CardTable from './CardTable';
 import CardHorizontal from './Cards/CardHorizontal';
 import CardTable from './Cards/CardTable';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { pushAllItems } from '../../redux/itemsSlice';
+import { Item } from '../../types/types';
+import { getDataFromDB } from '../../firbase/firebaseAPI';
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -36,14 +39,13 @@ function getItem(
 }
 
 const rootSubmenuKeys = ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6', 'sub7'];
-const Catalog: React.FC = () => {
+const Catalog: FC = () => {
   const navigate = useNavigate();
   const [openKeys, setOpenKeys] = useState(['sub1']);
   const [cardsPosition, setCardsPosition] = useState<'cards_horizontal' | 'cards_table'>(
     'cards_horizontal',
   );
-
-  const items: MenuItem[] = [
+  const menuItems: MenuItem[] = [
     getItem(
       <div>
         <FormattedMessage id="header.catalog_asic" />
@@ -125,7 +127,18 @@ const Catalog: React.FC = () => {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
-
+  const items = useAppSelector((state) => state.items.items);
+  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchItems = async () => {
+      setIsLoading(true);
+      const res = await getDataFromDB('items');
+      if (!items.length) dispatch(pushAllItems(res as Item[]));
+      setIsLoading(false);
+    };
+    fetchItems();
+  }, [dispatch, setIsLoading, items.length]);
   return (
     <div>
       <Menu
@@ -133,29 +146,14 @@ const Catalog: React.FC = () => {
         mode="inline"
         openKeys={openKeys}
         onOpenChange={onOpenChange}
-        items={items}
+        items={menuItems}
       />
       <div className={styles.wrapper}>
         <CatalogNavigation setCardsPosition={setCardsPosition} />
         <div className={styles[cardsPosition]}>
-          {cardsPosition === 'cards_horizontal' ? (
-            <>
-              <CardHorizontal />
-              <CardHorizontal />
-              <CardHorizontal />
-              <CardHorizontal />
-              <CardHorizontal />
-            </>
-          ) : (
-            <>
-              <CardTable />
-              <CardTable />
-              <CardTable />
-              <CardTable />
-              <CardTable />
-              <CardTable />
-            </>
-          )}
+          {cardsPosition === 'cards_horizontal'
+            ? items.map((el) => <CardHorizontal key={el.id} loading={isLoading} item={el} />)
+            : items.map((el) => <CardTable key={el.id} loading={isLoading} item={el} />)}
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ import { items } from './utilsHeader';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../config/firebase';
+import { auth } from '../../firbase/firebaseConfig';
 import { isAuthFalse } from '../../redux/authSlice';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
 import { UserFirestoreDB } from '../../types/types';

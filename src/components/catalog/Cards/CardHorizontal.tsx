@@ -1,13 +1,17 @@
 import { Button, Card } from 'antd';
 import { FC, useState } from 'react';
 import styles from '../catalog.module.css';
-
 import ImageCatalog from '../UI/ImageCatalog';
 import CardModal from './CardModal';
 import DescriptionCard from '../UI/DescriptionCard';
-type CardHorizontalProps = {};
+import { FormattedMessage } from 'react-intl';
+import { Item } from '../../../types/types';
+type CardHorizontalProps = {
+  loading: boolean;
+  item: Item;
+};
 
-const CardHorizontal: FC<CardHorizontalProps> = () => {
+const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const showLargeDrawer = () => {
@@ -18,28 +22,28 @@ const CardHorizontal: FC<CardHorizontalProps> = () => {
   };
   return (
     <Card
+      loading={loading}
       className={styles.card_horizontal}
       bodyStyle={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-      <ImageCatalog setVisible={setVisible} visible={visible} />
+      <ImageCatalog setVisible={setVisible} visible={visible} images={item.images} />
       <div className={styles.horizontal_description}>
-        <h5>Описание</h5>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore porro recusandae vitae
-          necessitatibus, asperiores nostrum beatae, cumque qui eaque, a incidunt dolore!
-          Dignissimos, sequi similique. Repudiandae, sit, dicta similique odio quae repellendus
-          tempore error fuga possimus ab velit, obcaecati quibusdam.
-        </p>
+        <h5>
+          <FormattedMessage id="catalog.card.description" />
+        </h5>
+        <p>{item.description}</p>
       </div>
       <div className={styles.horizontal_options}>
-        <DescriptionCard />
+        <DescriptionCard price={item.price} title={item.title} th={item.optional?.hashrate} />
         <div className={styles.btn_groups_horizontal}>
           <Button onClick={showLargeDrawer} type="primary">
-            Подробнее
+            <FormattedMessage id="catalog.card.btn_more" />
           </Button>
-          <Button onClick={showLargeDrawer}>Купить</Button>
+          <Button onClick={showLargeDrawer}>
+            <FormattedMessage id="catalog.card.btn_buy" />
+          </Button>
         </div>
       </div>
-      <CardModal onClose={onClose} open={open} />
+      <CardModal onClose={onClose} open={open} item={item} />
     </Card>
   );
 };

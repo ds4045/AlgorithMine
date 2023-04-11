@@ -1,15 +1,15 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FC, FormEvent, useState } from 'react';
-import { auth } from '../../config/firebase';
+import { auth } from '../../firbase/firebaseConfig';
 import styles from './auth.module.css';
 import Form from '../UI/Form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { confirmAuthorizedUser } from '../../helpers/confirmAuthorizedUser';
 import { addUsers } from '../../redux/allUsersSlice';
-import { addUsersForFirestoreDB } from '../../helpers/firestoreDBUsers';
 import { FormattedMessage } from 'react-intl';
 import GoogleAuth from './GoogleAuth';
+import { addDataForDB } from '../../firbase/firebaseAPI';
 
 const Register: FC = () => {
   const allUsers = useAppSelector((state) => state.users.users);
@@ -31,6 +31,9 @@ const Register: FC = () => {
         orders: [],
         city: '',
         phone: '',
+        cart: [],
+        isAdmin: false,
+        favorites: [],
       };
       confirmAuthorizedUser(auth, registerEmail, registerPassword, dispatch, navigate, newUser);
       setRegisterEmail('');
@@ -38,7 +41,7 @@ const Register: FC = () => {
       if (allUsers.some((user) => user.email === auth.currentUser?.email && !newUser.email)) return;
       else {
         dispatch(addUsers(newUser));
-        addUsersForFirestoreDB(newUser);
+        addDataForDB('users', newUser);
       }
     } catch (err: any) {
       alert(err.message);

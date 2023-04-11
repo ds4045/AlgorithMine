@@ -2,7 +2,7 @@ import { useAppDispatch } from './../redux/hooks';
 import { useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { auth, googleAuth } from '../config/firebase';
+import { auth, googleAuth } from '../firbase/firebaseConfig';
 import { isAuthTrue } from '../redux/authSlice';
 
 type UserData = {
@@ -34,6 +34,9 @@ const useAutoSignIn = () => {
           orders: [],
           city: '',
           phone: '',
+          cart: [],
+          isAdmin: false,
+          favorites: [],
         };
         if (newUser?.email) dispatch(isAuthTrue(newUser));
       } catch (error) {

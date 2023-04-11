@@ -1,16 +1,23 @@
 import { Rate } from 'antd';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styles from '../catalog.module.css';
-type DescriptionCardProps = {};
+import { FormattedMessage } from 'react-intl';
+type DescriptionCardProps = {
+  price: number;
+  title: string;
+  th: number | undefined;
+};
 
-const DescriptionCard: FC<DescriptionCardProps> = () => {
+const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, th }) => {
   return (
     <ul className={styles.card_ul}>
       <li>
-        <b>Bitmain Antminer E9</b>
+        <b>{title}</b>
       </li>
-      <li>от 4560$</li>
-      <li>TH/s 120</li>
+      <li>
+        <FormattedMessage id="catalog.card.btn_from" /> {price}$
+      </li>
+      {th && <li>TH/s {th}</li>}
       <li>
         <Rate value={5} />
       </li>

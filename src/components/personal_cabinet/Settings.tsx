@@ -1,10 +1,12 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { FieldsUserType, UserTemplatesPCLoadingType } from '../../types/types';
-import { updateForFirestoreDB } from '../../helpers/firestoreDBUsers';
+
 import styles from './personal_cabinet.module.css';
 import defaultImage from '../../assets/defaultImage.jpeg';
 import useAlert from '../../hooks/useAlert';
 import InputField from './InputField';
+import { updateForFirestoreDB } from '../../firbase/firebaseAPI';
+
 type SettingsProps = {
   me: any;
 };

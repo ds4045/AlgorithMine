@@ -2,58 +2,75 @@ import { Button, Descriptions, Drawer, Popover } from 'antd';
 import { FC } from 'react';
 import styles from '../catalog.module.css';
 import Reviews from '../Reviews';
+import { FormattedMessage } from 'react-intl';
+import { Item, ItemOptional, ItemOptionalFields } from '../../../types/types';
 
 type CardModalProps = {
   onClose: () => void;
   open: boolean;
+  item: Item;
 };
 
-const CardModal: FC<CardModalProps> = ({ onClose, open }) => {
+const CardModal: FC<CardModalProps> = ({ onClose, open, item }) => {
   const content = <Reviews />;
+  const optionalProperties: { key: ItemOptionalFields; value: string | number }[] = [];
+  const optional: ItemOptional = item.optional;
+  for (const [key, value] of Object.entries(optional)) {
+    if (typeof value === 'string' || typeof value === 'number') {
+      optionalProperties.push({ key: key as ItemOptionalFields, value });
+    }
+  }
   return (
-    <Drawer
-      title={'Bitmain Antminer E9'}
-      placement="right"
-      size="large"
-      onClose={onClose}
-      open={open}>
+    <Drawer title={item.title} placement="right" size="large" onClose={onClose} open={open}>
       <div>
-        <Descriptions title="Характеристики">
-          <Descriptions.Item label="Потреблнение">1900</Descriptions.Item>
-          <Descriptions.Item label="Доходность">600</Descriptions.Item>
-          <Descriptions.Item label="Оккупаемость">30.1</Descriptions.Item>
-          <Descriptions.Item label="Хешрейт">100</Descriptions.Item>
-          <Descriptions.Item label="Цена">400$</Descriptions.Item>
-          <Descriptions.Item label="В наличии">✅</Descriptions.Item>
-          <Descriptions.Item label="Артикул">1234567890</Descriptions.Item>
+        <Descriptions title={<FormattedMessage id="catalog.card.modal_specifications" />}>
+          <Descriptions.Item label={<FormattedMessage id="catalog.card.modal_inStock" />}>
+            {item.inStock ? '✅' : <FormattedMessage id="catalog.card.modal_under_the_order" />}
+          </Descriptions.Item>
+          <Descriptions.Item label={<FormattedMessage id="catalog.card.modal_sku" />}>
+            {item.sku}
+          </Descriptions.Item>
+          {optionalProperties.map((el) => (
+            <Descriptions.Item
+              key={el.key}
+              label={<FormattedMessage id={`catalog.card.modal_${el.key}`} />}>
+              {el.value}
+            </Descriptions.Item>
+          ))}
         </Descriptions>
         <p className={styles.modal_text}>
-          <h5>Описание</h5>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto voluptas corrupti
-          nobis veniam omnis delectus porro nemo labore suscipit perspiciatis in voluptatum,
-          voluptatibus reiciendis repellat ea quidem voluptatem error esse. Quod voluptatibus eaque,
-          ea ab ipsa magnam voluptate suscipit, sed veniam assumenda ullam! Ad maiores fugiat,
-          aspernatur pariatur tempora placeat itaque voluptate dolorem? Facere minus, ratione
-          aspernatur optio obcaecati aut non, ducimus nam, incidunt quos iure sunt quia cum quaerat
-          et quae dolor expedita eum doloribus. Cum saepe quasi omnis odio nemo cupiditate, minima
-          laborum eum quisquam fuga ratione perspiciatis maiores eos rerum ex sequi fugit veritatis
-          sapiente neque numquam.
+          <b>
+            <FormattedMessage id="catalog.card.description" />
+          </b>
+          <br />
+          {item.description}
         </p>
         <p className={styles.modal_text}>
-          <h5>Доставка</h5>
+          <b>
+            <FormattedMessage id="catalog.card.modal_delivery" />
+          </b>
+          <br />
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi recusandae optio dolore
           quasi laudantium eaque voluptates nostrum architecto quia magnam!
         </p>
         <div className={styles.btn_groups_modal}>
-          <Button>Добавить к сравнению</Button>
-          <Button>Добавить в избранное</Button>
-          <Button>Добавить в корзину</Button>
+          <Button>
+            <FormattedMessage id="catalog.card.modal_add_to_сomparison" />
+          </Button>
+          <Button>
+            <FormattedMessage id="catalog.card.modal_add_to_favorites" />
+          </Button>
+          <Button>
+            <FormattedMessage id="catalog.card.modal_add_to_cart" />
+          </Button>
           <Popover
             content={content}
-            title="Отзывы"
+            title={<FormattedMessage id="catalog.card.modal_reviews" />}
             trigger="hover"
             overlayInnerStyle={{ overflow: 'scroll', height: 400 }}>
-            <Button>Отзывы</Button>
+            <Button>
+              <FormattedMessage id="catalog.card.modal_reviews" />
+            </Button>
           </Popover>
         </div>
       </div>
