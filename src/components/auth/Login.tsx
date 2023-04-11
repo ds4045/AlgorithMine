@@ -20,8 +20,8 @@ const Login: FC = () => {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       setLoginEmail('');
       setLoginPassword('');
+      console.log(auth);
       const newUser = {
-        id: auth?.currentUser?.uid ?? '',
         name: auth.currentUser?.displayName ?? '',
         surname: '',
         email: auth.currentUser?.email ?? '',

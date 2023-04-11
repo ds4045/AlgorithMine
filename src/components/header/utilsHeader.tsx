@@ -1,29 +1,30 @@
 import { MenuProps } from 'antd';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 export const items: MenuProps['items'] = [
   {
     key: '1',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+      <Link to="/catalog">
         <FormattedMessage id="header.catalog_asic" />
-      </a>
+      </Link>
     ),
   },
   {
     key: '2',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+      <Link to="/">
         <FormattedMessage id="header.catalog_accessories" />
-      </a>
+      </Link>
     ),
   },
   {
     key: '3',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+      <Link to="/">
         <FormattedMessage id="header.catalog_videocards" />
-      </a>
+      </Link>
     ),
   },
 ];

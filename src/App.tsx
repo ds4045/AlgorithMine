@@ -18,6 +18,8 @@ import { pushAllUsers } from './redux/allUsersSlice';
 import { UserFirestoreDB } from './types/types';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import Footer from './components/footer/Footer';
+import Catalog from './components/catalog/Catalog';
+import { useCurrentUser } from './hooks/useCurrentUser';
 
 function App() {
   useAutoSignIn();
@@ -35,6 +37,8 @@ function App() {
     };
     if (isAuth) fetchUsers();
   }, [dispatch, isAuth]);
+  const me = useCurrentUser();
+
   return (
     <ConfigProvider locale={locale === 'ru' ? ruRU : enUS}>
       <IntlProvider locale={locale} messages={messages[locale]}>
@@ -49,6 +53,7 @@ function App() {
                     onLocaleChange={handleLocaleChange}
                     setDarkThemes={setDarkThemes}
                     darkThemes={darkThemes}
+                    me={me}
                   />
                   <Carousel />
                   <Popular />
@@ -58,7 +63,8 @@ function App() {
             />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
-            <Route path="personal-cabinet" element={<PersonalCabinet />} />
+            <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
+            <Route path="catalog" element={<Catalog />} />
           </Routes>
         </div>
       </IntlProvider>

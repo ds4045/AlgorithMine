@@ -1,0 +1,113 @@
+.menu {
+  height: 100vh;
+  width: 230px;
+  position: fixed;
+}
+.icon_sort {
+  font-size: 22px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-left: 300px;
+  height: inherit;
+}
+.btn_groups {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.btn_groups_horizontal {
+  display: flex;
+  flex-direction: column;
+}
+.btn_groups_horizontal button {
+  margin-top: 5px;
+}
+.btn_groups_modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.modal_text {
+  margin: 10px;
+  padding: 10px;
+  font-size: 15px;
+}
+.modal_text h5 {
+  opacity: 0.5;
+}
+.cards_table {
+  margin-right: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  height: 100%;
+  margin-top: 10px;
+}
+
+.card_horizontal {
+  width: 90%;
+  margin-top: 10px;
+}
+.card_ul {
+  margin-top: 20px;
+  list-style-type: none;
+}
+.horizontal_description {
+  flex: 1;
+  padding: 10px;
+}
+.horizontal_options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.reviews {
+  display: flex;
+  flex-direction: column;
+}
+.reviews button {
+  width: 150px;
+  margin: 5px 0;
+}
+.review {
+  border: 0.5px solid lightgray;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+@media (max-width: 1800px) {
+  .cards_table {
+    margin-right: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+  }
+}
+@media (max-width: 1500px) {
+  .cards_table {
+    margin-right: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+  }
+}
+@media (max-width: 1000px) {
+  .cards_table {
+    margin-right: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+  }
+}

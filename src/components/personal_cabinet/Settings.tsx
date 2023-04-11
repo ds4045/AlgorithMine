@@ -45,6 +45,7 @@ const Settings: FC<SettingsProps> = ({ me }) => {
     } else setFields((prev) => ({ ...prev, [field]: e.target.value }));
   };
   const changeFieldOnDB = (field: FieldsUserType) => {
+    console.log(me);
     if (me?.id) {
       updateForFirestoreDB(me.id, field, fields[field], setIsLoading, alertSuccess, alertError);
     }

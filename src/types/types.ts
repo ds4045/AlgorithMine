@@ -13,7 +13,7 @@ export type UserFirestoreDB = {
   image: string;
   age: string;
   email: string;
-  id: string;
+  id?: string;
   city: string;
   phone: string;
   orders: any[];

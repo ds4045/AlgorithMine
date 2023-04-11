@@ -22,7 +22,6 @@ const Register: FC = () => {
       e.preventDefault();
       await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       const newUser = {
-        id: auth?.currentUser?.uid ?? '',
         name: auth.currentUser?.displayName ?? '',
         surname: '',
         email: auth.currentUser?.email ?? '',
@@ -36,8 +35,7 @@ const Register: FC = () => {
       confirmAuthorizedUser(auth, registerEmail, registerPassword, dispatch, navigate, newUser);
       setRegisterEmail('');
       setRegisterPassword('');
-      if (allUsers.some((user) => user.email === auth.currentUser?.email)) return;
-      else if (!newUser.email) return;
+      if (allUsers.some((user) => user.email === auth.currentUser?.email && !newUser.email)) return;
       else {
         dispatch(addUsers(newUser));
         addUsersForFirestoreDB(newUser);

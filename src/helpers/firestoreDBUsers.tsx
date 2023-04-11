@@ -20,8 +20,7 @@ export const addUsersForFirestoreDB = async (user: UserFirestoreDB) => {
 export const getDBFromFirestoreDB = async () => {
   try {
     const data = await getDocs(users);
-    const docs = data.docs.map((el) => ({ ...el.data(), id: el.id }));
-    return docs;
+    return data.docs.map((el) => ({ ...el.data(), id: el.id }));
   } catch (err) {
     console.log(err);
   }

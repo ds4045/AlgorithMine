@@ -101,7 +101,13 @@ const App: FC<MenuTypeProps> = ({ setActualPage }) => {
       <Button type="primary" onClick={toggleCollapsed} className={styles.btn_open_settings}>
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
-      <Menu defaultSelectedKeys={['1']} mode="inline" inlineCollapsed={collapsed} items={items} />
+      <Menu
+        defaultSelectedKeys={['1']}
+        mode="inline"
+        inlineCollapsed={collapsed}
+        items={items}
+        className={styles.menu}
+      />
     </div>
   );
 };

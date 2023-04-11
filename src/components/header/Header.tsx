@@ -13,17 +13,17 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase';
 import { isAuthFalse } from '../../redux/authSlice';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
-import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { UserFirestoreDB } from '../../types/types';
 const { Search } = Input;
 
 type HeaderProps = {
   onLocaleChange: () => void;
   setDarkThemes: Dispatch<SetStateAction<boolean>>;
   darkThemes: boolean;
+  me: UserFirestoreDB | null;
 };
-const Header: React.FC<HeaderProps> = ({ onLocaleChange, setDarkThemes, darkThemes }) => {
+const Header: React.FC<HeaderProps> = ({ onLocaleChange, setDarkThemes, darkThemes, me }) => {
   const isAuth = useAppSelector((state) => state.auth.isAuth);
-  const me = useCurrentUser();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const onSearch = (value: string) => console.log(value);

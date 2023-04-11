@@ -12,7 +12,7 @@ export const useCurrentUser = (): UserFirestoreDB | null => {
   useEffect(() => {
     if (allUsers.length > 0 && currentUserEmail) {
       const user = allUsers.find((el) => el.email === currentUserEmail);
-      if (user?.id) {
+      if (user?.email) {
         setCurrentUser(user);
         dispatch(isAuthTrue(user));
       }

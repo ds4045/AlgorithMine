@@ -21,7 +21,6 @@ const GoogleAuth: FC<GoogleFormProps> = ({ buttonName }) => {
     try {
       await signInWithPopup(auth, googleAuth);
       const newUser = {
-        id: auth?.currentUser?.uid ?? '',
         name: auth.currentUser?.displayName ?? '',
         surname: '',
         email: auth.currentUser?.email ?? '',

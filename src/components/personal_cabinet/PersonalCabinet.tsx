@@ -1,13 +1,15 @@
-import { useCurrentUser } from '../../hooks/useCurrentUser';
 // import styles from './personal_cabinet.module.css';
 import Menu from './Menu';
 import Settings from './Settings';
-import { ReactNode, useEffect, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import Orders from './Orders';
 import Reviews from './Reviews';
+import { UserFirestoreDB } from '../../types/types';
 export type ActualPageType = 'settings' | 'orders' | 'reviews';
-const PersonalCabinet = () => {
-  const me = useCurrentUser();
+type PersonalCabinetProps = {
+  me: UserFirestoreDB | null;
+};
+const PersonalCabinet: FC<PersonalCabinetProps> = ({ me }) => {
   const [actualPage, setActualPage] = useState<ActualPageType>('settings');
   const [renderPage, setRenderPage] = useState<ReactNode>(<Settings me={me} />);
 
