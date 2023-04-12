@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import styles from './catalog.module.css';
 import { Item } from '../../types/types';
 import { useAppDispatch } from '../../redux/hooks';
-import { pushAllItems } from '../../redux/itemsSlice';
+import { searchItem, sortItem } from '../../redux/itemsSlice';
 import { middleScore } from './Catalog';
 
 const { Search } = Input;
@@ -15,39 +15,41 @@ type CatalogNavigationProps = {
 };
 
 const CatalogNavigation: FC<CatalogNavigationProps> = ({ setCardsPosition, items }) => {
-  const onSearch = () => {};
-  console.log(items);
+  const onSearch = (search: string) => {
+    dispatch(searchItem(search.trim()));
+  };
   const dispatch = useAppDispatch();
-  const handleChange = (el: string) => {
+  const handleChange = (value: string) => {
     const renderItems: Item[] = [...items];
-    switch (el) {
+    switch (value) {
       case 'By priceUp': {
         renderItems.sort((a, b) => a.price - b.price);
-        dispatch(pushAllItems(renderItems));
+        dispatch(sortItem(renderItems));
         break;
       }
       case 'By priceDown': {
         renderItems.sort((a, b) => b.price - a.price);
-        dispatch(pushAllItems(renderItems));
+        dispatch(sortItem(renderItems));
         break;
       }
       case 'By THUp': {
         renderItems.sort((a, b) => a.optional?.hashrate - b.optional?.hashrate);
-        dispatch(pushAllItems(renderItems));
+        dispatch(sortItem(renderItems));
         break;
       }
       case 'By THDown': {
         renderItems.sort((a, b) => b.optional?.hashrate - a.optional?.hashrate);
-        dispatch(pushAllItems(renderItems));
+        dispatch(sortItem(renderItems));
         break;
       }
       case 'By rate': {
         renderItems.sort((a, b) => middleScore(b) - middleScore(a));
-        dispatch(pushAllItems(renderItems));
+        dispatch(sortItem(renderItems));
         break;
       }
     }
   };
+
   return (
     <div className={styles.btn_groups}>
       <Select

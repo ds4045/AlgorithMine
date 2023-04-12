@@ -6,6 +6,7 @@ interface Messages {
 
 const messages: Messages = {
   en: {
+    'not_found.text': 'Sorry, the page you visited does not exist.',
     'header.services': 'Services',
     'header.catalog': 'Catalog',
     'header.catalog_asic': 'Asic miners',
@@ -83,6 +84,7 @@ const messages: Messages = {
     'catalog.reviews.check_added_empty_string': 'Your review cannot be empty',
   },
   ru: {
+    'not_found.text': 'Извините, страница, которую вы посетили, не существует.',
     'header.services': 'Услуги',
     'header.catalog': 'Каталог',
     'header.catalog_asic': 'Asic майнеры',

@@ -15,10 +15,10 @@ type CardHorizontalProps = {
 const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item, score }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
-  const showLargeDrawer = () => {
+  const showDescription = () => {
     setOpen(true);
   };
-  const onClose = () => {
+  const onCloseDescription = () => {
     setOpen(false);
   };
 
@@ -42,15 +42,15 @@ const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item, score }) => {
           score={score}
         />
         <div className={styles.btn_groups_horizontal}>
-          <Button onClick={showLargeDrawer} type="primary">
+          <Button onClick={showDescription} type="primary">
             <FormattedMessage id="catalog.card.btn_more" />
           </Button>
-          <Button onClick={showLargeDrawer}>
+          <Button>
             <FormattedMessage id="catalog.card.btn_buy" />
           </Button>
         </div>
       </div>
-      <CardModal onClose={onClose} open={open} item={item} />
+      <CardModal onClose={onCloseDescription} open={open} item={item} />
     </Card>
   );
 };

@@ -133,18 +133,18 @@ const Catalog: FC = () => {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
-  const items = useAppSelector((state) => state.items.items);
+  const items = useAppSelector((state) => state.items.searchedItems);
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const fetchItems = async () => {
       setIsLoading(true);
       const res = await getDataFromDB('items');
-      if (!items.length) dispatch(pushAllItems(res as Item[]));
+      dispatch(pushAllItems(res as Item[]));
       setIsLoading(false);
     };
     fetchItems();
-  }, [dispatch, setIsLoading, items.length]);
+  }, [dispatch]);
 
   return (
     <div>

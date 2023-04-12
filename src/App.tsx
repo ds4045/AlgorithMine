@@ -20,6 +20,7 @@ import Footer from './components/footer/Footer';
 import Catalog from './components/catalog/Catalog';
 import { useCurrentUser } from './hooks/useCurrentUser';
 import { getDataFromDB } from './firbase/firebaseAPI';
+import NotFound from './components/not_found/NotFound';
 
 function App() {
   useAutoSignIn();
@@ -65,6 +66,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
             <Route path="catalog" element={<Catalog />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </IntlProvider>

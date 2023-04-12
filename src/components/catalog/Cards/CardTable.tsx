@@ -15,10 +15,10 @@ type CardTableProps = {
 const CardTable: FC<CardTableProps> = ({ loading, item, score }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
-  const showLargeDrawer = () => {
+  const showDescription = () => {
     setOpen(true);
   };
-  const onClose = () => {
+  const onCloseDescription = () => {
     setOpen(false);
   };
   return (
@@ -29,7 +29,7 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score }) => {
           width: 350,
         }}
         actions={[
-          <Button key="more" type="primary" onClick={showLargeDrawer}>
+          <Button key="more" type="primary" onClick={showDescription}>
             <FormattedMessage id="catalog.card.btn_more" />
           </Button>,
           <Button key="buy">
@@ -46,7 +46,7 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score }) => {
           />
         </div>
       </AntCard>
-      <CardModal onClose={onClose} open={open} item={item} />
+      <CardModal onClose={onCloseDescription} open={open} item={item} />
     </div>
   );
 };
