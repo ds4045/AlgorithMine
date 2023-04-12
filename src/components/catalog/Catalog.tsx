@@ -21,7 +21,8 @@ import { pushAllItems } from '../../redux/itemsSlice';
 import { Item } from '../../types/types';
 import { getDataFromDB } from '../../firbase/firebaseAPI';
 type MenuItem = Required<MenuProps>['items'][number];
-
+export const middleScore = (item: Item) =>
+  Math.round(item.reviews.reduce((acc, curr) => acc + curr?.rate, 0) / item.reviews.length);
 function getItem(
   label: React.ReactNode,
   key: React.Key,
@@ -133,7 +134,6 @@ const Catalog: FC = () => {
     }
   };
   const items = useAppSelector((state) => state.items.items);
-  console.log(items);
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -145,8 +145,7 @@ const Catalog: FC = () => {
     };
     fetchItems();
   }, [dispatch, setIsLoading, items.length]);
-  const middleScore = (item: Item) =>
-    Math.round(item.reviews.reduce((acc, curr) => acc + curr?.rate, 0) / item.reviews.length);
+
   return (
     <div>
       <Menu
@@ -157,7 +156,7 @@ const Catalog: FC = () => {
         items={menuItems}
       />
       <div className={styles.wrapper}>
-        <CatalogNavigation setCardsPosition={setCardsPosition} />
+        <CatalogNavigation setCardsPosition={setCardsPosition} items={items} />
         <div className={styles[cardsPosition]}>
           {cardsPosition === 'cards_horizontal'
             ? items.map((el) => (

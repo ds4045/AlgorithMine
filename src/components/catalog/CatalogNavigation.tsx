@@ -3,16 +3,50 @@ import { Button, Input, Pagination, Select } from 'antd';
 import { Dispatch, FC, SetStateAction } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styles from './catalog.module.css';
+import { Item } from '../../types/types';
+import { useAppDispatch } from '../../redux/hooks';
+import { pushAllItems } from '../../redux/itemsSlice';
+import { middleScore } from './Catalog';
 
 const { Search } = Input;
 type CatalogNavigationProps = {
   setCardsPosition: Dispatch<SetStateAction<'cards_horizontal' | 'cards_table'>>;
+  items: Item[];
 };
 
-const CatalogNavigation: FC<CatalogNavigationProps> = ({ setCardsPosition }) => {
+const CatalogNavigation: FC<CatalogNavigationProps> = ({ setCardsPosition, items }) => {
   const onSearch = () => {};
+  console.log(items);
+  const dispatch = useAppDispatch();
   const handleChange = (el: string) => {
-    console.log(el);
+    const renderItems: Item[] = [...items];
+    switch (el) {
+      case 'By priceUp': {
+        renderItems.sort((a, b) => a.price - b.price);
+        dispatch(pushAllItems(renderItems));
+        break;
+      }
+      case 'By priceDown': {
+        renderItems.sort((a, b) => b.price - a.price);
+        dispatch(pushAllItems(renderItems));
+        break;
+      }
+      case 'By THUp': {
+        renderItems.sort((a, b) => a.optional?.hashrate - b.optional?.hashrate);
+        dispatch(pushAllItems(renderItems));
+        break;
+      }
+      case 'By THDown': {
+        renderItems.sort((a, b) => b.optional?.hashrate - a.optional?.hashrate);
+        dispatch(pushAllItems(renderItems));
+        break;
+      }
+      case 'By rate': {
+        renderItems.sort((a, b) => middleScore(b) - middleScore(a));
+        dispatch(pushAllItems(renderItems));
+        break;
+      }
+    }
   };
   return (
     <div className={styles.btn_groups}>
