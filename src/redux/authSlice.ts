@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { UserFirestoreDB } from '../types/types';
+import { ReviewsUserType, UserFirestoreDB } from '../types/types';
 
 type AuthStateType = {
   isAuth: boolean;
@@ -23,8 +23,11 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.login = null;
     },
+    addReviewUser: (state, action: PayloadAction<ReviewsUserType>) => {
+      if (state.login) state.login = { ...state.login, reviews: action.payload };
+    },
   },
 });
 
-export const { isAuthTrue, isAuthFalse } = authSlice.actions;
+export const { isAuthTrue, isAuthFalse, addReviewUser } = authSlice.actions;
 export default authSlice.reducer;

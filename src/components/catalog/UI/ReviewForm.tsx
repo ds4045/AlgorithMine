@@ -6,10 +6,12 @@ import { nanoid } from 'nanoid';
 import { ReviewItemType } from '../../../types/types';
 import useAlert from '../../../hooks/useAlert';
 import { updateForFirestore } from '../../../firbase/firebaseAPI';
-import { useAppSelector } from '../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { FormattedMessage } from 'react-intl';
 import { getCurrentDate } from '../../../helpers/getCurrentDate';
 import defaultImage from '../../../assets/defaultImage.jpeg';
+import { addReviewItem } from '../../../redux/itemsSlice';
+import { addReviewUser } from '../../../redux/authSlice';
 type ReviewFormType = {
   value: string;
   rate: number;
@@ -17,20 +19,23 @@ type ReviewFormType = {
 
 type ReviewFormProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  allReviews: ReviewItemType[];
+  reviews: ReviewItemType[];
   itemID: string;
 };
 const initialStateReview: ReviewFormType = {
   value: '',
   rate: 0,
 };
-const ReviewForm: FC<ReviewFormProps> = ({ setIsOpen, allReviews, itemID }) => {
+const ReviewForm: FC<ReviewFormProps> = ({ setIsOpen, reviews, itemID }) => {
   const me = useAppSelector((state) => state.auth.login);
   const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const dispatch = useAppDispatch();
   const [alertSuccess, alertError, contextHolder] = useAlert();
   const [reviewForm, setReviewForm] = useState<ReviewFormType>(initialStateReview);
   const [isLoading, setIsLoading] = useState(false);
+
   const submitHandler = async () => {
+    let resUser, resItem, allUserReviewsItemID;
     const review: ReviewItemType = {
       ...reviewForm,
       id: nanoid(),
@@ -40,17 +45,20 @@ const ReviewForm: FC<ReviewFormProps> = ({ setIsOpen, allReviews, itemID }) => {
     };
     setReviewForm(initialStateReview);
     setIsOpen(false);
+
     if (!isAuth) {
       return alertError(<FormattedMessage id="catalog.reviews.check_login" />);
     }
-    if (me?.reviews[itemID]) {
+    if (me?.reviews) allUserReviewsItemID = Object.keys(me.reviews);
+    if (allUserReviewsItemID?.includes(itemID)) {
       return alertError(<FormattedMessage id="catalog.reviews.check_added" />);
     }
-    const newAllItemReviews = [...allReviews, review];
-    const newAllUserReviews = {
-      [itemID]: newAllItemReviews,
-    };
-    await updateForFirestore(
+    if (!reviewForm.value.trim())
+      return alertError(<FormattedMessage id="catalog.reviews.check_added_empty_string" />);
+
+    const newAllItemReviews = [...reviews, review];
+    const newAllUserReviews = { ...me?.reviews, [itemID]: newAllItemReviews };
+    resItem = await updateForFirestore(
       'items',
       itemID,
       'reviews',
@@ -60,8 +68,8 @@ const ReviewForm: FC<ReviewFormProps> = ({ setIsOpen, allReviews, itemID }) => {
       alertError,
       'add_review',
     );
-    if (me?.id)
-      await updateForFirestore(
+    if (me?.id) {
+      resUser = await updateForFirestore(
         'users',
         me.id,
         'reviews',
@@ -70,6 +78,16 @@ const ReviewForm: FC<ReviewFormProps> = ({ setIsOpen, allReviews, itemID }) => {
         alertSuccess,
         alertError,
       );
+    }
+    if (resItem === 'success' && resUser === 'success') {
+      dispatch(
+        addReviewItem({
+          itemID,
+          reviews: newAllItemReviews,
+        }),
+      );
+      dispatch(addReviewUser(newAllUserReviews));
+    }
   };
   return (
     <div className={styles.review_form}>

@@ -9,9 +9,10 @@ import { Item } from '../../../types/types';
 type CardHorizontalProps = {
   loading: boolean;
   item: Item;
+  score: number;
 };
 
-const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item }) => {
+const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item, score }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const showLargeDrawer = () => {
@@ -20,6 +21,7 @@ const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item }) => {
   const onClose = () => {
     setOpen(false);
   };
+
   return (
     <Card
       loading={loading}
@@ -33,7 +35,12 @@ const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item }) => {
         <p>{item.description}</p>
       </div>
       <div className={styles.horizontal_options}>
-        <DescriptionCard price={item.price} title={item.title} th={item.optional?.hashrate} />
+        <DescriptionCard
+          price={item.price}
+          title={item.title}
+          th={item.optional?.hashrate}
+          score={score}
+        />
         <div className={styles.btn_groups_horizontal}>
           <Button onClick={showLargeDrawer} type="primary">
             <FormattedMessage id="catalog.card.btn_more" />

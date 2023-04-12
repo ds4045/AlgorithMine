@@ -6,9 +6,10 @@ type DescriptionCardProps = {
   price: number;
   title: string;
   th: number | undefined;
+  score: number;
 };
 
-const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, th }) => {
+const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, th, score }) => {
   return (
     <ul className={styles.card_ul}>
       <li>
@@ -19,7 +20,7 @@ const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, th }) => {
       </li>
       {th && <li>TH/s {th}</li>}
       <li>
-        <Rate value={5} disabled />
+        <Rate value={score} disabled />
       </li>
     </ul>
   );

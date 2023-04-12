@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Item } from '../types/types';
+import { Item, ReviewItemType } from '../types/types';
 type AllItemsState = {
   items: Item[];
 };
@@ -18,8 +18,20 @@ export const usersSlice = createSlice({
     pushAllItems: (state, action: PayloadAction<Array<Item>>) => {
       state.items = action.payload;
     },
+    addReviewItem: (
+      state,
+      action: PayloadAction<{
+        reviews: ReviewItemType[];
+        itemID: string;
+      }>,
+    ) => {
+      state.items = state.items.map((el) => {
+        if (el.id === action.payload.itemID) return { ...el, reviews: action.payload.reviews };
+        else return el;
+      });
+    },
   },
 });
 
-export const { addItem, pushAllItems } = usersSlice.actions;
+export const { addItem, pushAllItems, addReviewItem } = usersSlice.actions;
 export default usersSlice.reducer;

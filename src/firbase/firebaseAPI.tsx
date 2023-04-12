@@ -62,9 +62,11 @@ export const updateForFirestore = async (
     const updateData = doc(db as CollectionReference<DocumentData>, id);
     await updateDoc(updateData, { [field]: newValue });
     alertType && alertSuccess(<FormattedMessage id={`pc.alert_succ_${alertType}`} />);
+    return 'success';
   } catch (err) {
     console.log(err);
     alertType && alertError(<FormattedMessage id={`pc.alert_err_${alertType}`} />);
+    return 'error';
   } finally {
     setIsLoading((prev: any) => {
       if (typeof prev === 'boolean') return false;

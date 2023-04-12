@@ -7,27 +7,22 @@ import { ReviewItemType } from '../../types/types';
 import SingleReview from './UI/SingleReview';
 
 type ReviewsProps = {
-  allReviews: ReviewItemType[];
   itemID: string;
+  reviews: ReviewItemType[];
 };
 
-const Reviews: FC<ReviewsProps> = ({ allReviews, itemID }) => {
+const Reviews: FC<ReviewsProps> = ({ itemID, reviews }) => {
   const [isOpenPopover, setIsOpenPopover] = useState(false);
-  const score = Math.round(
-    allReviews.reduce((acc, curr) => acc + curr?.rate, 0) / allReviews.length,
-  );
-  const content = (
-    <ReviewForm setIsOpen={setIsOpenPopover} allReviews={allReviews} itemID={itemID} />
-  );
+  const content = <ReviewForm setIsOpen={setIsOpenPopover} reviews={reviews} itemID={itemID} />;
   return (
     <div className={styles.reviews}>
-      {allReviews.length ? (
-        allReviews.map((el, ind) => (
+      {reviews.length ? (
+        reviews.map((el, ind) => (
           <SingleReview
             key={el.id + ind}
             name={el?.author}
             image={el?.image}
-            score={score}
+            score={el?.rate}
             date={el?.date}
             text={el?.value}
           />

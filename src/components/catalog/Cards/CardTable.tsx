@@ -9,9 +9,10 @@ import { Item } from '../../../types/types';
 type CardTableProps = {
   loading: boolean;
   item: Item;
+  score: number;
 };
 
-const CardTable: FC<CardTableProps> = ({ loading, item }) => {
+const CardTable: FC<CardTableProps> = ({ loading, item, score }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const showLargeDrawer = () => {
@@ -37,7 +38,12 @@ const CardTable: FC<CardTableProps> = ({ loading, item }) => {
         ]}>
         <ImageCatalog setVisible={setVisible} visible={visible} images={item.images} />
         <div>
-          <DescriptionCard price={item.price} title={item.title} th={item.optional?.hashrate} />
+          <DescriptionCard
+            price={item.price}
+            title={item.title}
+            th={item.optional?.hashrate}
+            score={score}
+          />
         </div>
       </AntCard>
       <CardModal onClose={onClose} open={open} item={item} />

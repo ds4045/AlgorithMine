@@ -80,6 +80,7 @@ const messages: Messages = {
     'catalog.reviews.anonim': 'Unknown',
     'catalog.reviews.check_added': 'Have you already left a review for this product',
     'catalog.reviews.submit': 'Submit',
+    'catalog.reviews.check_added_empty_string': 'Your review cannot be empty',
   },
   ru: {
     'header.services': 'Услуги',
@@ -156,6 +157,7 @@ const messages: Messages = {
     'catalog.reviews.anonim': 'Аноним',
     'catalog.reviews.check_added': 'Вы уже оставляли отзыв на этот товар',
     'catalog.reviews.submit': 'Отправить',
+    'catalog.reviews.check_added_empty_string': 'Ваш отзыв не может быть пустым',
   },
 };
 

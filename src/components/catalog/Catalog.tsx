@@ -133,6 +133,7 @@ const Catalog: FC = () => {
     }
   };
   const items = useAppSelector((state) => state.items.items);
+  console.log(items);
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -144,6 +145,8 @@ const Catalog: FC = () => {
     };
     fetchItems();
   }, [dispatch, setIsLoading, items.length]);
+  const middleScore = (item: Item) =>
+    Math.round(item.reviews.reduce((acc, curr) => acc + curr?.rate, 0) / item.reviews.length);
   return (
     <div>
       <Menu
@@ -157,8 +160,12 @@ const Catalog: FC = () => {
         <CatalogNavigation setCardsPosition={setCardsPosition} />
         <div className={styles[cardsPosition]}>
           {cardsPosition === 'cards_horizontal'
-            ? items.map((el) => <CardHorizontal key={el.id} loading={isLoading} item={el} />)
-            : items.map((el) => <CardTable key={el.id} loading={isLoading} item={el} />)}
+            ? items.map((el) => (
+                <CardHorizontal key={el.id} loading={isLoading} item={el} score={middleScore(el)} />
+              ))
+            : items.map((el) => (
+                <CardTable key={el.id} loading={isLoading} item={el} score={middleScore(el)} />
+              ))}
         </div>
       </div>
     </div>

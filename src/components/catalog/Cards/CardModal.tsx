@@ -12,7 +12,9 @@ type CardModalProps = {
 };
 
 const CardModal: FC<CardModalProps> = ({ onClose, open, item }) => {
-  const content = <Reviews allReviews={item.reviews} itemID={item.id} />;
+  const itemID = item.id;
+  const reviews = item.reviews ?? [];
+  const content = <Reviews reviews={reviews} itemID={itemID} />;
   const optionalProperties: { key: ItemOptionalFields; value: string | number }[] = [];
   const optional: ItemOptional = item.optional;
   for (const [key, value] of Object.entries(optional)) {
