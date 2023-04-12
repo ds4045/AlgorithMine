@@ -12,7 +12,7 @@ type CardModalProps = {
 };
 
 const CardModal: FC<CardModalProps> = ({ onClose, open, item }) => {
-  const content = <Reviews />;
+  const content = <Reviews allReviews={item.reviews} itemID={item.id} />;
   const optionalProperties: { key: ItemOptionalFields; value: string | number }[] = [];
   const optional: ItemOptional = item.optional;
   for (const [key, value] of Object.entries(optional)) {
@@ -66,8 +66,8 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item }) => {
           <Popover
             content={content}
             title={<FormattedMessage id="catalog.card.modal_reviews" />}
-            trigger="hover"
-            overlayInnerStyle={{ overflow: 'scroll', height: 400 }}>
+            trigger="click"
+            overlayInnerStyle={{ overflow: 'scroll' }}>
             <Button>
               <FormattedMessage id="catalog.card.modal_reviews" />
             </Button>

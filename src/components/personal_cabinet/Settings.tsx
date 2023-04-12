@@ -57,6 +57,7 @@ const Settings: FC<SettingsProps> = ({ me }) => {
         setIsLoading,
         alertSuccess,
         alertError,
+        'change',
       );
     }
   };

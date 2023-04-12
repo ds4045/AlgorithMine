@@ -19,7 +19,7 @@ const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, th }) => {
       </li>
       {th && <li>TH/s {th}</li>}
       <li>
-        <Rate value={5} />
+        <Rate value={5} disabled />
       </li>
     </ul>
   );

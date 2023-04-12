@@ -5,7 +5,7 @@ export type CurrencyData = {
 export type UserFirestoreDB = {
   name: string;
   surname: string;
-  reviews: ReviewsType[];
+  reviews: ReviewsUserType;
   image: string;
   age: string;
   email: string;
@@ -45,13 +45,18 @@ export type Item = {
   optional: ItemOptional;
   description: string;
   descriptionRU: string;
-  reviews: ReviewsType[];
+  reviews: ReviewItemType[];
   inStock: boolean;
   sku: number;
 };
-export type ReviewsType = {
+export type ReviewsUserType = {
+  [key: string]: ReviewItemType[];
+};
+export type ReviewItemType = {
   id: string;
   value: string;
-  date: number;
+  date: string;
   author: string;
+  rate: number;
+  image: string;
 };

@@ -56,9 +56,14 @@ const Catalog: FC = () => {
         getItem(<div>WhatsMiner</div>, '1'),
         getItem(<div>Antminer</div>, '2'),
         getItem(<div>AvalonMiner</div>, '3'),
-        getItem(<div>Terra Miner</div>, '4'),
-        getItem(<div>Innosilicon</div>, '5'),
-        getItem(<div>Gold Shell</div>, '6'),
+        getItem(<div>Innosilicon</div>, '4'),
+        getItem(<div>Gold Shell</div>, '5'),
+        getItem(
+          <div>
+            <FormattedMessage id="catalog.all" />
+          </div>,
+          '6',
+        ),
       ],
     ),
     getItem(

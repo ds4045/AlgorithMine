@@ -46,19 +46,29 @@ export const updateForFirestore = async (
   id: string,
   field: string,
   newValue: any,
-  setIsLoading: Dispatch<SetStateAction<UserTemplatesPCLoadingType>>,
+  setIsLoading:
+    | Dispatch<SetStateAction<UserTemplatesPCLoadingType>>
+    | Dispatch<SetStateAction<boolean>>,
   alertSuccess: (text: ReactNode) => void,
   alertError: (text: ReactNode) => void,
+  alertType?: string,
 ) => {
   const db = switchNameDB(nameDB);
   try {
-    setIsLoading((prev) => ({ ...prev, [field]: true }));
-    const updateUser = doc(db as CollectionReference<DocumentData>, id);
-    await updateDoc(updateUser, { [field]: newValue });
-    setIsLoading((prev) => ({ ...prev, [field]: false }));
-    alertSuccess(<FormattedMessage id="pc.alert_succ_change" />);
+    setIsLoading((prev: any) => {
+      if (typeof prev === 'boolean') return true;
+      else return { ...prev, [field]: true };
+    });
+    const updateData = doc(db as CollectionReference<DocumentData>, id);
+    await updateDoc(updateData, { [field]: newValue });
+    alertType && alertSuccess(<FormattedMessage id={`pc.alert_succ_${alertType}`} />);
   } catch (err) {
     console.log(err);
-    alertError(<FormattedMessage id="pc.alert_err_change" />);
+    alertType && alertError(<FormattedMessage id={`pc.alert_err_${alertType}`} />);
+  } finally {
+    setIsLoading((prev: any) => {
+      if (typeof prev === 'boolean') return false;
+      else return { ...prev, [field]: false };
+    });
   }
 };

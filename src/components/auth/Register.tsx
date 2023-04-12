@@ -26,7 +26,7 @@ const Register: FC = () => {
         surname: '',
         email: auth.currentUser?.email ?? '',
         age: '',
-        reviews: [],
+        reviews: {},
         image: auth.currentUser?.photoURL ?? '',
         orders: [],
         city: '',
