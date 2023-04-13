@@ -64,11 +64,11 @@ const SingleCartItem: FC<SingleCartItemProps> = ({ item }) => {
         <Button onClick={removeHandler}>
           <MinusOutlined />
         </Button>
-        <span>{item.price}$</span>
+        <span className={styles.price}>{item.price}$</span>
         <Button onClick={addHandler}>
           <PlusOutlined />
         </Button>
-        <b>{item.price * item.count} $ </b>
+        <b className={styles.price}>{item.price * item.count} $ </b>
         <span className={styles.units}>
           {item.count}
           <FormattedMessage id="cart.units" />

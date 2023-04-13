@@ -57,21 +57,15 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
             </Descriptions.Item>
           ))}
         </Descriptions>
-        <p className={styles.modal_text}>
-          <b>
-            <FormattedMessage id="catalog.card.description" />
-          </b>
-          <br />
-          {item.description}
-        </p>
-        <p className={styles.modal_text}>
-          <b>
-            <FormattedMessage id="catalog.card.modal_delivery" />
-          </b>
-          <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi recusandae optio dolore
-          quasi laudantium eaque voluptates nostrum architecto quia magnam!
-        </p>
+        <Descriptions title={<FormattedMessage id="catalog.card.description" />}>
+          <Descriptions.Item>{item.description}</Descriptions.Item>
+        </Descriptions>
+        <Descriptions title={<FormattedMessage id="catalog.card.modal_delivery" />}>
+          <Descriptions.Item>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi recusandae optio dolore
+            quasi laudantium eaque voluptates nostrum architecto quia magnam!
+          </Descriptions.Item>
+        </Descriptions>
         <div className={styles.btn_groups_modal}>
           <Button onClick={addToCart} type="primary">
             <FormattedMessage id="catalog.card.modal_add_to_cart" />

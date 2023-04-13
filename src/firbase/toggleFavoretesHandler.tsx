@@ -26,7 +26,6 @@ export const toggleFavoritesHandler: toggleFavoritesHandlerType = async (
     default:
       return alert('Something went wrong!');
   }
-  console.log(user.favorites.some((el) => el.id === item.id));
   if (isAuth && user?.id) {
     if (user.favorites.some((el) => el.id === item.id) && alertError)
       return alertError(<FormattedMessage id="catalog.added_favorites_error" />);

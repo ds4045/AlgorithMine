@@ -45,8 +45,7 @@
   top: 5px;
   right: 5px;
   font-size: 30px;
-  color: gold;
-  opacity: 0.5;
+  color: #f94f0c;
   cursor: pointer;
 }
 .get_order {
@@ -59,6 +58,8 @@
   justify-content: space-between;
   width: 100%;
   padding: 30px 150px;
+  font-size: 25px;
+  color: #f94f0c;
 }
 .get_order_price span {
   width: 40px;
@@ -80,7 +81,9 @@
   width: 40%;
 }
 .units {
-  opacity: 0.5;
+  margin: 0 3px;
+  font-size: 15px;
+  color: #fa8a5e;
 }
 .inp {
   height: 32px;
@@ -95,4 +98,7 @@
 }
 .layout {
   padding: 10px;
+}
+.price {
+  color: #f94f0c;
 }

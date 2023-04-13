@@ -18,9 +18,8 @@ import CatalogNavigation from './CatalogNavigation';
 import CardHorizontal from './Cards/CardHorizontal';
 import CardTable from './Cards/CardTable';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { pushAllItems } from '../../redux/itemsSlice';
 import { Item } from '../../types/types';
-import { getDataFromDB } from '../../firbase/firebaseAPI';
+import { fetchItems } from '../../api/fetchItems';
 type MenuItem = Required<MenuProps>['items'][number];
 export const middleScore = (item: Item) =>
   Math.round(item.reviews.reduce((acc, curr) => acc + curr?.rate, 0) / item.reviews.length);
@@ -62,13 +61,7 @@ const Catalog: FC = () => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    const fetchItems = async () => {
-      setIsLoading(true);
-      const res = await getDataFromDB('items');
-      dispatch(pushAllItems(res as Item[]));
-      setIsLoading(false);
-    };
-    fetchItems();
+    fetchItems(dispatch, setIsLoading);
   }, [dispatch]);
   const menuItems: MenuItem[] = [
     getItem(

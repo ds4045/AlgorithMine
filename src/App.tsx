@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 import Header from './components/header/Header';
 import ruRU from 'antd/lib/locale/ru_RU';
 import enUS from 'antd/lib/locale/en_US';
@@ -22,6 +22,7 @@ import Cart from './components/cart/Cart';
 import { loadCartFromLocalStorage } from './helpers/localStorage';
 import { pushAddedItems } from './redux/cartSlice';
 import { fetchUsers } from './api/fetchUsers';
+import { fetchItems } from './api/fetchItems';
 
 function App() {
   useAutoSignIn();
@@ -40,37 +41,46 @@ function App() {
   const me = useCurrentUser();
   useEffect(() => {
     dispatch(pushAddedItems(loadCartFromLocalStorage('cart')));
+    fetchItems(dispatch);
   }, [dispatch]);
   return (
     <ConfigProvider locale={locale === 'ru' ? ruRU : enUS}>
       <IntlProvider locale={locale} messages={messages[locale]}>
-        <div className={darkThemes ? 'App_dark' : 'App_light'}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <CryptoTicker />
-                  <Header
-                    onLocaleChange={handleLocaleChange}
-                    setDarkThemes={setDarkThemes}
-                    darkThemes={darkThemes}
-                    me={me}
-                  />
-                  <Carousel />
-                  <Popular />
-                  <Footer />
-                </>
-              }
-            />
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
-            <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
-            <Route path="catalog" element={<Catalog />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
+        <ConfigProvider
+          theme={{
+            algorithm: darkThemes ? theme.darkAlgorithm : theme.defaultAlgorithm,
+            token: {
+              colorPrimary: '#F94F0C',
+            },
+          }}>
+          <div className={darkThemes ? 'App_dark' : 'App_light'}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <CryptoTicker />
+                    <Header
+                      onLocaleChange={handleLocaleChange}
+                      setDarkThemes={setDarkThemes}
+                      darkThemes={darkThemes}
+                      me={me}
+                    />
+                    <Carousel />
+                    <Popular />
+                    <Footer />
+                  </>
+                }
+              />
+              <Route path="register" element={<Register />} />
+              <Route path="login" element={<Login />} />
+              <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
+              <Route path="catalog" element={<Catalog />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+        </ConfigProvider>
       </IntlProvider>
     </ConfigProvider>
   );
