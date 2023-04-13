@@ -41,20 +41,27 @@
   padding-left: 100%;
   -webkit-animation: scroll 8s infinite linear;
   -moz-animation: scroll 8s infinite linear;
-  animation: scroll 8s infinite linear;
+  animation: scroll 20s infinite linear;
 }
 
 .currency {
   display: flex;
   align-items: center;
 }
+.token {
+  display: flex;
+  align-items: center;
+}
 .text {
+  font-size: 1em;
+  font-weight: 500;
+  margin-right: 50px;
   opacity: 0.5;
-  font-weight: bold;
-  cursor: default;
 }
 .img {
   width: 20px;
-  height: 20px;
-  opacity: 1;
+  height: auto;
+}
+.wrapper {
+  position: sticky;
 }

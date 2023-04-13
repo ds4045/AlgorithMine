@@ -5,14 +5,17 @@ import ImageCatalog from '../UI/ImageCatalog';
 import DescriptionCard from '../UI/DescriptionCard';
 import { FormattedMessage } from 'react-intl';
 import { Item } from '../../../types/types';
+import { useAppDispatch } from '../../../redux/hooks';
+import { addItem } from '../../../redux/cartSlice';
 
 type CardTableProps = {
   loading: boolean;
   item: Item;
   score: number;
+  alert: () => void;
 };
 
-const CardTable: FC<CardTableProps> = ({ loading, item, score }) => {
+const CardTable: FC<CardTableProps> = ({ loading, item, score, alert }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const showDescription = () => {
@@ -20,6 +23,11 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score }) => {
   };
   const onCloseDescription = () => {
     setOpen(false);
+  };
+  const dispatch = useAppDispatch();
+  const buyHandler = () => {
+    dispatch(addItem(item));
+    alert();
   };
   return (
     <div>
@@ -32,7 +40,7 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score }) => {
           <Button key="more" type="primary" onClick={showDescription}>
             <FormattedMessage id="catalog.card.btn_more" />
           </Button>,
-          <Button key="buy">
+          <Button key="buy" onClick={buyHandler}>
             <FormattedMessage id="catalog.card.btn_buy" />
           </Button>,
         ]}>
@@ -46,7 +54,7 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score }) => {
           />
         </div>
       </AntCard>
-      <CardModal onClose={onCloseDescription} open={open} item={item} />
+      <CardModal onClose={onCloseDescription} open={open} item={item} buyHandler={buyHandler} />
     </div>
   );
 };

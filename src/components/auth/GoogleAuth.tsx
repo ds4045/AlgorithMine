@@ -33,6 +33,7 @@ const GoogleAuth: FC<GoogleFormProps> = ({ buttonName }) => {
         cart: [],
         isAdmin: false,
         favorites: [],
+        id: auth.currentUser?.uid ?? '',
       };
       confirmAuthorizedUser(
         auth,

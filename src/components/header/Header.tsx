@@ -14,6 +14,7 @@ import { auth } from '../../firbase/firebaseConfig';
 import { isAuthFalse } from '../../redux/authSlice';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
 import { UserFirestoreDB } from '../../types/types';
+import { pushAddedItems } from '../../redux/cartSlice';
 const { Search } = Input;
 
 type HeaderProps = {
@@ -24,10 +25,14 @@ type HeaderProps = {
 };
 const Header: React.FC<HeaderProps> = ({ onLocaleChange, setDarkThemes, darkThemes, me }) => {
   const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const addedItems = useAppSelector((state) => state.cart.addedItems);
+  const totalUnits = addedItems.reduce((acc, curr) => acc + curr.count, 0);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const onSearch = (value: string) => console.log(value);
   const logOut = async () => {
+    dispatch(pushAddedItems([]));
     dispatch(isAuthFalse());
     await signOut(auth);
     setUserDataCookie(null);
@@ -58,8 +63,9 @@ const Header: React.FC<HeaderProps> = ({ onLocaleChange, setDarkThemes, darkThem
       />
       <Contacts />
       <ToggleColorThemes setDarkThemes={setDarkThemes} />
-      <Badge count={5}>
+      <Badge count={totalUnits}>
         <ShoppingCartOutlined
+          onClick={() => navigate('/cart')}
           className={`${styles.cart} ${darkThemes ? styles.dark : styles.light}`}
         />
       </Badge>

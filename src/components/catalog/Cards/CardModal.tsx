@@ -9,9 +9,10 @@ type CardModalProps = {
   onClose: () => void;
   open: boolean;
   item: Item;
+  buyHandler: () => void;
 };
 
-const CardModal: FC<CardModalProps> = ({ onClose, open, item }) => {
+const CardModal: FC<CardModalProps> = ({ onClose, open, item, buyHandler }) => {
   const itemID = item.id;
   const reviews = item.reviews ?? [];
   const content = <Reviews reviews={reviews} itemID={itemID} />;
@@ -62,7 +63,7 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item }) => {
           <Button>
             <FormattedMessage id="catalog.card.modal_add_to_favorites" />
           </Button>
-          <Button>
+          <Button onClick={buyHandler}>
             <FormattedMessage id="catalog.card.modal_add_to_cart" />
           </Button>
           <Popover

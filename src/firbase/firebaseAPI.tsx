@@ -8,7 +8,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { DB } from './firebaseConfig';
-import { Item, UserFirestoreDB, UserTemplatesPCLoadingType } from '../types/types';
+import { Item, UserFirestoreDB } from '../types/types';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -46,31 +46,23 @@ export const updateForFirestore = async (
   id: string,
   field: string,
   newValue: any,
-  setIsLoading:
-    | Dispatch<SetStateAction<UserTemplatesPCLoadingType>>
-    | Dispatch<SetStateAction<boolean>>,
+  setIsLoading: Dispatch<SetStateAction<any>>,
   alertSuccess: (text: ReactNode) => void,
   alertError: (text: ReactNode) => void,
   alertType?: string,
 ) => {
   const db = switchNameDB(nameDB);
   try {
-    setIsLoading((prev: any) => {
-      if (typeof prev === 'boolean') return true;
-      else return { ...prev, [field]: true };
-    });
+    setIsLoading((prev: any) => (typeof prev === 'boolean' ? true : { ...prev, [field]: true }));
     const updateData = doc(db as CollectionReference<DocumentData>, id);
     await updateDoc(updateData, { [field]: newValue });
     alertType && alertSuccess(<FormattedMessage id={`pc.alert_succ_${alertType}`} />);
-    return 'success';
+    return true;
   } catch (err) {
     console.log(err);
     alertType && alertError(<FormattedMessage id={`pc.alert_err_${alertType}`} />);
-    return 'error';
+    return false;
   } finally {
-    setIsLoading((prev: any) => {
-      if (typeof prev === 'boolean') return false;
-      else return { ...prev, [field]: false };
-    });
+    setIsLoading((prev: any) => (typeof prev === 'boolean' ? false : { ...prev, [field]: false }));
   }
 };

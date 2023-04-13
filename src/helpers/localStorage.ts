@@ -1,18 +1,18 @@
-type KeyType = any;
+import { AddedCartItems } from '../redux/cartSlice';
 
-export const loadCartFromLocalStorage = (key: KeyType): any => {
+export const loadCartFromLocalStorage = (key: string): AddedCartItems[] => {
   try {
     const serializedCart = localStorage.getItem(key);
     if (serializedCart === null) {
-      return undefined;
+      return [];
     }
-    return JSON.parse(serializedCart) as any;
+    return JSON.parse(serializedCart) as AddedCartItems[];
   } catch (err) {
-    return undefined;
+    return [];
   }
 };
 
-export const saveCartToLocalStorage = (cart: any, key: KeyType) => {
+export const saveCartToLocalStorage = (cart: AddedCartItems[], key: string) => {
   try {
     const serializedCart = JSON.stringify(cart);
     localStorage.setItem(key, serializedCart);

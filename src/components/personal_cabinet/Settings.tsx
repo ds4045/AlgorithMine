@@ -6,6 +6,7 @@ import defaultImage from '../../assets/defaultImage.jpeg';
 import useAlert from '../../hooks/useAlert';
 import InputField from './InputField';
 import { updateForFirestore } from '../../firbase/firebaseAPI';
+import { Divider } from 'antd';
 
 type SettingsProps = {
   me: any;
@@ -111,7 +112,9 @@ const Settings: FC<SettingsProps> = ({ me }) => {
     <div className={styles.wrapper}>
       {contextHolder}
       <div className={styles.personal_data}>
-        <h2 className={styles.title_email}>{me?.email}</h2>
+        <Divider className={styles.title_section} plain>
+          {me?.email}
+        </Divider>
         <img className={styles.img} src={me?.image || defaultImage} alt="" />
         <div className={styles.inp_wrapper}>
           {inputs.map((inp, ind) => (

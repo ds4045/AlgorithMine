@@ -79,7 +79,7 @@ const ReviewForm: FC<ReviewFormProps> = ({ setIsOpen, reviews, itemID }) => {
         alertError,
       );
     }
-    if (resItem === 'success' && resUser === 'success') {
+    if (resItem && resUser) {
       dispatch(
         addReviewItem({
           itemID,

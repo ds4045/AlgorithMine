@@ -8,7 +8,6 @@ export const useCurrentUser = (): UserFirestoreDB | null => {
   const allUsers = useAppSelector((state) => state.users.users);
   const currentUserEmail = useAppSelector((state) => state.auth.login?.email);
   const [currentUser, setCurrentUser] = useState<UserFirestoreDB | null>(null);
-
   useEffect(() => {
     if (allUsers.length > 0 && currentUserEmail) {
       const user = allUsers.find((el) => el.email === currentUserEmail);
@@ -18,6 +17,5 @@ export const useCurrentUser = (): UserFirestoreDB | null => {
       }
     }
   }, [allUsers, currentUserEmail, dispatch]);
-
   return currentUser;
 };

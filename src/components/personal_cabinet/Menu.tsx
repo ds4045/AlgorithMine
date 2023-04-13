@@ -1,6 +1,7 @@
 import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import {
   ContainerOutlined,
+  HeartOutlined,
   LikeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -81,11 +82,25 @@ const App: FC<MenuTypeProps> = ({ setActualPage }) => {
     getItem(
       <div
         onClick={() => {
+          setActualPage('favorites');
+        }}>
+        <FormattedMessage id="catalog.favorites" />
+      </div>,
+      '4',
+      <HeartOutlined
+        onClick={() => {
+          setActualPage('favorites');
+        }}
+      />,
+    ),
+    getItem(
+      <div
+        onClick={() => {
           navigate('/');
         }}>
         <FormattedMessage id="auth.btn_back" />
       </div>,
-      '4',
+      '5',
       <RollbackOutlined
         onClick={() => {
           navigate('/');

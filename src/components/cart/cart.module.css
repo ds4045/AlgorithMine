@@ -1,0 +1,79 @@
+.wrapper_cart {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.cart {
+  border-radius: 10px;
+  height: 300px;
+  margin: 10px;
+  border: 0.3px solid rgb(224, 224, 225);
+  display: flex;
+  height: fit-content;
+  padding: 10px;
+}
+.carts {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 90vh;
+}
+.cart_options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  position: relative;
+}
+.cart_options button {
+  margin: 0 10px;
+}
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.favorites {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 30px;
+  color: lightgray;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.get_order {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+.get_order_price {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 150px;
+}
+.get_order_price span {
+  width: 40px;
+}
+.get_order_btn_groups {
+  padding: 30px 150px;
+  display: flex;
+  flex-direction: column;
+}
+.get_order_btn_groups button {
+  margin-top: 10px;
+}
+.about_order {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+.order_contacts {
+  width: 40%;
+}
+.units {
+  opacity: 0.5;
+}
+.inp {
+  height: 32px;
+  align-self: flex-end;
+}

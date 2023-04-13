@@ -20,7 +20,6 @@ const Login: FC = () => {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       setLoginEmail('');
       setLoginPassword('');
-      console.log(auth);
       const newUser = {
         name: auth.currentUser?.displayName ?? '',
         surname: '',
@@ -34,6 +33,7 @@ const Login: FC = () => {
         cart: [],
         isAdmin: false,
         favorites: [],
+        id: auth.currentUser?.uid ?? '',
       };
       confirmAuthorizedUser(auth, loginEmail, loginPassword, dispatch, navigate, newUser);
     } catch (err: any) {

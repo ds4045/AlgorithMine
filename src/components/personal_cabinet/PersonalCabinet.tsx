@@ -5,7 +5,8 @@ import { FC, ReactNode, useEffect, useState } from 'react';
 import Orders from './Orders';
 import Reviews from './Reviews';
 import { UserFirestoreDB } from '../../types/types';
-export type ActualPageType = 'settings' | 'orders' | 'reviews';
+import Favorites from './Favorites';
+export type ActualPageType = 'settings' | 'orders' | 'reviews' | 'favorites';
 type PersonalCabinetProps = {
   me: UserFirestoreDB | null;
 };
@@ -23,6 +24,9 @@ const PersonalCabinet: FC<PersonalCabinetProps> = ({ me }) => {
         break;
       case 'settings':
         setRenderPage(<Settings me={me} />);
+        break;
+      case 'favorites':
+        setRenderPage(<Favorites me={me} />);
         break;
       default:
         break;

@@ -34,6 +34,7 @@ const Register: FC = () => {
         cart: [],
         isAdmin: false,
         favorites: [],
+        id: auth.currentUser?.uid ?? '',
       };
       confirmAuthorizedUser(auth, registerEmail, registerPassword, dispatch, navigate, newUser);
       setRegisterEmail('');

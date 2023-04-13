@@ -8,8 +8,9 @@ import {
   ShoppingCartOutlined,
   UsbOutlined,
 } from '@ant-design/icons';
-import { MenuProps } from 'antd';
+import { Badge, MenuProps } from 'antd';
 import { Menu } from 'antd';
+import { useAlert } from '../../hooks/useAlert';
 import styles from './catalog.module.css';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -42,10 +43,33 @@ function getItem(
 const rootSubmenuKeys = ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6', 'sub7'];
 const Catalog: FC = () => {
   const navigate = useNavigate();
+  const addedItems = useAppSelector((state) => state.cart.addedItems);
+  const totalUnits = addedItems.reduce((acc, curr) => acc + curr.count, 0);
   const [openKeys, setOpenKeys] = useState(['sub1']);
   const [cardsPosition, setCardsPosition] = useState<'cards_horizontal' | 'cards_table'>(
     'cards_horizontal',
   );
+
+  const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
+  const items = useAppSelector((state) => state.items.searchedItems);
+  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchItems = async () => {
+      setIsLoading(true);
+      const res = await getDataFromDB('items');
+      dispatch(pushAllItems(res as Item[]));
+      setIsLoading(false);
+    };
+    fetchItems();
+  }, [dispatch]);
   const menuItems: MenuItem[] = [
     getItem(
       <div>
@@ -97,23 +121,29 @@ const Catalog: FC = () => {
       [getItem('NVIDIA', '10'), getItem('AMD', '11'), getItem('MSI', '12'), getItem('ASUS', '13')],
     ),
     getItem(
-      <div>
-        <FormattedMessage id="catalog.comparison" />
-      </div>,
+      <Badge count={1} offset={[10, 0]}>
+        <div>
+          <FormattedMessage id="catalog.comparison" />
+        </div>
+      </Badge>,
       'sub4',
       <EyeOutlined />,
     ),
     getItem(
-      <div>
-        <FormattedMessage id="catalog.favorites" />
-      </div>,
+      <Badge count={4} offset={[13, 0]}>
+        <div>
+          <FormattedMessage id="catalog.favorites" />
+        </div>
+      </Badge>,
       'sub5',
       <HeartOutlined />,
     ),
     getItem(
-      <div>
-        <FormattedMessage id="catalog.cart" />
-      </div>,
+      <Badge count={totalUnits} offset={[10, 0]}>
+        <div onClick={() => navigate('/cart')}>
+          <FormattedMessage id="catalog.cart" />
+        </div>
+      </Badge>,
       'sub6',
       <ShoppingCartOutlined />,
     ),
@@ -125,29 +155,13 @@ const Catalog: FC = () => {
       <RollbackOutlined />,
     ),
   ];
-  const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
-    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-    if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
-      setOpenKeys(keys);
-    } else {
-      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-    }
+  const [alertSuccess, , contextHolder] = useAlert();
+  const alert = () => {
+    alertSuccess(<FormattedMessage id="cart.add_item_alert" />);
   };
-  const items = useAppSelector((state) => state.items.searchedItems);
-  const dispatch = useAppDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    const fetchItems = async () => {
-      setIsLoading(true);
-      const res = await getDataFromDB('items');
-      dispatch(pushAllItems(res as Item[]));
-      setIsLoading(false);
-    };
-    fetchItems();
-  }, [dispatch]);
-
   return (
     <div>
+      {contextHolder}
       <Menu
         className={styles.menu}
         mode="inline"
@@ -160,10 +174,22 @@ const Catalog: FC = () => {
         <div className={styles[cardsPosition]}>
           {cardsPosition === 'cards_horizontal'
             ? items.map((el) => (
-                <CardHorizontal key={el.id} loading={isLoading} item={el} score={middleScore(el)} />
+                <CardHorizontal
+                  key={el.id}
+                  loading={isLoading}
+                  item={el}
+                  score={middleScore(el)}
+                  alert={alert}
+                />
               ))
             : items.map((el) => (
-                <CardTable key={el.id} loading={isLoading} item={el} score={middleScore(el)} />
+                <CardTable
+                  key={el.id}
+                  loading={isLoading}
+                  item={el}
+                  score={middleScore(el)}
+                  alert={alert}
+                />
               ))}
         </div>
       </div>

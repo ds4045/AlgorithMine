@@ -21,11 +21,15 @@ import Catalog from './components/catalog/Catalog';
 import { useCurrentUser } from './hooks/useCurrentUser';
 import { getDataFromDB } from './firbase/firebaseAPI';
 import NotFound from './components/not_found/NotFound';
+import Cart from './components/cart/Cart';
+import { loadCartFromLocalStorage } from './helpers/localStorage';
+import { pushAddedItems } from './redux/cartSlice';
 
 function App() {
   useAutoSignIn();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.isAuth);
+
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
 
@@ -40,6 +44,9 @@ function App() {
     if (isAuth) fetchUsers();
   }, [dispatch, isAuth]);
   const me = useCurrentUser();
+  useEffect(() => {
+    dispatch(pushAddedItems(loadCartFromLocalStorage('cart')));
+  }, [dispatch]);
   return (
     <ConfigProvider locale={locale === 'ru' ? ruRU : enUS}>
       <IntlProvider locale={locale} messages={messages[locale]}>
@@ -66,6 +73,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
             <Route path="catalog" element={<Catalog />} />
+            <Route path="cart" element={<Cart />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
