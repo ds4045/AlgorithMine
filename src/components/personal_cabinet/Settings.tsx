@@ -7,6 +7,8 @@ import useAlert from '../../hooks/useAlert';
 import InputField from './InputField';
 import { updateForFirestore } from '../../firbase/firebaseAPI';
 import { Divider } from 'antd';
+import { useAppDispatch } from '../../redux/hooks';
+import { fetchUsers } from '../../api/fetchUsers';
 
 type SettingsProps = {
   me: any;
@@ -14,6 +16,7 @@ type SettingsProps = {
 
 const Settings: FC<SettingsProps> = ({ me }) => {
   const [alertSuccess, alertError, contextHolder] = useAlert();
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<UserTemplatesPCLoadingType>({
     image: false,
     name: false,
@@ -47,10 +50,9 @@ const Settings: FC<SettingsProps> = ({ me }) => {
       age > 0 && setFields((prev) => ({ ...prev, age: age.toString() }));
     } else setFields((prev) => ({ ...prev, [field]: e.target.value }));
   };
-  const changeFieldOnDB = (field: FieldsUserType) => {
-    console.log(me);
+  const changeFieldOnDB = async (field: FieldsUserType) => {
     if (me?.id) {
-      updateForFirestore(
+      await updateForFirestore(
         'users',
         me.id,
         field,
@@ -60,6 +62,7 @@ const Settings: FC<SettingsProps> = ({ me }) => {
         alertError,
         'change',
       );
+      fetchUsers(dispatch);
     }
   };
   const inputs = [

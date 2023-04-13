@@ -13,17 +13,15 @@ import Register from './components/auth/Register';
 import { useAutoSignIn } from './hooks/useAutoSignIn';
 import Login from './components/auth/Login';
 import PersonalCabinet from './components/personal_cabinet/PersonalCabinet';
-import { pushAllUsers } from './redux/allUsersSlice';
-import { UserFirestoreDB } from './types/types';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import Footer from './components/footer/Footer';
 import Catalog from './components/catalog/Catalog';
 import { useCurrentUser } from './hooks/useCurrentUser';
-import { getDataFromDB } from './firbase/firebaseAPI';
 import NotFound from './components/not_found/NotFound';
 import Cart from './components/cart/Cart';
 import { loadCartFromLocalStorage } from './helpers/localStorage';
 import { pushAddedItems } from './redux/cartSlice';
+import { fetchUsers } from './api/fetchUsers';
 
 function App() {
   useAutoSignIn();
@@ -37,11 +35,7 @@ function App() {
     locale === 'en' ? setLocale('ru') : setLocale('en');
   };
   useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await getDataFromDB('users');
-      if (res) dispatch(pushAllUsers(res as UserFirestoreDB[]));
-    };
-    if (isAuth) fetchUsers();
+    if (isAuth) fetchUsers(dispatch);
   }, [dispatch, isAuth]);
   const me = useCurrentUser();
   useEffect(() => {
