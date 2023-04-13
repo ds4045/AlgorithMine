@@ -24,7 +24,7 @@ const Cart: FC<CartProps> = () => {
   const totalCount = addedItems.reduce((acc, item) => acc + item.count, 0);
   const totalPrice = addedItems.reduce((acc, item) => acc + item.price * item.count, 0);
   return (
-    <>
+    <div className={styles.layout}>
       <Divider plain>
         {contextHolder}
         <FormattedMessage id="cart.cart" />
@@ -43,7 +43,12 @@ const Cart: FC<CartProps> = () => {
                 <FormattedMessage id="cart.units" />
               </span>
             </span>
-            <span>{totalPrice}$</span>
+            <span>
+              <span className={styles.units}>
+                <FormattedMessage id="cart.total_price" />
+              </span>
+              {totalPrice}$
+            </span>
           </div>
           <div className={styles.get_order_btn_groups}>
             {isOpenInput ? (
@@ -88,7 +93,7 @@ const Cart: FC<CartProps> = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

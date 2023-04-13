@@ -155,10 +155,8 @@ const Catalog: FC = () => {
       <RollbackOutlined />,
     ),
   ];
-  const [alertSuccess, , contextHolder] = useAlert();
-  const alert = () => {
-    alertSuccess(<FormattedMessage id="cart.add_item_alert" />);
-  };
+  const [alertSuccess, alertError, contextHolder] = useAlert();
+
   return (
     <div>
       {contextHolder}
@@ -179,7 +177,8 @@ const Catalog: FC = () => {
                   loading={isLoading}
                   item={el}
                   score={middleScore(el)}
-                  alert={alert}
+                  alertSuccess={alertSuccess}
+                  alertError={alertError}
                 />
               ))
             : items.map((el) => (
@@ -188,7 +187,8 @@ const Catalog: FC = () => {
                   loading={isLoading}
                   item={el}
                   score={middleScore(el)}
-                  alert={alert}
+                  alertSuccess={alertSuccess}
+                  alertError={alertError}
                 />
               ))}
         </div>

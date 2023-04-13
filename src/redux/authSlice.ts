@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { ReviewsUserType, UserFirestoreDB } from '../types/types';
 
-type AuthStateType = {
+export type AuthStateType = {
   isAuth: boolean;
   login: null | UserFirestoreDB;
 };

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { Item, ReviewItemType } from '../types/types';
-type AllItemsState = {
+export type AllItemsState = {
   items: Item[];
   searchedItems: Item[];
 };
@@ -14,7 +14,7 @@ export const usersSlice = createSlice({
   name: 'allItems',
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<Item>) => {
+    addItemToStore: (state, action: PayloadAction<Item>) => {
       state.items.push(action.payload);
       state.searchedItems.push(action.payload);
     },
@@ -46,5 +46,6 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { addItem, pushAllItems, addReviewItem, searchItem, sortItem } = usersSlice.actions;
+export const { addItemToStore, pushAllItems, addReviewItem, searchItem, sortItem } =
+  usersSlice.actions;
 export default usersSlice.reducer;

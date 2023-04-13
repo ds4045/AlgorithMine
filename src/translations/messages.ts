@@ -76,6 +76,11 @@ const messages: Messages = {
     'catalog.card.modal_review_score': 'Score',
     'catalog.card.modal_under_the_order': 'Under the order',
     'catalog.reviews.check_login': 'Reviews can only be left by registered users',
+    'catalog.favorites.check_login':
+      'Add product to favorites can only be left by registered users',
+
+    'catalog.added_favorites_success': 'Product added to favorites',
+    'catalog.added_favorites_error': 'This product has already been added to favorites',
     'pc.alert_succ_add_review': 'Review successfully added',
     'pc.alert_err_add_review': 'Error when adding a review',
     'catalog.reviews.anonim': 'Unknown',
@@ -94,6 +99,7 @@ const messages: Messages = {
     'cart.promo_error': 'This promo code does not exist',
     'cart.contacts': 'Our contacts',
     'cart.add_item_alert': 'The product is added to the cart',
+    'cart.total_price': 'Total:',
   },
 
   ru: {
@@ -167,12 +173,16 @@ const messages: Messages = {
     'catalog.card.modal_review_score': 'Оценка',
     'catalog.card.modal_under_the_order': 'Под заказ',
     'catalog.reviews.check_login': 'Отзывы могут оставлять только зарегистрированные пользователи',
+    'catalog.favorites.check_login':
+      'Добавлять в избранное могут только зарегистрированные пользователи',
     'pc.alert_succ_add_review': 'Отзыв успешно добавлен',
     'pc.alert_err_add_review': 'Ошибка при добавлении отзыва',
     'catalog.reviews.anonim': 'Аноним',
     'catalog.reviews.check_added': 'Вы уже оставляли отзыв на этот товар',
     'catalog.reviews.submit': 'Отправить',
     'catalog.reviews.check_added_empty_string': 'Ваш отзыв не может быть пустым',
+    'catalog.added_favorites_success': 'Товар добавлен в избранное',
+    'catalog.added_favorites_error': 'Этот товар уже добавлен в избранное',
     'cart.empty': 'Корзина пуста',
     'cart.btn_to_shop': 'Перейти в каталог',
     'cart.cart': 'Корзина',
@@ -185,6 +195,7 @@ const messages: Messages = {
     'cart.promo_error': 'Такого промокода не существует',
     'cart.contacts': 'Наши контакты',
     'cart.add_item_alert': 'Товар добавлен к корзину',
+    'cart.total_price': 'Итог:',
   },
 };
 

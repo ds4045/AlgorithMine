@@ -12,10 +12,17 @@ type CardHorizontalProps = {
   loading: boolean;
   item: Item;
   score: number;
-  alert: () => void;
+  alertSuccess: (text: React.ReactNode) => void;
+  alertError: (text: React.ReactNode) => void;
 };
 
-const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item, score, alert }) => {
+const CardHorizontal: FC<CardHorizontalProps> = ({
+  loading,
+  item,
+  score,
+  alertSuccess,
+  alertError,
+}) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const showDescription = () => {
@@ -27,7 +34,7 @@ const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item, score, alert }
   const dispatch = useAppDispatch();
   const buyHandler = () => {
     dispatch(addItem(item));
-    alert();
+    alertSuccess(<FormattedMessage id="cart.add_item_alert" />);
   };
   return (
     <Card
@@ -57,7 +64,13 @@ const CardHorizontal: FC<CardHorizontalProps> = ({ loading, item, score, alert }
           </Button>
         </div>
       </div>
-      <CardModal onClose={onCloseDescription} open={open} item={item} buyHandler={buyHandler} />
+      <CardModal
+        onClose={onCloseDescription}
+        open={open}
+        item={item}
+        alertError={alertError}
+        alertSuccess={alertSuccess}
+      />
     </Card>
   );
 };

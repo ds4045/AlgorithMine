@@ -5,7 +5,7 @@ import { saveCartToLocalStorage } from '../helpers/localStorage';
 export type AddedCartItems = Item & {
   count: number;
 };
-type BasketStateType = {
+export type BasketStateType = {
   addedItems: AddedCartItems[];
   totalPrice: number;
 };

@@ -4,18 +4,25 @@ import styles from '../catalog.module.css';
 import Reviews from '../Reviews';
 import { FormattedMessage } from 'react-intl';
 import { Item, ItemOptional, ItemOptionalFields } from '../../../types/types';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { toggleFavoritesHandler } from '../../../firbase/toggleFavoretesHandler';
+import { addItem } from '../../../redux/cartSlice';
 
 type CardModalProps = {
   onClose: () => void;
   open: boolean;
   item: Item;
-  buyHandler: () => void;
+  alertSuccess: (text: React.ReactNode) => void;
+  alertError: (text: React.ReactNode) => void;
 };
 
-const CardModal: FC<CardModalProps> = ({ onClose, open, item, buyHandler }) => {
+const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, alertError }) => {
   const itemID = item.id;
   const reviews = item.reviews ?? [];
+  const dispatch = useAppDispatch();
   const content = <Reviews reviews={reviews} itemID={itemID} />;
+  const user = useAppSelector((state) => state.auth.login);
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
   const optionalProperties: { key: ItemOptionalFields; value: string | number }[] = [];
   const optional: ItemOptional = item.optional;
   for (const [key, value] of Object.entries(optional)) {
@@ -23,6 +30,15 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, buyHandler }) => {
       optionalProperties.push({ key: key as ItemOptionalFields, value });
     }
   }
+  const addFavoriteHandler = () => {
+    !user
+      ? alertError(<FormattedMessage id="catalog.favorites.check_login" />)
+      : toggleFavoritesHandler('add', item, user, isAuth, dispatch, alertSuccess, alertError);
+  };
+  const addToCart = () => {
+    dispatch(addItem(item));
+    alertSuccess(<FormattedMessage id="cart.add_item_alert" />);
+  };
   return (
     <Drawer title={item.title} placement="right" size="large" onClose={onClose} open={open}>
       <div>
@@ -57,14 +73,14 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, buyHandler }) => {
           quasi laudantium eaque voluptates nostrum architecto quia magnam!
         </p>
         <div className={styles.btn_groups_modal}>
+          <Button onClick={addToCart} type="primary">
+            <FormattedMessage id="catalog.card.modal_add_to_cart" />
+          </Button>
           <Button>
             <FormattedMessage id="catalog.card.modal_add_to_сomparison" />
           </Button>
-          <Button>
+          <Button onClick={addFavoriteHandler}>
             <FormattedMessage id="catalog.card.modal_add_to_favorites" />
-          </Button>
-          <Button onClick={buyHandler}>
-            <FormattedMessage id="catalog.card.modal_add_to_cart" />
           </Button>
           <Popover
             content={content}

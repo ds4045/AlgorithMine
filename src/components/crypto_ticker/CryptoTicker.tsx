@@ -49,7 +49,7 @@ const CryptoTicker = () => {
           <div className={styles.token} key={el.id}>
             <img className={styles.img} src={currencies[ind].img} alt="" />
             <span className={styles.text}>
-              {el.name} {el.values.USD.price.toFixed()}$
+              {el.name} {el.values.USD.price.toFixed(2)}$
             </span>
           </div>
         );

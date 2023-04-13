@@ -1,3 +1,6 @@
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import { ReactNode } from 'react';
+
 export type CurrencyData = {
   [key: string]: any;
 };
@@ -60,3 +63,12 @@ export type ReviewItemType = {
   rate: number;
   image: string;
 };
+export type toggleFavoritesHandlerType = (
+  type: 'add' | 'delete',
+  item: Item,
+  user: UserFirestoreDB,
+  isAuth: boolean,
+  dispatch: ThunkDispatch<any, any, any>,
+  alertSuccess?: (text: ReactNode) => void,
+  alertError?: (text: ReactNode) => void,
+) => Promise<boolean | void>;

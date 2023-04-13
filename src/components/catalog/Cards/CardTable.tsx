@@ -12,10 +12,11 @@ type CardTableProps = {
   loading: boolean;
   item: Item;
   score: number;
-  alert: () => void;
+  alertSuccess: (text: React.ReactNode) => void;
+  alertError: (text: React.ReactNode) => void;
 };
 
-const CardTable: FC<CardTableProps> = ({ loading, item, score, alert }) => {
+const CardTable: FC<CardTableProps> = ({ loading, item, score, alertSuccess, alertError }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const showDescription = () => {
@@ -27,7 +28,7 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score, alert }) => {
   const dispatch = useAppDispatch();
   const buyHandler = () => {
     dispatch(addItem(item));
-    alert();
+    alertSuccess(<FormattedMessage id="cart.add_item_alert" />);
   };
   return (
     <div>
@@ -54,7 +55,13 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score, alert }) => {
           />
         </div>
       </AntCard>
-      <CardModal onClose={onCloseDescription} open={open} item={item} buyHandler={buyHandler} />
+      <CardModal
+        onClose={onCloseDescription}
+        open={open}
+        item={item}
+        alertError={alertError}
+        alertSuccess={alertSuccess}
+      />
     </div>
   );
 };

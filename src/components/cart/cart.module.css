@@ -40,6 +40,15 @@
   opacity: 0.5;
   cursor: pointer;
 }
+.favorites_active {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 30px;
+  color: gold;
+  opacity: 0.5;
+  cursor: pointer;
+}
 .get_order {
   height: 80vh;
   display: flex;
@@ -76,4 +85,14 @@
 .inp {
   height: 32px;
   align-self: flex-end;
+}
+.spinner {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  font-size: 30px;
+  color: lightgray;
+}
+.layout {
+  padding: 10px;
 }

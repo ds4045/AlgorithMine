@@ -4,6 +4,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
   getDocs,
   updateDoc,
 } from 'firebase/firestore';
@@ -46,23 +47,43 @@ export const updateForFirestore = async (
   id: string,
   field: string,
   newValue: any,
-  setIsLoading: Dispatch<SetStateAction<any>>,
-  alertSuccess: (text: ReactNode) => void,
-  alertError: (text: ReactNode) => void,
+  setIsLoading?: Dispatch<SetStateAction<any>>,
+  alertSuccess?: (text: ReactNode) => void,
+  alertError?: (text: ReactNode) => void,
   alertType?: string,
 ) => {
   const db = switchNameDB(nameDB);
   try {
-    setIsLoading((prev: any) => (typeof prev === 'boolean' ? true : { ...prev, [field]: true }));
+    setIsLoading &&
+      setIsLoading((prev: any) => (typeof prev === 'boolean' ? true : { ...prev, [field]: true }));
     const updateData = doc(db as CollectionReference<DocumentData>, id);
     await updateDoc(updateData, { [field]: newValue });
-    alertType && alertSuccess(<FormattedMessage id={`pc.alert_succ_${alertType}`} />);
+    alertType &&
+      alertSuccess &&
+      alertSuccess(<FormattedMessage id={`pc.alert_succ_${alertType}`} />);
     return true;
   } catch (err) {
     console.log(err);
-    alertType && alertError(<FormattedMessage id={`pc.alert_err_${alertType}`} />);
+    alertType && alertError && alertError(<FormattedMessage id={`pc.alert_err_${alertType}`} />);
     return false;
   } finally {
-    setIsLoading((prev: any) => (typeof prev === 'boolean' ? false : { ...prev, [field]: false }));
+    setIsLoading &&
+      setIsLoading((prev: any) =>
+        typeof prev === 'boolean' ? false : { ...prev, [field]: false },
+      );
+  }
+};
+export const getElementFromFirestoreDB = async (nameDB: string, docId: string) => {
+  const db = switchNameDB(nameDB);
+  try {
+    const docRef = doc(db as CollectionReference<DocumentData>, docId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return { ...docSnap.data(), id: docSnap.id };
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
   }
 };

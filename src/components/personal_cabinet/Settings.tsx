@@ -8,7 +8,7 @@ import InputField from './InputField';
 import { updateForFirestore } from '../../firbase/firebaseAPI';
 import { Divider } from 'antd';
 import { useAppDispatch } from '../../redux/hooks';
-import { fetchUsers } from '../../api/fetchUsers';
+import { fetchSingleUser } from '../../api/fetchUsers';
 
 type SettingsProps = {
   me: any;
@@ -62,7 +62,7 @@ const Settings: FC<SettingsProps> = ({ me }) => {
         alertError,
         'change',
       );
-      fetchUsers(dispatch);
+      fetchSingleUser(dispatch, me.id);
     }
   };
   const inputs = [

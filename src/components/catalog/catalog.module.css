@@ -29,10 +29,13 @@
   margin-top: 5px;
 }
 .btn_groups_modal {
+  position: absolute;
   display: flex;
+  left: 50%;
+  right: 50%;
   justify-content: center;
-  align-items: center;
-  margin-top: 50px;
+  height: 32px;
+  bottom: 20px;
 }
 .modal_text {
   margin: 10px;
