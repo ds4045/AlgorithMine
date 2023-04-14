@@ -1,7 +1,7 @@
 import { Button, Descriptions, Drawer, Popover } from 'antd';
 import { FC } from 'react';
 import styles from '../catalog.module.css';
-import Reviews from '../Reviews';
+import Reviews from '../reviews/Reviews';
 import { FormattedMessage } from 'react-intl';
 import { Item, ItemOptional, ItemOptionalFields } from '../../../types/types';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';

@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Card as AntCard, Button } from 'antd';
+import { Button, Card } from 'antd';
 import CardModal from './CardModal';
 import ImageCatalog from '../UI/ImageCatalog';
 import DescriptionCard from '../UI/DescriptionCard';
@@ -9,14 +9,13 @@ import { useAppDispatch } from '../../../redux/hooks';
 import { addItem } from '../../../redux/cartSlice';
 
 type CardTableProps = {
-  loading: boolean;
   item: Item;
   score: number;
   alertSuccess: (text: React.ReactNode) => void;
   alertError: (text: React.ReactNode) => void;
 };
 
-const CardTable: FC<CardTableProps> = ({ loading, item, score, alertSuccess, alertError }) => {
+const CardTable: FC<CardTableProps> = ({ item, score, alertSuccess, alertError }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const showDescription = () => {
@@ -32,8 +31,7 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score, alertSuccess, ale
   };
   return (
     <div>
-      <AntCard
-        loading={loading}
+      <Card
         style={{
           width: 350,
         }}
@@ -54,7 +52,7 @@ const CardTable: FC<CardTableProps> = ({ loading, item, score, alertSuccess, ale
             score={score}
           />
         </div>
-      </AntCard>
+      </Card>
       <CardModal
         onClose={onCloseDescription}
         open={open}

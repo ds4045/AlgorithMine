@@ -6,7 +6,7 @@ import styles from './catalog.module.css';
 import { Item } from '../../types/types';
 import { useAppDispatch } from '../../redux/hooks';
 import { searchItem, sortItem } from '../../redux/itemsSlice';
-import { middleScore } from './Catalog';
+import { middleScore } from '../../helpers/middleScore';
 
 const { Search } = Input;
 type CatalogNavigationProps = {

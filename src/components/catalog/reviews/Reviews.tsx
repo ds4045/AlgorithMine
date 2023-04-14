@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
-import styles from './catalog.module.css';
+import styles from '../catalog.module.css';
 import { Button, Empty, Popover } from 'antd';
 import { FormattedMessage } from 'react-intl';
-import ReviewForm from './UI/ReviewForm';
-import { ReviewItemType } from '../../types/types';
-import SingleReview from './UI/SingleReview';
+import ReviewForm from './ReviewForm';
+import { ReviewItemType } from '../../../types/types';
+import SingleReview from './SingleReview';
 
 type ReviewsProps = {
   itemID: string;

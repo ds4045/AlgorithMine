@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   ClusterOutlined,
   EyeOutlined,
@@ -15,14 +15,12 @@ import styles from './catalog.module.css';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import CatalogNavigation from './CatalogNavigation';
-import CardHorizontal from './Cards/CardHorizontal';
-import CardTable from './Cards/CardTable';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { Item } from '../../types/types';
-import { fetchItems } from '../../api/fetchItems';
+import CardHorizontal from './cards/CardHorizontal';
+import CardTable from './cards/CardTable';
+import { useAppSelector } from '../../redux/hooks';
+import { middleScore } from '../../helpers/middleScore';
 type MenuItem = Required<MenuProps>['items'][number];
-export const middleScore = (item: Item) =>
-  Math.round(item.reviews.reduce((acc, curr) => acc + curr?.rate, 0) / item.reviews.length);
+
 function getItem(
   label: React.ReactNode,
   key: React.Key,
@@ -58,11 +56,6 @@ const Catalog: FC = () => {
     }
   };
   const items = useAppSelector((state) => state.items.searchedItems);
-  const dispatch = useAppDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    fetchItems(dispatch, setIsLoading);
-  }, [dispatch]);
   const menuItems: MenuItem[] = [
     getItem(
       <div>
@@ -167,7 +160,6 @@ const Catalog: FC = () => {
             ? items.map((el) => (
                 <CardHorizontal
                   key={el.id}
-                  loading={isLoading}
                   item={el}
                   score={middleScore(el)}
                   alertSuccess={alertSuccess}
@@ -177,7 +169,6 @@ const Catalog: FC = () => {
             : items.map((el) => (
                 <CardTable
                   key={el.id}
-                  loading={isLoading}
                   item={el}
                   score={middleScore(el)}
                   alertSuccess={alertSuccess}

@@ -9,20 +9,13 @@ import { Item } from '../../../types/types';
 import { useAppDispatch } from '../../../redux/hooks';
 import { addItem } from '../../../redux/cartSlice';
 type CardHorizontalProps = {
-  loading: boolean;
   item: Item;
   score: number;
   alertSuccess: (text: React.ReactNode) => void;
   alertError: (text: React.ReactNode) => void;
 };
 
-const CardHorizontal: FC<CardHorizontalProps> = ({
-  loading,
-  item,
-  score,
-  alertSuccess,
-  alertError,
-}) => {
+const CardHorizontal: FC<CardHorizontalProps> = ({ item, score, alertSuccess, alertError }) => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const showDescription = () => {
@@ -38,7 +31,6 @@ const CardHorizontal: FC<CardHorizontalProps> = ({
   };
   return (
     <Card
-      loading={loading}
       className={styles.card_horizontal}
       bodyStyle={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
       <ImageCatalog setVisible={setVisible} visible={visible} images={item.images} />
