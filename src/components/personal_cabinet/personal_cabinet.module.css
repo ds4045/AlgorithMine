@@ -54,3 +54,18 @@
 .favorites_list {
   width: 100%;
 }
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: scroll;
+}
+.review {
+  width: 40em;
+}
+.review_img {
+  width: 100px;
+}
+.spin {
+  margin-left: 5px;
+}

@@ -87,3 +87,20 @@ export type CategoryType =
   | 'MSI'
   | 'ASUS'
   | 'GPU';
+
+export type ReviewFormType = { rate: number; value: string };
+export type ReviewHandler = (
+  type: 'add' | 'delete' | 'change',
+  me: UserFirestoreDB,
+  isAuth: boolean,
+  itemID: string,
+  reviews: ReviewItemType[],
+  reviewForm: ReviewFormType,
+  setReviewForm: Dispatch<SetStateAction<ReviewFormType>>,
+  dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
+  setIsOpen: Dispatch<SetStateAction<boolean>>,
+  setIsLoading: Dispatch<SetStateAction<boolean>>,
+  alertSuccess: (text: React.ReactNode) => void,
+  alertError: (text: React.ReactNode) => void,
+  idReview?: string,
+) => void;

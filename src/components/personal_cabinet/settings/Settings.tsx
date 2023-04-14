@@ -2,7 +2,6 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { FieldsUserType, UserTemplatesPCLoadingType } from '../../../types/types';
 
 import styles from '../personal_cabinet.module.css';
-import defaultImage from '../../../assets/defaultImage.jpeg';
 import useAlert from '../../../hooks/useAlert';
 import InputField from './InputField';
 import { updateForFirestore } from '../../../firbase/firebaseAPI';
@@ -118,7 +117,14 @@ const Settings: FC<SettingsProps> = ({ me }) => {
         <Divider className={styles.title_section} plain>
           {me?.email}
         </Divider>
-        <img className={styles.img} src={me?.image || defaultImage} alt="" />
+        <img
+          className={styles.img}
+          src={
+            me?.image ||
+            'https://cdn.vectorstock.com/i/preview-1x/32/12/default-avatar-profile-icon-vector-39013212.jpg'
+          }
+          alt=""
+        />
         <div className={styles.inp_wrapper}>
           {inputs.map((inp, ind) => (
             <InputField

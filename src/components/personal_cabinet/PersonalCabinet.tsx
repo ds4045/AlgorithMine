@@ -2,7 +2,7 @@ import Menu from './Menu';
 import Settings from './settings/Settings';
 import { FC, ReactNode, useEffect, useState } from 'react';
 import Orders from './orders/Orders';
-import Reviews from './reviews/Reviews';
+import ReviewsPC from './reviews/ReviewsPC';
 import { UserFirestoreDB } from '../../types/types';
 import Favorites from './favorites/Favorites';
 import Contacts from './contacts/Contacts';
@@ -20,7 +20,7 @@ const PersonalCabinet: FC<PersonalCabinetProps> = ({ me }) => {
         setRenderPage(<Orders me={me} />);
         break;
       case 'reviews':
-        setRenderPage(<Reviews me={me} />);
+        setRenderPage(<ReviewsPC me={me} />);
         break;
       case 'settings':
         setRenderPage(<Settings me={me} />);

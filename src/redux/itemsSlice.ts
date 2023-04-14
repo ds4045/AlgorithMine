@@ -43,9 +43,20 @@ export const usersSlice = createSlice({
     sortItem: (state, action: PayloadAction<Array<Item>>) => {
       state.searchedItems = action.payload;
     },
+    replaceItem: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        item: Item;
+      }>,
+    ) => {
+      state.items = state.items.map((el) =>
+        el.id === action.payload.id ? action.payload.item : el,
+      );
+    },
   },
 });
 
-export const { addItemToStore, pushAllItems, addReviewItem, searchItem, sortItem } =
+export const { addItemToStore, pushAllItems, addReviewItem, searchItem, sortItem, replaceItem } =
   usersSlice.actions;
 export default usersSlice.reducer;

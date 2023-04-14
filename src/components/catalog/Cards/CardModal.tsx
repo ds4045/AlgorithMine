@@ -6,7 +6,7 @@ import { Item, ItemOptional, ItemOptionalFields, UserFirestoreDB } from '../../.
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { toggleFavoritesHandler } from '../../../firbase/toggleFavoretesHandler';
 import { addItem } from '../../../redux/cartSlice';
-import Reviews from '../reviews/Reviews';
+import ReviewsCatalog from '../reviews/ReviewsCatalog';
 
 type CardModalProps = {
   onClose: () => void;
@@ -20,7 +20,7 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
   const itemID = item?.id;
   const reviews = item?.reviews ?? [];
   const dispatch = useAppDispatch();
-  const content = <Reviews reviews={reviews} itemID={itemID} />;
+  const content = <ReviewsCatalog reviews={reviews} itemID={itemID} />;
   const user = useAppSelector((state) => state.auth.login);
   const isAuth = useAppSelector((state) => state.auth.isAuth);
   const isFavorite = user?.favorites.some((el) => el.id === itemID) ?? false;
