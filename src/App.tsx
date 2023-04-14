@@ -23,12 +23,13 @@ import { loadCartFromLocalStorage } from './helpers/localStorage';
 import { pushAddedItems } from './redux/cartSlice';
 import { fetchUsers } from './api/fetchUsers';
 import { fetchItems } from './api/fetchItems';
+import { CategoryType } from './types/types';
 
 function App() {
   useAutoSignIn();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.isAuth);
-
+  const [currentCategory, setCurrentCategory] = useState<CategoryType>('Asic');
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
 
@@ -61,13 +62,14 @@ function App() {
                   <>
                     <CryptoTicker />
                     <Header
+                      setCurrentCategory={setCurrentCategory}
                       onLocaleChange={handleLocaleChange}
                       setDarkThemes={setDarkThemes}
                       darkThemes={darkThemes}
                       me={me}
                     />
                     <Carousel />
-                    <Popular />
+                    <Popular setCurrentCategory={setCurrentCategory} />
                     <Footer />
                   </>
                 }
@@ -75,7 +77,15 @@ function App() {
               <Route path="register" element={<Register />} />
               <Route path="login" element={<Login />} />
               <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
-              <Route path="catalog" element={<Catalog />} />
+              <Route
+                path="catalog"
+                element={
+                  <Catalog
+                    currentCategory={currentCategory}
+                    setCurrentCategory={setCurrentCategory}
+                  />
+                }
+              />
               <Route path="cart" element={<Cart />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

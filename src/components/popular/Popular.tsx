@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import styles from './popular.module.css';
 import { FormattedMessage } from 'react-intl';
 import PopularSingle from './PopularSingle';
 import { Button } from 'antd';
+import { CategoryType } from '../../types/types';
+import { useNavigate } from 'react-router-dom';
 const popularItems = [
   {
     id: 1,
     image: 'https://mrjeep.ru/upload/iblock/ebd/ebd74a789366df6102971be37496c2a1.jpg',
-    title: 'Whatsminer',
+    title: 'WhatsMiner',
   },
   {
     id: 2,
     image: 'https://en.cryptonomist.ch/wp-content/uploads/2018/11/Bitmain-1.jpg',
-    title: 'Bitmain',
+    title: 'Antminer',
   },
   {
     id: 3,
@@ -25,18 +27,31 @@ const popularItems = [
     title: 'Gold Shell',
   },
 ];
-const Popular = () => {
+type PopularProps = {
+  setCurrentCategory: Dispatch<SetStateAction<CategoryType>>;
+};
+const Popular: FC<PopularProps> = ({ setCurrentCategory }) => {
+  const navigate = useNavigate();
+  const buttonHandler = () => {
+    setCurrentCategory('Asic');
+    navigate('/catalog');
+  };
   return (
     <>
       <h2 className={styles.title}>
         <FormattedMessage id="popular.title" />
-        <Button type="link" size="large">
+        <Button type="link" size="large" onClick={buttonHandler}>
           <FormattedMessage id="popular.all_btn" />
         </Button>
       </h2>
       <div className={styles.wrapper}>
         {popularItems.map((el) => (
-          <PopularSingle key={el.id} title={el.title} image={el.image} />
+          <PopularSingle
+            key={el.id}
+            title={el.title as CategoryType}
+            image={el.image}
+            setCurrentCategory={setCurrentCategory}
+          />
         ))}
       </div>
     </>

@@ -11,7 +11,7 @@ const messages: Messages = {
     'header.catalog': 'Catalog',
     'header.catalog_asic': 'Asic miners',
     'header.catalog_accessories': 'Accessories',
-    'header.catalog_videocards': 'Video cards',
+    'header.catalog_videocards': 'GPU',
     'header.aboutUs': 'About us',
     'header.login': 'Sign in',
     'carousel.title1': 'title1',

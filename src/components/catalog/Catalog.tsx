@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import {
   ClusterOutlined,
   EyeOutlined,
@@ -19,6 +19,8 @@ import CardHorizontal from './cards/CardHorizontal';
 import CardTable from './cards/CardTable';
 import { useAppSelector } from '../../redux/hooks';
 import { middleScore } from '../../helpers/middleScore';
+import { CategoryType } from '../../types/types';
+import { renderItemByCategory } from '../../helpers/renderItemByCategory';
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -36,13 +38,18 @@ function getItem(
     type,
   } as MenuItem;
 }
-
-const rootSubmenuKeys = ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6', 'sub7'];
-const Catalog: FC = () => {
+type CatalogProps = {
+  currentCategory: CategoryType;
+  setCurrentCategory: Dispatch<SetStateAction<CategoryType>>;
+};
+const rootSubmenuKeys = ['Asic', 'Accessory', 'GPU', 'Comparison', 'Favorites', 'Cart', 'Back'];
+const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
   const navigate = useNavigate();
   const addedItems = useAppSelector((state) => state.cart.addedItems);
   const totalUnits = addedItems.reduce((acc, curr) => acc + curr.count, 0);
-  const [openKeys, setOpenKeys] = useState(['sub1']);
+  const [openKeys, setOpenKeys] = useState([
+    rootSubmenuKeys.find((el) => el === currentCategory) ?? 'Asic',
+  ]);
   const [cardsPosition, setCardsPosition] = useState<'cards_horizontal' | 'cards_table'>(
     'cards_horizontal',
   );
@@ -61,16 +68,16 @@ const Catalog: FC = () => {
       <div>
         <FormattedMessage id="header.catalog_asic" />
       </div>,
-      'sub1',
+      'Asic',
       <ClusterOutlined />,
       [
-        getItem(<div>WhatsMiner</div>, '1'),
-        getItem(<div>Antminer</div>, '2'),
-        getItem(<div>AvalonMiner</div>, '3'),
-        getItem(<div>Innosilicon</div>, '4'),
-        getItem(<div>Gold Shell</div>, '5'),
+        getItem(<div onClick={() => setCurrentCategory('WhatsMiner')}>WhatsMiner</div>, '1'),
+        getItem(<div onClick={() => setCurrentCategory('Antminer')}>Antminer</div>, '2'),
+        getItem(<div onClick={() => setCurrentCategory('AvalonMiner')}>AvalonMiner</div>, '3'),
+        getItem(<div onClick={() => setCurrentCategory('Innosilicon')}>Innosilicon</div>, '4'),
+        getItem(<div onClick={() => setCurrentCategory('Gold Shell')}>Gold Shell</div>, '5'),
         getItem(
-          <div>
+          <div onClick={() => setCurrentCategory('Asic')}>
             <FormattedMessage id="catalog.all" />
           </div>,
           '6',
@@ -81,17 +88,17 @@ const Catalog: FC = () => {
       <div>
         <FormattedMessage id="header.catalog_accessories" />
       </div>,
-      'sub2',
+      'Accessory',
       <UsbOutlined />,
       [
         getItem(
-          <div>
+          <div onClick={() => setCurrentCategory('Parts')}>
             <FormattedMessage id="catalog.parts" />
           </div>,
           '8',
         ),
         getItem(
-          <div>
+          <div onClick={() => setCurrentCategory('Accessory')}>
             <FormattedMessage id="catalog.accessory" />
           </div>,
           '9',
@@ -102,9 +109,20 @@ const Catalog: FC = () => {
       <div>
         <FormattedMessage id="header.catalog_videocards" />
       </div>,
-      'sub3',
+      'GPU',
       <FundProjectionScreenOutlined />,
-      [getItem('NVIDIA', '10'), getItem('AMD', '11'), getItem('MSI', '12'), getItem('ASUS', '13')],
+      [
+        getItem(<div onClick={() => setCurrentCategory('NVIDIA')}>NVIDIA</div>, '10'),
+        getItem(<div onClick={() => setCurrentCategory('AMD')}>AMD</div>, '11'),
+        getItem(<div onClick={() => setCurrentCategory('MSI')}>MSI</div>, '12'),
+        getItem(<div onClick={() => setCurrentCategory('ASUS')}>ASUS</div>, '13'),
+        getItem(
+          <div onClick={() => setCurrentCategory('GPU')}>
+            <FormattedMessage id="catalog.all" />
+          </div>,
+          '14',
+        ),
+      ],
     ),
     getItem(
       <Badge count={1} offset={[10, 0]}>
@@ -112,7 +130,7 @@ const Catalog: FC = () => {
           <FormattedMessage id="catalog.comparison" />
         </div>
       </Badge>,
-      'sub4',
+      'Comparison',
       <EyeOutlined />,
     ),
     getItem(
@@ -121,7 +139,7 @@ const Catalog: FC = () => {
           <FormattedMessage id="catalog.favorites" />
         </div>
       </Badge>,
-      'sub5',
+      'Favorites',
       <HeartOutlined />,
     ),
     getItem(
@@ -130,14 +148,14 @@ const Catalog: FC = () => {
           <FormattedMessage id="catalog.cart" />
         </div>
       </Badge>,
-      'sub6',
+      'Cart',
       <ShoppingCartOutlined />,
     ),
     getItem(
       <div onClick={() => navigate('/')}>
         <FormattedMessage id="auth.btn_back" />
       </div>,
-      'sub7',
+      'Back',
       <RollbackOutlined />,
     ),
   ];
@@ -157,7 +175,7 @@ const Catalog: FC = () => {
         <CatalogNavigation setCardsPosition={setCardsPosition} items={items} />
         <div className={styles[cardsPosition]}>
           {cardsPosition === 'cards_horizontal'
-            ? items.map((el) => (
+            ? renderItemByCategory(currentCategory, items).map((el) => (
                 <CardHorizontal
                   key={el.id}
                   item={el}
@@ -166,7 +184,7 @@ const Catalog: FC = () => {
                   alertError={alertError}
                 />
               ))
-            : items.map((el) => (
+            : renderItemByCategory(currentCategory, items).map((el) => (
                 <CardTable
                   key={el.id}
                   item={el}

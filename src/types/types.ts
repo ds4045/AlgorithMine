@@ -73,3 +73,17 @@ export type toggleFavoritesHandlerType = (
   setIsLoading: Dispatch<SetStateAction<boolean>>,
   alertError: (text: ReactNode) => void,
 ) => Promise<boolean | void>;
+export type CategoryType =
+  | 'Asic'
+  | 'WhatsMiner'
+  | 'Antminer'
+  | 'AvalonMiner'
+  | 'Innosilicon'
+  | 'Gold Shell'
+  | 'Parts'
+  | 'Accessory'
+  | 'NVIDIA'
+  | 'AMD'
+  | 'MSI'
+  | 'ASUS'
+  | 'GPU';
