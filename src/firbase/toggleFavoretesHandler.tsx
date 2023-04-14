@@ -9,11 +9,11 @@ export const toggleFavoritesHandler: toggleFavoritesHandlerType = async (
   user,
   isAuth,
   dispatch,
-  alertSuccess,
+  setIsLoading,
   alertError,
 ) => {
   let favorites;
-  if (!user) alert('Something went wrong!');
+  if (!user || !isAuth) return alertError(<FormattedMessage id="catalog.favorites.check_login" />);
   switch (type) {
     case 'add': {
       favorites = [...user.favorites, item];
@@ -26,16 +26,13 @@ export const toggleFavoritesHandler: toggleFavoritesHandlerType = async (
     default:
       return alert('Something went wrong!');
   }
-  if (isAuth && user?.id) {
-    if (user.favorites.some((el) => el.id === item.id) && alertError)
-      return alertError(<FormattedMessage id="catalog.added_favorites_error" />);
-    else {
-      const resUpdate = await updateForFirestore('users', user.id, 'favorites', favorites);
-      resUpdate &&
-        alertSuccess &&
-        alertSuccess(<FormattedMessage id="catalog.added_favorites_success" />);
-      const resUsers = await fetchSingleUser(dispatch, user.id);
-      return resUpdate && !!resUsers;
-    }
+  try {
+    setIsLoading(true);
+    await updateForFirestore('users', user.id, 'favorites', favorites);
+    await fetchSingleUser(dispatch, user.id);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    setIsLoading(false);
   }
 };

@@ -1,12 +1,12 @@
-// import styles from './personal_cabinet.module.css';
 import Menu from './Menu';
-import Settings from './Settings';
+import Settings from './settings/Settings';
 import { FC, ReactNode, useEffect, useState } from 'react';
-import Orders from './Orders';
-import Reviews from './Reviews';
+import Orders from './orders/Orders';
+import Reviews from './reviews/Reviews';
 import { UserFirestoreDB } from '../../types/types';
-import Favorites from './Favorites';
-export type ActualPageType = 'settings' | 'orders' | 'reviews' | 'favorites';
+import Favorites from './favorites/Favorites';
+import Contacts from './contacts/Contacts';
+export type ActualPageType = 'settings' | 'orders' | 'reviews' | 'favorites' | 'contacts';
 type PersonalCabinetProps = {
   me: UserFirestoreDB | null;
 };
@@ -27,6 +27,9 @@ const PersonalCabinet: FC<PersonalCabinetProps> = ({ me }) => {
         break;
       case 'favorites':
         setRenderPage(<Favorites me={me} />);
+        break;
+      case 'contacts':
+        setRenderPage(<Contacts me={me} />);
         break;
       default:
         break;

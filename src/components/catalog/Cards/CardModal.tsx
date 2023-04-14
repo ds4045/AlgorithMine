@@ -1,12 +1,12 @@
 import { Button, Descriptions, Drawer, Popover } from 'antd';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from '../catalog.module.css';
-import Reviews from '../reviews/Reviews';
 import { FormattedMessage } from 'react-intl';
-import { Item, ItemOptional, ItemOptionalFields } from '../../../types/types';
+import { Item, ItemOptional, ItemOptionalFields, UserFirestoreDB } from '../../../types/types';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { toggleFavoritesHandler } from '../../../firbase/toggleFavoretesHandler';
 import { addItem } from '../../../redux/cartSlice';
+import Reviews from '../reviews/Reviews';
 
 type CardModalProps = {
   onClose: () => void;
@@ -17,12 +17,13 @@ type CardModalProps = {
 };
 
 const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, alertError }) => {
-  const itemID = item.id;
+  const itemID = item?.id;
   const reviews = item.reviews ?? [];
   const dispatch = useAppDispatch();
   const content = <Reviews reviews={reviews} itemID={itemID} />;
   const user = useAppSelector((state) => state.auth.login);
   const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const isFavorite = user?.favorites.some((el) => el.id === itemID) ?? false;
   const optionalProperties: { key: ItemOptionalFields; value: string | number }[] = [];
   const optional: ItemOptional = item.optional;
   for (const [key, value] of Object.entries(optional)) {
@@ -30,10 +31,18 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
       optionalProperties.push({ key: key as ItemOptionalFields, value });
     }
   }
-  const addFavoriteHandler = () => {
-    !user
-      ? alertError(<FormattedMessage id="catalog.favorites.check_login" />)
-      : toggleFavoritesHandler('add', item, user, isAuth, dispatch, alertSuccess, alertError);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const toggleFavorite = () => {
+    toggleFavoritesHandler(
+      isFavorite ? 'delete' : 'add',
+      item,
+      user as UserFirestoreDB,
+      isAuth,
+      dispatch,
+      setIsLoading,
+      alertError,
+    );
   };
   const addToCart = () => {
     dispatch(addItem(item));
@@ -73,8 +82,10 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
           <Button>
             <FormattedMessage id="catalog.card.modal_add_to_сomparison" />
           </Button>
-          <Button onClick={addFavoriteHandler}>
-            <FormattedMessage id="catalog.card.modal_add_to_favorites" />
+          <Button onClick={toggleFavorite} loading={isLoading}>
+            <FormattedMessage
+              id={`catalog.card.modal_${isFavorite ? 'delete' : 'add'}_to_favorites`}
+            />
           </Button>
           <Popover
             content={content}

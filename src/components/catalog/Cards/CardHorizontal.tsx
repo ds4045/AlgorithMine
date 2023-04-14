@@ -2,12 +2,13 @@ import { Button, Card } from 'antd';
 import { FC, useState } from 'react';
 import styles from '../catalog.module.css';
 import ImageCatalog from '../UI/ImageCatalog';
-import CardModal from './CardModal';
+
 import DescriptionCard from '../UI/DescriptionCard';
 import { FormattedMessage } from 'react-intl';
 import { Item } from '../../../types/types';
 import { useAppDispatch } from '../../../redux/hooks';
 import { addItem } from '../../../redux/cartSlice';
+import CardModal from './CardModal';
 type CardHorizontalProps = {
   item: Item;
   score: number;

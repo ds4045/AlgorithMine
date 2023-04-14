@@ -5,6 +5,7 @@ import {
   LikeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  PhoneOutlined,
   RollbackOutlined,
   SettingFilled,
 } from '@ant-design/icons';
@@ -96,11 +97,25 @@ const App: FC<MenuTypeProps> = ({ setActualPage }) => {
     getItem(
       <div
         onClick={() => {
+          setActualPage('contacts');
+        }}>
+        <FormattedMessage id="pc.btn_contacts" />
+      </div>,
+      '5',
+      <PhoneOutlined
+        onClick={() => {
+          setActualPage('contacts');
+        }}
+      />,
+    ),
+    getItem(
+      <div
+        onClick={() => {
           navigate('/');
         }}>
         <FormattedMessage id="auth.btn_back" />
       </div>,
-      '5',
+      '6',
       <RollbackOutlined
         onClick={() => {
           navigate('/');

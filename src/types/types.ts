@@ -1,5 +1,6 @@
-import { ThunkDispatch } from '@reduxjs/toolkit';
-import { ReactNode } from 'react';
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { RootState } from '../redux/store';
 
 export type CurrencyData = {
   [key: string]: any;
@@ -68,7 +69,7 @@ export type toggleFavoritesHandlerType = (
   item: Item,
   user: UserFirestoreDB,
   isAuth: boolean,
-  dispatch: ThunkDispatch<any, any, any>,
-  alertSuccess?: (text: ReactNode) => void,
-  alertError?: (text: ReactNode) => void,
+  dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
+  setIsLoading: Dispatch<SetStateAction<boolean>>,
+  alertError: (text: ReactNode) => void,
 ) => Promise<boolean | void>;

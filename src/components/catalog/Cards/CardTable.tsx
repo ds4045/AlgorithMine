@@ -1,12 +1,12 @@
 import { FC, useState } from 'react';
 import { Button, Card } from 'antd';
-import CardModal from './CardModal';
 import ImageCatalog from '../UI/ImageCatalog';
 import DescriptionCard from '../UI/DescriptionCard';
 import { FormattedMessage } from 'react-intl';
 import { Item } from '../../../types/types';
 import { useAppDispatch } from '../../../redux/hooks';
 import { addItem } from '../../../redux/cartSlice';
+import CardModal from './CardModal';
 
 type CardTableProps = {
   item: Item;

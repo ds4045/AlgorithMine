@@ -1,7 +1,7 @@
 import { Button, Input, Space } from 'antd';
 import { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { FieldsUserType } from '../../types/types';
+import { FieldsUserType } from '../../../types/types';
 
 export type InputFieldProps = {
   value: string;

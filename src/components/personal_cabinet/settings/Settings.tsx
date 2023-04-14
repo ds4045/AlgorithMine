@@ -1,14 +1,14 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { FieldsUserType, UserTemplatesPCLoadingType } from '../../types/types';
+import { FieldsUserType, UserTemplatesPCLoadingType } from '../../../types/types';
 
-import styles from './personal_cabinet.module.css';
-import defaultImage from '../../assets/defaultImage.jpeg';
-import useAlert from '../../hooks/useAlert';
+import styles from '../personal_cabinet.module.css';
+import defaultImage from '../../../assets/defaultImage.jpeg';
+import useAlert from '../../../hooks/useAlert';
 import InputField from './InputField';
-import { updateForFirestore } from '../../firbase/firebaseAPI';
+import { updateForFirestore } from '../../../firbase/firebaseAPI';
 import { Divider } from 'antd';
-import { useAppDispatch } from '../../redux/hooks';
-import { fetchSingleUser } from '../../api/fetchUsers';
+import { useAppDispatch } from '../../../redux/hooks';
+import { fetchSingleUser } from '../../../api/fetchUsers';
 
 type SettingsProps = {
   me: any;
