@@ -108,7 +108,7 @@ const Header: React.FC<HeaderProps> = ({
       />
       <Contacts />
       <ToggleColorThemes setDarkThemes={setDarkThemes} />
-      <Badge count={totalUnits}>
+      <Badge count={totalUnits} color="#F94F0C">
         <ShoppingCartOutlined
           onClick={() => navigate('/cart')}
           className={`${styles.cart} ${darkThemes ? styles.dark : styles.light}`}

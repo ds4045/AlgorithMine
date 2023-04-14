@@ -125,7 +125,7 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
       ],
     ),
     getItem(
-      <Badge count={1} offset={[10, 0]}>
+      <Badge count={1} offset={[10, 0]} color="#F94F0C">
         <div>
           <FormattedMessage id="catalog.comparison" />
         </div>
@@ -134,7 +134,7 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
       <EyeOutlined />,
     ),
     getItem(
-      <Badge count={4} offset={[13, 0]}>
+      <Badge count={4} offset={[13, 0]} color="#F94F0C">
         <div>
           <FormattedMessage id="catalog.favorites" />
         </div>
@@ -143,7 +143,7 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
       <HeartOutlined />,
     ),
     getItem(
-      <Badge count={totalUnits} offset={[10, 0]}>
+      <Badge count={totalUnits} offset={[10, 0]} color="#F94F0C">
         <div onClick={() => navigate('/cart')}>
           <FormattedMessage id="catalog.cart" />
         </div>
@@ -172,7 +172,11 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
         items={menuItems}
       />
       <div className={styles.wrapper}>
-        <CatalogNavigation setCardsPosition={setCardsPosition} items={items} />
+        <CatalogNavigation
+          setCardsPosition={setCardsPosition}
+          items={items}
+          currentCategory={currentCategory}
+        />
         <div className={styles[cardsPosition]}>
           {cardsPosition === 'cards_horizontal'
             ? renderItemByCategory(currentCategory, items).map((el) => (

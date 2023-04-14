@@ -3,7 +3,7 @@ import { Button, Input, Pagination, PaginationProps, Select } from 'antd';
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styles from './catalog.module.css';
-import { Item } from '../../types/types';
+import { CategoryType, Item } from '../../types/types';
 import { useAppDispatch } from '../../redux/hooks';
 import { searchItem, sortItem } from '../../redux/itemsSlice';
 import { middleScore } from '../../helpers/middleScore';
@@ -12,9 +12,14 @@ const { Search } = Input;
 type CatalogNavigationProps = {
   setCardsPosition: Dispatch<SetStateAction<'cards_horizontal' | 'cards_table'>>;
   items: Item[];
+  currentCategory: CategoryType;
 };
 
-const CatalogNavigation: FC<CatalogNavigationProps> = ({ setCardsPosition, items }) => {
+const CatalogNavigation: FC<CatalogNavigationProps> = ({
+  setCardsPosition,
+  items,
+  currentCategory,
+}) => {
   const pages = Math.ceil(items.length / 2);
   const [currentPage, setCurrentPage] = useState(1);
   const onChange: PaginationProps['onChange'] = (page) => {
@@ -54,24 +59,22 @@ const CatalogNavigation: FC<CatalogNavigationProps> = ({ setCardsPosition, items
       }
     }
   };
-
+  let select = [
+    { value: 'By priceUp', label: <FormattedMessage id="catalog.sort.price_up" /> },
+    {
+      value: 'By priceDown',
+      label: <FormattedMessage id="catalog.sort.price_down" />,
+    },
+    { value: 'By THUp', label: <FormattedMessage id="catalog.sort.ths_up" /> },
+    { value: 'By THDown', label: <FormattedMessage id="catalog.sort.ths_down" /> },
+    { value: 'By rate', label: <FormattedMessage id="catalog.sort.rate" /> },
+  ];
+  if (currentCategory === 'Parts' || currentCategory === 'Accessory') {
+    select = select.filter((el) => !el.value.includes('TH'));
+  }
   return (
     <div className={styles.btn_groups}>
-      <Select
-        defaultValue="TH/s ▼"
-        style={{ width: 130 }}
-        onChange={handleChange}
-        options={[
-          { value: 'By priceUp', label: <FormattedMessage id="catalog.sort.price_up" /> },
-          {
-            value: 'By priceDown',
-            label: <FormattedMessage id="catalog.sort.price_down" />,
-          },
-          { value: 'By THUp', label: <FormattedMessage id="catalog.sort.ths_up" /> },
-          { value: 'By THDown', label: <FormattedMessage id="catalog.sort.ths_down" /> },
-          { value: 'By rate', label: <FormattedMessage id="catalog.sort.rate" /> },
-        ]}
-      />
+      <Select defaultValue="▼" style={{ width: 130 }} onChange={handleChange} options={select} />
       <Search placeholder="..." onSearch={onSearch} allowClear style={{ width: 200 }} />
       <Button
         onClick={() => {
