@@ -13,7 +13,7 @@ type FavoritesProps = {
 
 const Favorites: FC<FavoritesProps> = ({ me }) => {
   const [open, setOpen] = useState(false);
-  const [currentItem, setCurrentItem] = useState<Item>(me?.favorites[0] as Item);
+  const [currentItem, setCurrentItem] = useState<Item | null>(null);
   const showDescription = (item: Item) => {
     if (item) {
       setCurrentItem(item);
@@ -54,13 +54,15 @@ const Favorites: FC<FavoritesProps> = ({ me }) => {
           <Empty description={false} />
         )}
       </div>
-      <CardModal
-        onClose={onCloseDescription}
-        open={open}
-        item={currentItem}
-        alertError={alertError}
-        alertSuccess={alertSuccess}
-      />
+      {currentItem && (
+        <CardModal
+          onClose={onCloseDescription}
+          open={open}
+          item={currentItem}
+          alertError={alertError}
+          alertSuccess={alertSuccess}
+        />
+      )}
     </div>
   );
 };

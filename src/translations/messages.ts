@@ -17,7 +17,7 @@ const messages: Messages = {
     'carousel.title1': 'title1',
     'carousel.title2': 'title2',
     'carousel.title3': 'title3',
-    'carousel.btn1': 'Btn',
+    'carousel.btn1': 'Btn1',
     'carousel.btn2': 'Btn2',
     'carousel.btn3': 'Btn3',
     'popular.title': 'Popular Products',
