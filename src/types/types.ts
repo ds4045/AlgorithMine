@@ -1,6 +1,7 @@
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { RootState } from '../redux/store';
+import { AddedCartItems } from '../redux/cartSlice';
 
 export type CurrencyData = {
   [key: string]: any;
@@ -16,7 +17,7 @@ export type UserFirestoreDB = {
   id: string;
   city: string;
   phone: string;
-  orders: any[];
+  orders: OrderType[];
   cart: Item[];
   isAdmin: boolean;
   favorites: string[];
@@ -120,3 +121,12 @@ export type OrderedItemsType = {
   count: number;
   price: number;
 };
+export type AddOrderType = (
+  userId: string,
+  items: AddedCartItems[],
+  totalPrice: number,
+  name: string,
+  phone: string,
+  dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
+  me?: UserFirestoreDB,
+) => void;

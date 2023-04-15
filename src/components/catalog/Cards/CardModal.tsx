@@ -1,4 +1,4 @@
-import { Button, Descriptions, Drawer, Popover } from 'antd';
+import { Button, Descriptions, Divider, Drawer, Popover } from 'antd';
 import { FC, useState } from 'react';
 import styles from '../catalog.module.css';
 import { FormattedMessage } from 'react-intl';
@@ -75,15 +75,18 @@ const CardModal: FC<CardModalProps> = ({
               </Descriptions.Item>
             ))}
           </Descriptions>
+          <Divider />
           <Descriptions title={<FormattedMessage id="catalog.card.description" />}>
             <Descriptions.Item>{item.description}</Descriptions.Item>
           </Descriptions>
+          <Divider />
           <Descriptions title={<FormattedMessage id="catalog.card.modal_delivery" />}>
             <Descriptions.Item>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi recusandae optio dolore
               quasi laudantium eaque voluptates nostrum architecto quia magnam!
             </Descriptions.Item>
           </Descriptions>
+          <Divider />
           <div className={styles.btn_groups_modal}>
             <Button onClick={addToCart} type="primary">
               <FormattedMessage id="catalog.card.modal_add_to_cart" />

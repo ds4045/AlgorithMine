@@ -18,7 +18,8 @@ const popularItems = [
   },
   {
     id: 3,
-    image: 'https://asicfox.ua/wp-content/uploads/2022/10/innosilicon.png',
+    image:
+      'https://cdn.shopify.com/s/files/1/0012/1366/1307/collections/innosilicon_logo.png?v=1590144894',
     title: 'Innosilicon',
   },
   {

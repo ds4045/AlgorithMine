@@ -8,7 +8,7 @@ const EmptyCart = () => {
     <Result
       status="403"
       title="403"
-      subTitle=""
+      subTitle={<FormattedMessage id="cart.empty_cart" />}
       extra={
         <Button type="primary" onClick={() => navigate('/catalog')}>
           <FormattedMessage id="cart.btn_to_shop" />

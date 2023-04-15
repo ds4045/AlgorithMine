@@ -69,7 +69,6 @@ export const reviewHandler: ReviewHandler = async (
     default:
       return;
   }
-  console.log(newAllItemReviews, newAllUserReviews);
   resItem = await updateForFirestore(
     'items',
     itemID,

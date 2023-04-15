@@ -1,20 +1,103 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import styles from '../personal_cabinet.module.css';
 import { UserFirestoreDB } from '../../../types/types';
-import { Divider } from 'antd';
+import { Avatar, Button, Divider, List, Popover } from 'antd';
 import { FormattedMessage } from 'react-intl';
-
+import { Table } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
+import { useAppSelector } from '../../../redux/hooks';
 type OrdersProps = {
   me: UserFirestoreDB | null;
 };
+type DataType = {
+  key: React.Key;
+  orderNumber: number;
+  date: string;
+  totalPrice: number;
+  product: ReactNode;
+  count: number;
+};
 
 const Orders: FC<OrdersProps> = ({ me }) => {
+  const items = useAppSelector((state) => state.items.items);
+
+  let data: DataType[] = [];
+  if (me)
+    data = me.orders.map((el, ind) => ({
+      key: ind,
+      orderNumber: el.orderNumber,
+      date: el.date,
+      totalPrice: el.totalPrice,
+      count: el.orderedItems.length,
+      product: (
+        <Popover
+          content={
+            <List
+              itemLayout="horizontal"
+              dataSource={el.orderedItems}
+              renderItem={(item) => (
+                <List.Item className={styles.popover_orders}>
+                  <List.Item.Meta
+                    avatar={<Avatar src={items.find((el) => el.id === item.itemId)?.images[0]} />}
+                    title={items.find((el) => el.id === item.itemId)?.title}
+                    description={
+                      <span>
+                        {item.count} <FormattedMessage id="cart.units" />
+                      </span>
+                    }
+                  />
+                </List.Item>
+              )}
+            />
+          }
+          trigger="hover">
+          <Button type="link">
+            <FormattedMessage id="pk.orders.product" />
+          </Button>
+        </Popover>
+      ),
+    }));
+  const columns: ColumnsType<DataType> = [
+    {
+      title: <FormattedMessage id="pk.orders.product" />,
+      dataIndex: 'product',
+    },
+    {
+      title: <FormattedMessage id="pk.orders.units" />,
+      dataIndex: 'count',
+    },
+    {
+      title: <FormattedMessage id="pk.orders.amount" />,
+      dataIndex: 'totalPrice',
+      sorter: {
+        compare: (a, b) => a.totalPrice - b.totalPrice,
+        multiple: 3,
+      },
+    },
+    {
+      title: <FormattedMessage id="pk.orders.data" />,
+      dataIndex: 'date',
+      sorter: {
+        compare: (a, b) => {
+          const dateA = a.date.split('.').reverse().join('-');
+          const dateB = b.date.split('.').reverse().join('-');
+          return new Date(dateA).getTime() - new Date(dateB).getTime();
+        },
+        multiple: 3,
+      },
+    },
+    {
+      title: <FormattedMessage id="pk.orders.order_num" />,
+      dataIndex: 'orderNumber',
+    },
+  ];
   return (
     <div className={styles.wrapper}>
       <div className={styles.personal_data}>
         <Divider plain>
           <FormattedMessage id="pc.btn_orders" />
         </Divider>
+        <Table columns={columns} dataSource={data} />
       </div>
     </div>
   );

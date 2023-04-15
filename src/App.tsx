@@ -91,7 +91,6 @@ function App() {
               <Route path="cart" element={<Cart />} />
               <Route path="cart/success" element={<OrderSuccess />} />
               <Route path="about-us" element={<AboutUs />} />
-
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

@@ -8,10 +8,12 @@ export type AddedCartItems = Item & {
 export type BasketStateType = {
   addedItems: AddedCartItems[];
   totalPrice: number;
+  orderedItems: AddedCartItems[];
 };
 const initialState: BasketStateType = {
   addedItems: [],
   totalPrice: 0,
+  orderedItems: [],
 };
 
 export const counterSlice = createSlice({
@@ -41,8 +43,13 @@ export const counterSlice = createSlice({
       state.totalPrice = state.addedItems.reduce((acc, item) => acc + item.price * item.count, 0);
       saveCartToLocalStorage(state.addedItems, 'cart');
     },
+    pushOrderedItems: (state) => {
+      state.orderedItems = state.orderedItems.concat(state.addedItems);
+      state.addedItems = [];
+      state.totalPrice = 0;
+    },
   },
 });
 
-export const { addItem, removeItem, pushAddedItems } = counterSlice.actions;
+export const { addItem, removeItem, pushAddedItems, pushOrderedItems } = counterSlice.actions;
 export default counterSlice.reducer;

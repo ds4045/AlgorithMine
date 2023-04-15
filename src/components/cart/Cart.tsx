@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import useAlert from '../../hooks/useAlert';
 import { useAppSelector } from '../../redux/hooks';
 import ConfirmOrder from './ConfirmOrder';
+import EmptyCart from './EmptyCart';
 type CartProps = {};
 const promo = ['new10'];
 const Cart: FC<CartProps> = () => {
@@ -31,11 +32,15 @@ const Cart: FC<CartProps> = () => {
         <FormattedMessage id="cart.cart" />
       </Divider>
       <div className={styles.wrapper_cart}>
-        <div className={styles.carts}>
-          {addedItems.map((el) => (
-            <SingleCartItem key={el.id} item={el} />
-          ))}
-        </div>
+        {addedItems.length > 0 ? (
+          <div className={styles.carts}>
+            {addedItems.map((el) => (
+              <SingleCartItem key={el.id} item={el} />
+            ))}
+          </div>
+        ) : (
+          <EmptyCart />
+        )}
         <div className={styles.get_order}>
           <div className={styles.get_order_price}>
             <span>
@@ -61,16 +66,16 @@ const Cart: FC<CartProps> = () => {
                   className={styles.inp}
                   onChange={(e) => setValue(e.target.value)}
                 />
-                <Button type="primary" onClick={submitHandler}>
+                <Button type="primary" onClick={submitHandler} disabled={!addedItems.length}>
                   <FormattedMessage id="catalog.reviews.submit" />
                 </Button>
               </Space.Compact>
             ) : (
-              <Button onClick={() => setIsOpenInput(true)}>
+              <Button onClick={() => setIsOpenInput(true)} disabled={!addedItems.length}>
                 <FormattedMessage id="cart.promo" />
               </Button>
             )}
-            <ConfirmOrder totalPrice={totalPrice} />
+            <ConfirmOrder totalPrice={totalPrice} items={addedItems} />
           </div>
           <Divider />
           <div className={styles.about_order}>

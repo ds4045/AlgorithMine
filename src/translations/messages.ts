@@ -112,6 +112,12 @@ const messages: Messages = {
     'cart.inp_phone': 'Phone',
     'cart.alert_success_order': 'The order has been successfully placed',
     'cart.alert_error_order': 'Fill in the data',
+    'cart.empty_cart': 'Your shopping cart is empty',
+    'pk.orders.product': 'Products',
+    'pk.orders.amount': 'Amount',
+    'pk.orders.data': 'Data',
+    'pk.orders.order_num': 'Order number',
+    'pk.orders.units': 'Units',
   },
 
   ru: {
@@ -221,6 +227,12 @@ const messages: Messages = {
     'cart.inp_phone': 'Телефон',
     'cart.alert_success_order': 'Заказ успешно оформлен',
     'cart.alert_error_order': 'Заполните данные',
+    'cart.empty_cart': 'Ваша корзина пуста',
+    'pk.orders.product': 'Товары',
+    'pk.orders.amount': 'Всего',
+    'pk.orders.data': 'Дата',
+    'pk.orders.order_num': 'Номер заказа',
+    'pk.orders.units': 'Кол-во',
   },
 };
 
