@@ -17,7 +17,7 @@ const SingleCartItem: FC<SingleCartItemProps> = ({ item }) => {
   const user = useAppSelector((state) => state.auth.login);
   const isAuth = useAppSelector((state) => state.auth.isAuth);
   const [, alertError, contextHolder] = useAlert();
-  const isFavorite = user?.favorites.some((el) => el.id === itemID) ?? false;
+  const isFavorite = user?.favorites.some((el) => el === itemID) ?? false;
   const dispatch = useAppDispatch();
   const addHandler = () => {
     dispatch(addItem(item));

@@ -14,16 +14,24 @@ type CardModalProps = {
   item: Item;
   alertSuccess: (text: React.ReactNode) => void;
   alertError: (text: React.ReactNode) => void;
+  pcType?: boolean;
 };
 
-const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, alertError }) => {
+const CardModal: FC<CardModalProps> = ({
+  onClose,
+  open,
+  item,
+  alertSuccess,
+  alertError,
+  pcType,
+}) => {
   const itemID = item?.id;
   const reviews = item?.reviews ?? [];
   const dispatch = useAppDispatch();
   const content = <ReviewsCatalog reviews={reviews} itemID={itemID} />;
   const user = useAppSelector((state) => state.auth.login);
   const isAuth = useAppSelector((state) => state.auth.isAuth);
-  const isFavorite = user?.favorites.some((el) => el.id === itemID) ?? false;
+  const isFavorite = user?.favorites.some((el) => el === itemID) ?? false;
   const optionalProperties: { key: ItemOptionalFields; value: string | number }[] = [];
   const optional: ItemOptional = item?.optional;
   for (const [key, value] of Object.entries(optional ?? {})) {
@@ -80,23 +88,27 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
             <Button onClick={addToCart} type="primary">
               <FormattedMessage id="catalog.card.modal_add_to_cart" />
             </Button>
-            <Button>
-              <FormattedMessage id="catalog.card.modal_add_to_сomparison" />
-            </Button>
+            {!pcType && (
+              <Button>
+                <FormattedMessage id="catalog.card.modal_add_to_сomparison" />
+              </Button>
+            )}
             <Button onClick={toggleFavorite} loading={isLoading}>
               <FormattedMessage
                 id={`catalog.card.modal_${isFavorite ? 'delete' : 'add'}_to_favorites`}
               />
             </Button>
-            <Popover
-              content={content}
-              title={<FormattedMessage id="catalog.card.modal_reviews" />}
-              trigger="click"
-              overlayInnerStyle={{ overflow: 'scroll' }}>
-              <Button>
-                <FormattedMessage id="catalog.card.modal_reviews" />
-              </Button>
-            </Popover>
+            {!pcType && (
+              <Popover
+                content={content}
+                title={<FormattedMessage id="catalog.card.modal_reviews" />}
+                trigger="click"
+                overlayInnerStyle={{ overflow: 'scroll' }}>
+                <Button>
+                  <FormattedMessage id="catalog.card.modal_reviews" />
+                </Button>
+              </Popover>
+            )}
           </div>
         </div>
       </Drawer>

@@ -16,11 +16,11 @@ export const toggleFavoritesHandler: toggleFavoritesHandlerType = async (
   if (!user || !isAuth) return alertError(<FormattedMessage id="catalog.favorites.check_login" />);
   switch (type) {
     case 'add': {
-      favorites = [...user.favorites, item];
+      favorites = [...user.favorites, item.id];
       break;
     }
     case 'delete': {
-      favorites = [...user.favorites.filter((el) => el.id !== item.id)];
+      favorites = [...user.favorites.filter((el) => el !== item.id)];
       break;
     }
     default:

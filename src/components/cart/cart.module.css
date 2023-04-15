@@ -102,3 +102,11 @@
 .price {
   color: #f94f0c;
 }
+.inpWrapper {
+  height: 60px;
+}
+
+.label {
+  color: red;
+  opacity: 0.5;
+}

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import useAlert from '../../hooks/useAlert';
 import { useAppSelector } from '../../redux/hooks';
+import ConfirmOrder from './ConfirmOrder';
 type CartProps = {};
 const promo = ['new10'];
 const Cart: FC<CartProps> = () => {
@@ -69,10 +70,7 @@ const Cart: FC<CartProps> = () => {
                 <FormattedMessage id="cart.promo" />
               </Button>
             )}
-
-            <Button type="primary">
-              <FormattedMessage id="cart.order_now" />
-            </Button>
+            <ConfirmOrder totalPrice={totalPrice} />
           </div>
           <Divider />
           <div className={styles.about_order}>

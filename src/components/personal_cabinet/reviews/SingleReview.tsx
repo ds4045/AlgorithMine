@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Avatar, Card, Popover, Rate, Spin } from 'antd';
 import Meta from 'antd/es/card/Meta';
-import { FC, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { Item, ReviewFormType } from '../../../types/types';
 import styles from '../personal_cabinet.module.css';
 import ReviewForm from '../../catalog/reviews/ReviewForm';
@@ -27,7 +27,9 @@ const SingleReview: FC<SingleReviewProps> = ({ item, userImg, text, date, rate, 
     value: text,
     rate: rate,
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  const [isLoadingChange, setIsLoadingChange] = useState(false);
+
   const description = (
     <>
       <p>{date}</p>
@@ -35,28 +37,13 @@ const SingleReview: FC<SingleReviewProps> = ({ item, userImg, text, date, rate, 
       <Rate value={rate} disabled />
     </>
   );
-  const handlerReviewForm = () => {
+  const handlerReviewForm = (
+    type: 'change' | 'delete',
+    setIsLoading: Dispatch<SetStateAction<boolean>>,
+  ) => {
     if (me && item)
       reviewHandler(
-        'change',
-        me,
-        isAuth,
-        item.id,
-        item.reviews,
-        reviewForm,
-        setReviewForm,
-        dispatch,
-        setIsOpenPopover,
-        setIsLoading,
-        alertSuccess,
-        alertError,
-        idReview,
-      );
-  };
-  const deleteReview = () => {
-    if (me && item)
-      reviewHandler(
-        'delete',
+        type,
         me,
         isAuth,
         item.id,
@@ -75,22 +62,27 @@ const SingleReview: FC<SingleReviewProps> = ({ item, userImg, text, date, rate, 
     item && (
       <>
         {contextHolder}
-
         <Card
           className={styles.review}
           title={
             <span>
               <Avatar src={item.images[0]} /> {item.title}
-              {isLoading && <Spin className={styles.spin} />}
             </span>
           }
           actions={[
-            <DeleteOutlined key="delete" onClick={deleteReview} />,
+            isLoadingDelete ? (
+              <Spin size="small" />
+            ) : (
+              <DeleteOutlined
+                key="delete"
+                onClick={() => handlerReviewForm('delete', setIsLoadingDelete)}
+              />
+            ),
             <Popover
               content={
                 <ReviewForm
-                  isLoading={isLoading}
-                  handlerReviewForm={handlerReviewForm}
+                  isLoading={isLoadingChange}
+                  handlerReviewForm={() => handlerReviewForm('change', setIsLoadingChange)}
                   setReviewForm={setReviewForm}
                   reviewForm={reviewForm}
                 />
@@ -99,7 +91,7 @@ const SingleReview: FC<SingleReviewProps> = ({ item, userImg, text, date, rate, 
               placement="rightTop"
               open={isOpenPopover}
               onOpenChange={setIsOpenPopover}>
-              <EditOutlined key="edit" />
+              {isLoadingChange ? <Spin size="small" /> : <EditOutlined key="edit" />}
             </Popover>,
           ]}>
           <Meta avatar={<Avatar src={userImg} />} description={description} />

@@ -3,7 +3,6 @@ import {
   ClusterOutlined,
   EyeOutlined,
   FundProjectionScreenOutlined,
-  HeartOutlined,
   RollbackOutlined,
   ShoppingCartOutlined,
   UsbOutlined,
@@ -42,7 +41,7 @@ type CatalogProps = {
   currentCategory: CategoryType;
   setCurrentCategory: Dispatch<SetStateAction<CategoryType>>;
 };
-const rootSubmenuKeys = ['Asic', 'Accessory', 'GPU', 'Comparison', 'Favorites', 'Cart', 'Back'];
+const rootSubmenuKeys = ['Asic', 'Accessory', 'GPU', 'Comparison', 'Cart', 'Back'];
 const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
   const navigate = useNavigate();
   const addedItems = useAppSelector((state) => state.cart.addedItems);
@@ -132,15 +131,6 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
       </Badge>,
       'Comparison',
       <EyeOutlined />,
-    ),
-    getItem(
-      <Badge count={4} offset={[13, 0]} color="#F94F0C">
-        <div>
-          <FormattedMessage id="catalog.favorites" />
-        </div>
-      </Badge>,
-      'Favorites',
-      <HeartOutlined />,
     ),
     getItem(
       <Badge count={totalUnits} offset={[10, 0]} color="#F94F0C">

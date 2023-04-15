@@ -95,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({
         <Button className={styles.width90}>
           <FormattedMessage id="header.services" />
         </Button>
-        <Button className={styles.width90}>
+        <Button className={styles.width90} onClick={() => navigate('/about-us')}>
           <FormattedMessage id="header.aboutUs" />
         </Button>
         <Search placeholder="..." onSearch={onSearch} allowClear style={{ width: 200 }} />

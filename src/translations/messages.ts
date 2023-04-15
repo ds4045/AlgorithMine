@@ -101,6 +101,17 @@ const messages: Messages = {
     'cart.contacts': 'Our contacts',
     'cart.add_item_alert': 'The product is added to the cart',
     'cart.total_price': 'Total:',
+    'cart.order_success':
+      'The order has been successfully placed, we will contact you shortly to clarify the details of the order',
+    'cart.go_to_catalog': 'Continue shopping',
+    'cart.order_success_thanks': 'Thanks for your order',
+    'cart.order_confirm': 'Confirm the order for the total amount ',
+    'cart.error_phone': 'The phone number must be correct',
+    'cart.error_name': 'The name cannot be empty',
+    'cart.inp_name': 'Name',
+    'cart.inp_phone': 'Phone',
+    'cart.alert_success_order': 'The order has been successfully placed',
+    'cart.alert_error_order': 'Fill in the data',
   },
 
   ru: {
@@ -199,6 +210,17 @@ const messages: Messages = {
     'cart.contacts': 'Наши контакты',
     'cart.add_item_alert': 'Товар добавлен к корзину',
     'cart.total_price': 'Итог:',
+    'cart.order_success':
+      'Заказ успешно оформлен,мы свяжемся с вами в ближайшее время для уточнения деталей заказа',
+    'cart.go_to_catalog': 'Продолжить покупки',
+    'cart.order_success_thanks': 'Спасибо за заказ',
+    'cart.order_confirm': 'Подвердите заказ на общую сумму ',
+    'cart.error_phone': 'Номер телефона должен быть корректным',
+    'cart.error_name': 'Имя не может быть пустым',
+    'cart.inp_name': 'Имя',
+    'cart.inp_phone': 'Телефон',
+    'cart.alert_success_order': 'Заказ успешно оформлен',
+    'cart.alert_error_order': 'Заполните данные',
   },
 };
 

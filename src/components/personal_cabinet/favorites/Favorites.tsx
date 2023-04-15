@@ -7,6 +7,7 @@ import { Avatar, List } from 'antd';
 import { FolderOpenOutlined } from '@ant-design/icons';
 import CardModal from '../../catalog/cards/CardModal';
 import { useAlert } from '../../../hooks/useAlert';
+import { useAppSelector } from '../../../redux/hooks';
 type FavoritesProps = {
   me: UserFirestoreDB | null;
 };
@@ -23,6 +24,8 @@ const Favorites: FC<FavoritesProps> = ({ me }) => {
   const onCloseDescription = () => {
     setOpen(false);
   };
+  const items = useAppSelector((state) => state.items.items);
+  const item = items.filter((el) => me?.favorites.includes(el.id));
   const [alertSuccess, alertError, contextHolder] = useAlert();
   return (
     <div className={styles.wrapper}>
@@ -36,7 +39,7 @@ const Favorites: FC<FavoritesProps> = ({ me }) => {
             className={styles.favorites_list}
             grid={{ column: 1 }}
             itemLayout="horizontal"
-            dataSource={me.favorites}
+            dataSource={item}
             renderItem={(item) => (
               <List.Item style={{ display: 'flex' }}>
                 <List.Item.Meta

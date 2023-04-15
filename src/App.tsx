@@ -24,6 +24,8 @@ import { pushAddedItems } from './redux/cartSlice';
 import { fetchUsers } from './api/fetchUsers';
 import { fetchItems } from './api/fetchItems';
 import { CategoryType } from './types/types';
+import OrderSuccess from './components/cart/OrderSuccess';
+import AboutUs from './components/aboutUs/aboutUs';
 
 function App() {
   useAutoSignIn();
@@ -87,6 +89,9 @@ function App() {
                 }
               />
               <Route path="cart" element={<Cart />} />
+              <Route path="cart/success" element={<OrderSuccess />} />
+              <Route path="about-us" element={<AboutUs />} />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

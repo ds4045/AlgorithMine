@@ -51,7 +51,7 @@ export const reviewHandler: ReviewHandler = async (
   switch (type) {
     case 'add': {
       newAllItemReviews = [...reviews, review];
-      newAllUserReviews = { ...me?.reviews, [itemID]: newAllItemReviews };
+      newAllUserReviews = { ...me?.reviews, [itemID]: review };
       break;
     }
     case 'delete': {
@@ -63,14 +63,13 @@ export const reviewHandler: ReviewHandler = async (
     case 'change': {
       newAllItemReviews = reviews.map((el) => (el.id === idReview ? review : el));
       newAllUserReviews = { ...me?.reviews };
-      newAllUserReviews[itemID] = newAllUserReviews[itemID].map((el) =>
-        el.id === idReview ? review : el,
-      );
+      newAllUserReviews[itemID] = review;
       break;
     }
     default:
       return;
   }
+  console.log(newAllItemReviews, newAllUserReviews);
   resItem = await updateForFirestore(
     'items',
     itemID,

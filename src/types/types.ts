@@ -19,7 +19,7 @@ export type UserFirestoreDB = {
   orders: any[];
   cart: Item[];
   isAdmin: boolean;
-  favorites: Item[];
+  favorites: string[];
 };
 
 export type FieldsUserType = 'name' | 'age' | 'surname' | 'image' | 'city' | 'phone';
@@ -54,7 +54,7 @@ export type Item = {
   sku: number;
 };
 export type ReviewsUserType = {
-  [key: string]: ReviewItemType[];
+  [key: string]: ReviewItemType;
 };
 export type ReviewItemType = {
   id: string;
@@ -104,3 +104,19 @@ export type ReviewHandler = (
   alertError: (text: React.ReactNode) => void,
   idReview?: string,
 ) => void;
+
+export type OrderType = {
+  orderNumber: number;
+  userId: string;
+  orderedItems: OrderedItemsType[];
+  date: string;
+  totalPrice: number;
+  name: string;
+  phone: string;
+  completed: boolean;
+};
+export type OrderedItemsType = {
+  itemId: string;
+  count: number;
+  price: number;
+};
