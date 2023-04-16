@@ -1,4 +1,4 @@
-import styles from './header.module.css';
+import styles from './logo_btc.module.css';
 
 const Logo = () => {
   return (

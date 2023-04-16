@@ -25,7 +25,7 @@ import { fetchUsers } from './api/fetchUsers';
 import { fetchItems } from './api/fetchItems';
 import { CategoryType } from './types/types';
 import OrderSuccess from './components/cart/OrderSuccess';
-import AboutUs from './components/aboutUs/aboutUs';
+import AboutUs from './components/about_us/aboutUs';
 
 function App() {
   useAutoSignIn();

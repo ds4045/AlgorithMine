@@ -7,7 +7,7 @@
 }
 .personal_data {
   height: 100%;
-  width: 40%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,5 +67,5 @@
   width: 100px;
 }
 .popover_orders {
-  width: 150px;
+  width: 250px;
 }

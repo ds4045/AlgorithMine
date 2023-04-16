@@ -46,6 +46,7 @@ export const counterSlice = createSlice({
     pushOrderedItems: (state) => {
       state.orderedItems = state.orderedItems.concat(state.addedItems);
       state.addedItems = [];
+      saveCartToLocalStorage(state.addedItems, 'cart');
       state.totalPrice = 0;
     },
   },

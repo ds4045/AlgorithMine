@@ -28,7 +28,7 @@ const Orders: FC<OrdersProps> = ({ me }) => {
       orderNumber: el.orderNumber,
       date: el.date,
       totalPrice: el.totalPrice,
-      count: el.orderedItems.length,
+      count: el.orderedItems.reduce((acc, curr) => acc + curr.count, 0),
       product: (
         <Popover
           content={
@@ -71,7 +71,6 @@ const Orders: FC<OrdersProps> = ({ me }) => {
       dataIndex: 'totalPrice',
       sorter: {
         compare: (a, b) => a.totalPrice - b.totalPrice,
-        multiple: 3,
       },
     },
     {
@@ -83,12 +82,12 @@ const Orders: FC<OrdersProps> = ({ me }) => {
           const dateB = b.date.split('.').reverse().join('-');
           return new Date(dateA).getTime() - new Date(dateB).getTime();
         },
-        multiple: 3,
       },
     },
     {
       title: <FormattedMessage id="pk.orders.order_num" />,
       dataIndex: 'orderNumber',
+      width: 150,
     },
   ];
   return (
@@ -97,7 +96,7 @@ const Orders: FC<OrdersProps> = ({ me }) => {
         <Divider plain>
           <FormattedMessage id="pc.btn_orders" />
         </Divider>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={data} scroll={{ y: 400 }} pagination={false} />
       </div>
     </div>
   );
