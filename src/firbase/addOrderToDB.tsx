@@ -1,5 +1,5 @@
 import { getCurrentDate } from '../helpers/getCurrentDate';
-import { replaceUsers } from '../redux/allUsersSlice';
+import { isAuthTrue } from '../redux/authSlice';
 import { pushOrderedItems } from '../redux/cartSlice';
 import { AddOrderType } from '../types/types';
 import { addDataForDB, updateForFirestore } from './firebaseAPI';
@@ -33,7 +33,7 @@ export const addOrderToDB: AddOrderType = async (
   if (userId && me?.orders) {
     const newUserOrders = [...me.orders, newOrder];
     resUsers = await updateForFirestore('users', userId, 'orders', newUserOrders);
-    resUsers && dispatch(replaceUsers({ id: userId, user: { ...me, orders: newUserOrders } }));
+    resUsers && dispatch(isAuthTrue({ ...me, orders: newUserOrders }));
   }
   resOrders && dispatch(pushOrderedItems());
   return resOrders && resUsers;
