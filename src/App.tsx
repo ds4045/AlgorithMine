@@ -16,7 +16,7 @@ import PersonalCabinet from './components/personal_cabinet/PersonalCabinet';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import Footer from './components/footer/Footer';
 import Catalog from './components/catalog/Catalog';
-import { useCurrentUser } from './hooks/useCurrentUser';
+// import { useCurrentUser } from './hooks/useCurrentUser';
 import NotFound from './components/not_found/NotFound';
 import Cart from './components/cart/Cart';
 import { loadCartFromLocalStorage } from './helpers/localStorage';
@@ -31,6 +31,8 @@ function App() {
   useAutoSignIn();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const me = useAppSelector((state) => state.auth.login);
+
   const [currentCategory, setCurrentCategory] = useState<CategoryType>('Asic');
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
@@ -41,7 +43,7 @@ function App() {
   useEffect(() => {
     if (isAuth) fetchUsers(dispatch);
   }, [dispatch, isAuth]);
-  const me = useCurrentUser();
+
   useEffect(() => {
     dispatch(pushAddedItems(loadCartFromLocalStorage('cart')));
     fetchItems(dispatch);

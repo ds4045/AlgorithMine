@@ -6,6 +6,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  setDoc,
   updateDoc,
 } from 'firebase/firestore';
 import { DB } from './firebaseConfig';
@@ -44,7 +45,14 @@ export const addDataForDB = async (nameDB: string, data: Item | UserFirestoreDB 
     console.log(err);
   }
 };
-
+export const addNewUserForDB = async (user: UserFirestoreDB) => {
+  try {
+    const res = await setDoc(doc(collection(DB, 'users'), user.id), user);
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};
 export const updateForFirestore = async (
   nameDB: string,
   id: string,

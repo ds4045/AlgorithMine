@@ -1,18 +1,22 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  browserSessionPersistence,
+  createUserWithEmailAndPassword,
+  setPersistence,
+} from 'firebase/auth';
 import { FC, FormEvent, useState } from 'react';
 import { auth } from '../../firbase/firebaseConfig';
 import styles from './auth.module.css';
 import Form from '../UI/Form';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { confirmAuthorizedUser } from '../../firbase/confirmAuthorizedUser';
-import { addUsers } from '../../redux/allUsersSlice';
+import { useAppDispatch } from '../../redux/hooks';
 import { FormattedMessage } from 'react-intl';
 import GoogleAuth from './GoogleAuth';
-import { addDataForDB } from '../../firbase/firebaseAPI';
+import { addNewUserForDB } from '../../firbase/firebaseAPI';
+import { isAuthTrue } from '../../redux/authSlice';
+import { UserFirestoreDB } from '../../types/types';
+import { setUserDataCookie } from '../../hooks/useAutoSignIn';
 
 const Register: FC = () => {
-  const allUsers = useAppSelector((state) => state.users.users);
   const [registerEmail, setRegisterEmail] = useState<string>('');
   const [registerPassword, setRegisterPassword] = useState<string>('');
   const navigate = useNavigate();
@@ -21,7 +25,8 @@ const Register: FC = () => {
     try {
       e.preventDefault();
       await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      const newUser = {
+      await setPersistence(auth, browserSessionPersistence);
+      const newUser: UserFirestoreDB = {
         name: auth.currentUser?.displayName ?? '',
         surname: '',
         email: auth.currentUser?.email ?? '',
@@ -36,14 +41,15 @@ const Register: FC = () => {
         favorites: [],
         id: auth.currentUser?.uid ?? '',
       };
-      confirmAuthorizedUser(auth, registerEmail, registerPassword, dispatch, navigate, newUser);
+      addNewUserForDB(newUser);
+      dispatch(isAuthTrue(newUser));
+      navigate('/');
+      setUserDataCookie({
+        email: registerEmail,
+        password: registerPassword,
+      });
       setRegisterEmail('');
       setRegisterPassword('');
-      if (allUsers.some((user) => user.email === auth.currentUser?.email && !newUser.email)) return;
-      else {
-        dispatch(addUsers(newUser));
-        addDataForDB('users', newUser);
-      }
     } catch (err: any) {
       alert(err.message);
     }

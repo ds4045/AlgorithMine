@@ -4,6 +4,8 @@ import Cookies from 'js-cookie';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleAuth } from '../firbase/firebaseConfig';
 import { isAuthTrue } from '../redux/authSlice';
+import { fetchSingleUser } from '../api/fetchUsers';
+import { UserFirestoreDB } from '../types/types';
 
 type UserData = {
   email: string;
@@ -23,22 +25,10 @@ const useAutoSignIn = () => {
           : signInWithEmailAndPassword(auth, userData.email, userData.password);
       try {
         await signInPromise;
-        const newUser = {
-          id: auth?.currentUser?.uid ?? '',
-          name: auth.currentUser?.displayName ?? '',
-          surname: '',
-          email: auth.currentUser?.email ?? '',
-          age: '',
-          reviews: {},
-          image: auth.currentUser?.photoURL ?? '',
-          orders: [],
-          city: '',
-          phone: '',
-          cart: [],
-          isAdmin: false,
-          favorites: [],
-        };
-        if (newUser?.email) dispatch(isAuthTrue(newUser));
+        if (auth.currentUser?.uid) {
+          const newUser = await fetchSingleUser(dispatch, auth.currentUser.uid);
+          newUser && dispatch(isAuthTrue(newUser as UserFirestoreDB));
+        }
       } catch (error) {
         console.log(error);
       }

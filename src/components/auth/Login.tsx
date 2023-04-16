@@ -1,4 +1,8 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { FC, FormEvent, useState } from 'react';
 import { auth } from '../../firbase/firebaseConfig';
 import styles from './auth.module.css';
@@ -6,8 +10,11 @@ import Form from '../UI/Form';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleForm from './GoogleAuth';
 import { useAppDispatch } from '../../redux/hooks';
-import { confirmAuthorizedUser } from '../../firbase/confirmAuthorizedUser';
 import { FormattedMessage } from 'react-intl';
+import { fetchSingleUser } from '../../api/fetchUsers';
+import { isAuthTrue } from '../../redux/authSlice';
+import { UserFirestoreDB } from '../../types/types';
+import { setUserDataCookie } from '../../hooks/useAutoSignIn';
 
 const Login: FC = () => {
   const [loginEmail, setLoginEmail] = useState<string>('');
@@ -17,25 +24,21 @@ const Login: FC = () => {
   const handleLoginWithEmailPasswordSubmit = async (e: FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
+      await setPersistence(auth, browserSessionPersistence);
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       setLoginEmail('');
       setLoginPassword('');
-      const newUser = {
-        name: auth.currentUser?.displayName ?? '',
-        surname: '',
-        email: auth.currentUser?.email ?? '',
-        age: '',
-        reviews: {},
-        image: auth.currentUser?.photoURL ?? '',
-        orders: [],
-        city: '',
-        phone: '',
-        cart: [],
-        isAdmin: false,
-        favorites: [],
-        id: auth.currentUser?.uid ?? '',
-      };
-      confirmAuthorizedUser(auth, loginEmail, loginPassword, dispatch, navigate, newUser);
+      if (auth.currentUser?.uid) {
+        const newUser = await fetchSingleUser(dispatch, auth.currentUser.uid);
+        newUser && dispatch(isAuthTrue(newUser as UserFirestoreDB));
+        navigate('/');
+        setUserDataCookie({
+          email: loginEmail,
+          password: loginPassword,
+        });
+      } else {
+        return alert('Login failed');
+      }
     } catch (err: any) {
       alert(err.message);
     }
