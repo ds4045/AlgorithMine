@@ -1,8 +1,4 @@
-import {
-  browserSessionPersistence,
-  setPersistence,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FC, FormEvent, useState } from 'react';
 import { auth } from '../../firbase/firebaseConfig';
 import styles from './auth.module.css';
@@ -24,7 +20,6 @@ const Login: FC = () => {
   const handleLoginWithEmailPasswordSubmit = async (e: FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      await setPersistence(auth, browserSessionPersistence);
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       setLoginEmail('');
       setLoginPassword('');

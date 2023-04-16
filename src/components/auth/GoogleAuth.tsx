@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, googleAuth } from '../../firbase/firebaseConfig';
-import { browserLocalPersistence, setPersistence, signInWithPopup } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import styles from './auth.module.css';
 import { FcGoogle } from 'react-icons/fc';
 import { useAppDispatch } from '../../redux/hooks';
@@ -19,7 +19,6 @@ const GoogleAuth: FC<GoogleFormProps> = ({ buttonName }) => {
   const navigate = useNavigate();
   const handleLoginWithGoogleSubmit = async () => {
     try {
-      await setPersistence(auth, browserLocalPersistence);
       await signInWithPopup(auth, googleAuth);
       if (auth.currentUser?.uid) {
         const newUser = await fetchSingleUser(dispatch, auth.currentUser.uid);

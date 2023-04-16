@@ -16,7 +16,6 @@ import PersonalCabinet from './components/personal_cabinet/PersonalCabinet';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import Footer from './components/footer/Footer';
 import Catalog from './components/catalog/Catalog';
-// import { useCurrentUser } from './hooks/useCurrentUser';
 import NotFound from './components/not_found/NotFound';
 import Cart from './components/cart/Cart';
 import { loadCartFromLocalStorage } from './helpers/localStorage';

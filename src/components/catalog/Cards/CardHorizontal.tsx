@@ -49,10 +49,10 @@ const CardHorizontal: FC<CardHorizontalProps> = ({ item, score, alertSuccess, al
           score={score}
         />
         <div className={styles.btn_groups_horizontal}>
-          <Button onClick={showDescription} type="primary">
+          <Button onClick={showDescription}>
             <FormattedMessage id="catalog.card.btn_more" />
           </Button>
-          <Button onClick={buyHandler}>
+          <Button onClick={buyHandler} type="primary">
             <FormattedMessage id="catalog.card.btn_buy" />
           </Button>
         </div>

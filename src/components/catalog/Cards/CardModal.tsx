@@ -14,17 +14,9 @@ type CardModalProps = {
   item: Item;
   alertSuccess: (text: React.ReactNode) => void;
   alertError: (text: React.ReactNode) => void;
-  pcType?: boolean;
 };
 
-const CardModal: FC<CardModalProps> = ({
-  onClose,
-  open,
-  item,
-  alertSuccess,
-  alertError,
-  pcType,
-}) => {
+const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, alertError }) => {
   const itemID = item?.id;
   const reviews = item?.reviews ?? [];
   const dispatch = useAppDispatch();
@@ -91,27 +83,23 @@ const CardModal: FC<CardModalProps> = ({
             <Button onClick={addToCart} type="primary">
               <FormattedMessage id="catalog.card.modal_add_to_cart" />
             </Button>
-            {!pcType && (
-              <Button>
-                <FormattedMessage id="catalog.card.modal_add_to_сomparison" />
-              </Button>
-            )}
+            <Button>
+              <FormattedMessage id="catalog.card.modal_add_to_сomparison" />
+            </Button>
             <Button onClick={toggleFavorite} loading={isLoading}>
               <FormattedMessage
                 id={`catalog.card.modal_${isFavorite ? 'delete' : 'add'}_to_favorites`}
               />
             </Button>
-            {!pcType && (
-              <Popover
-                content={content}
-                title={<FormattedMessage id="catalog.card.modal_reviews" />}
-                trigger="click"
-                overlayInnerStyle={{ overflow: 'scroll' }}>
-                <Button>
-                  <FormattedMessage id="catalog.card.modal_reviews" />
-                </Button>
-              </Popover>
-            )}
+            <Popover
+              content={content}
+              title={<FormattedMessage id="catalog.card.modal_reviews" />}
+              trigger="click"
+              overlayInnerStyle={{ overflow: 'scroll' }}>
+              <Button>
+                <FormattedMessage id="catalog.card.modal_reviews" />
+              </Button>
+            </Popover>
           </div>
         </div>
       </Drawer>

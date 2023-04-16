@@ -36,10 +36,10 @@ const CardTable: FC<CardTableProps> = ({ item, score, alertSuccess, alertError }
           width: 350,
         }}
         actions={[
-          <Button key="more" type="primary" onClick={showDescription}>
+          <Button key="more" onClick={showDescription}>
             <FormattedMessage id="catalog.card.btn_more" />
           </Button>,
-          <Button key="buy" onClick={buyHandler}>
+          <Button key="buy" onClick={buyHandler} type="primary">
             <FormattedMessage id="catalog.card.btn_buy" />
           </Button>,
         ]}>
