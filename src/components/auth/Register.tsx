@@ -1,8 +1,4 @@
-import {
-  browserSessionPersistence,
-  createUserWithEmailAndPassword,
-  setPersistence,
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FC, FormEvent, useState } from 'react';
 import { auth } from '../../firbase/firebaseConfig';
 import styles from './auth.module.css';
@@ -25,7 +21,6 @@ const Register: FC = () => {
     try {
       e.preventDefault();
       await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      await setPersistence(auth, browserSessionPersistence);
       const newUser: UserFirestoreDB = {
         name: auth.currentUser?.displayName ?? '',
         surname: '',

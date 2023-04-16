@@ -22,6 +22,7 @@ type HeaderProps = {
   darkThemes: boolean;
   me: UserFirestoreDB | null;
   setCurrentCategory: Dispatch<SetStateAction<CategoryType>>;
+  locale: 'en' | 'ru';
 };
 const Header: React.FC<HeaderProps> = ({
   onLocaleChange,
@@ -29,6 +30,7 @@ const Header: React.FC<HeaderProps> = ({
   darkThemes,
   me,
   setCurrentCategory,
+  locale,
 }) => {
   const isAuth = useAppSelector((state) => state.auth.isAuth);
   const addedItems = useAppSelector((state) => state.cart.addedItems);
@@ -101,13 +103,13 @@ const Header: React.FC<HeaderProps> = ({
         <Search placeholder="..." onSearch={onSearch} allowClear style={{ width: 200 }} />
       </div>
       <Switch
+        checked={locale === 'ru'}
         checkedChildren="Ru"
         unCheckedChildren="Eng"
-        defaultChecked
         onClick={onLocaleChange}
       />
       <Contacts />
-      <ToggleColorThemes setDarkThemes={setDarkThemes} />
+      <ToggleColorThemes setDarkThemes={setDarkThemes} darkThemes={darkThemes} />
       <Badge count={totalUnits} color="#F94F0C">
         <ShoppingCartOutlined
           onClick={() => navigate('/cart')}

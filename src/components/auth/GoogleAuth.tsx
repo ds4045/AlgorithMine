@@ -9,6 +9,7 @@ import { fetchSingleUser } from '../../api/fetchUsers';
 import { isAuthTrue } from '../../redux/authSlice';
 import { UserFirestoreDB } from '../../types/types';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
+import { addNewUserForDB } from '../../firbase/firebaseAPI';
 
 type GoogleFormProps = {
   buttonName: any;
@@ -21,8 +22,29 @@ const GoogleAuth: FC<GoogleFormProps> = ({ buttonName }) => {
     try {
       await signInWithPopup(auth, googleAuth);
       if (auth.currentUser?.uid) {
-        const newUser = await fetchSingleUser(dispatch, auth.currentUser.uid);
-        newUser && dispatch(isAuthTrue(newUser as UserFirestoreDB));
+        let newUser: UserFirestoreDB | false | { id: string } = await fetchSingleUser(
+          dispatch,
+          auth.currentUser.uid,
+        );
+        if (!newUser) {
+          newUser = {
+            name: auth.currentUser?.displayName ?? '',
+            surname: '',
+            email: auth.currentUser?.email ?? '',
+            age: '',
+            reviews: {},
+            image: auth.currentUser?.photoURL ?? '',
+            orders: [],
+            city: '',
+            phone: '',
+            cart: [],
+            isAdmin: false,
+            favorites: [],
+            id: auth.currentUser?.uid ?? '',
+          };
+          await addNewUserForDB(newUser as UserFirestoreDB);
+        }
+        dispatch(isAuthTrue(newUser as UserFirestoreDB));
         setUserDataCookie({
           email: googleAuth.providerId,
           password: googleAuth.providerId,

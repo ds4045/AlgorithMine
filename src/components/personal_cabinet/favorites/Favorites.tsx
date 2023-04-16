@@ -5,7 +5,7 @@ import { Button, Divider, Empty } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import { Avatar, List } from 'antd';
 import { FolderOpenOutlined } from '@ant-design/icons';
-import CardModal from '../../catalog/cards/CardModal';
+import CardModal from '../../catalog/Cards/CardModal';
 import { useAlert } from '../../../hooks/useAlert';
 import { useAppSelector } from '../../../redux/hooks';
 type FavoritesProps = {

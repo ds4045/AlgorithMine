@@ -96,5 +96,6 @@ export const getElementFromFirestoreDB = async (nameDB: string, docId: string) =
     }
   } catch (err) {
     console.log(err);
+    return false;
   }
 };

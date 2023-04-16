@@ -7,19 +7,20 @@ import {
   ShoppingCartOutlined,
   UsbOutlined,
 } from '@ant-design/icons';
-import { Badge, MenuProps } from 'antd';
+import { Badge, Drawer, MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { useAlert } from '../../hooks/useAlert';
 import styles from './catalog.module.css';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import CatalogNavigation from './CatalogNavigation';
-import CardHorizontal from './cards/CardHorizontal';
-import CardTable from './cards/CardTable';
+import CardHorizontal from './Cards/CardHorizontal';
+import CardTable from './Cards/CardTable';
 import { useAppSelector } from '../../redux/hooks';
 import { middleScore } from '../../helpers/middleScore';
 import { CategoryType } from '../../types/types';
 import { renderItemByCategory } from '../../helpers/renderItemByCategory';
+import Comparison from './comporison/Comparison';
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -44,6 +45,7 @@ type CatalogProps = {
 const rootSubmenuKeys = ['Asic', 'Accessory', 'GPU', 'Comparison', 'Cart', 'Back'];
 const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
   const navigate = useNavigate();
+  const [isComparison, setIsComparison] = useState(false);
   const addedItems = useAppSelector((state) => state.cart.addedItems);
   const totalUnits = addedItems.reduce((acc, curr) => acc + curr.count, 0);
   const [openKeys, setOpenKeys] = useState([
@@ -125,7 +127,7 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
     ),
     getItem(
       <Badge count={1} offset={[10, 0]} color="#F94F0C">
-        <div>
+        <div onClick={() => setIsComparison(true)}>
           <FormattedMessage id="catalog.comparison" />
         </div>
       </Badge>,
@@ -167,6 +169,14 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
           items={items}
           currentCategory={currentCategory}
         />
+        <Drawer
+          size="large"
+          title="Basic Drawer"
+          placement="right"
+          onClose={() => setIsComparison(false)}
+          open={isComparison}>
+          <Comparison />
+        </Drawer>
         <div className={styles[cardsPosition]}>
           {cardsPosition === 'cards_horizontal'
             ? renderItemByCategory(currentCategory, items).map((el) => (

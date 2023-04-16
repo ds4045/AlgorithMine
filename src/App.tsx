@@ -64,6 +64,7 @@ const App = () => {
                       setDarkThemes={setDarkThemes}
                       darkThemes={darkThemes}
                       me={me}
+                      locale={locale}
                     />
                     <Carousel />
                     <Popular setCurrentCategory={setCurrentCategory} />
