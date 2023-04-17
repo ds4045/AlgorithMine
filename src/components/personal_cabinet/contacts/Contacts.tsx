@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import MapComponent from '../../UI/MapComponent';
 import { ReactComponent as TelegramIcon } from '../../../assets/svg/telegram.svg';
 import { ReactComponent as WhatsappIcon } from '../../../assets/svg/whatsapp.svg';
-import { Link } from 'react-router-dom';
 
 type ContactsProps = {};
 
@@ -21,12 +20,12 @@ const Contacts: FC<ContactsProps> = () => {
             1810000000
           </Descriptions.Item>
           <Descriptions.Item label={<FormattedMessage id="pc.contacts.messengers" />}>
-            <Link to="https://www.whatsapp.com/" target="blank">
+            <a href="https://www.whatsapp.com/" target="blank">
               <WhatsappIcon className={styles.contacts_icon} />
-            </Link>
-            <Link to="https://telegram.org/" target="blank">
+            </a>
+            <a href="https://telegram.org/" target="blank">
               <TelegramIcon className={styles.contacts_icon} />
-            </Link>
+            </a>
           </Descriptions.Item>
           <Descriptions.Item label={<FormattedMessage id="pc.contacts.email" />}>
             123@123.ru

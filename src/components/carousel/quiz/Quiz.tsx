@@ -131,7 +131,7 @@ const Quiz: React.FC = () => {
       icon: <SmileOutlined className={styles.btn_promo_icon} />,
     });
   };
-  console.log(quiz);
+
   return (
     <div className={styles.quiz_wrapper}>
       {contextHolder}

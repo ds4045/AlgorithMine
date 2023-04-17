@@ -1,16 +1,22 @@
+import { Divider } from 'antd';
 import styles from './footer.module.css';
-import { FaBitcoin } from 'react-icons/fa';
+import { GithubOutlined } from '@ant-design/icons';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <span>©2023</span>
-      <span className={styles.footer_span}>
-        Made by
-        <span className={styles.author}>ds4045</span>
-        <FaBitcoin className={styles.footer_icon} />
-      </span>
-    </footer>
+    <>
+      <Divider />
+      <footer className={styles.footer}>
+        <span>©2023</span>
+        <span className={styles.footer_span}>
+          Made by
+          <span className={styles.author}>ds4045</span>
+          <a href="https://github.com/ds4045" target="blank">
+            <GithubOutlined className={styles.footer_icon} />
+          </a>
+        </span>
+      </footer>
+    </>
   );
 };
 

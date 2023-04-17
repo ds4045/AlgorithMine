@@ -138,7 +138,7 @@ const messages: Messages = {
     'quiz.question2': '2. Have you ever been mining before?',
     'quiz.question3': '3. Do you need a site for the equipment?',
     'quiz.question4':
-      'Done! We thank you for taking the survey and give you a promo code discount on our firmware when you buy any equipment! Our unique firmware increases the efficiency of miners up to 40-50% Enter your phone number so we can contact you.',
+      'Done! We thank you for taking the survey and give you a promo code discount on our firmware when you buy any equipment! Our unique firmware increases the efficiency of miners up to 40-50%! Enter your phone number so we can contact you.',
     'quiz.question1.answer1': 'Up to 300 000 rubles.',
     'quiz.question1.answer2': 'From 300 000 rubles to 2 000 000 rubles.',
     'quiz.question1.answer3': 'From 2 000 000 rubles.',
@@ -283,7 +283,7 @@ const messages: Messages = {
     'quiz.question2': '2. Занимались ли вы майнингом раньше?',
     'quiz.question3': '3. Нужна ли вам площадка для оборудования?',
     'quiz.question4':
-      'Готово! Мы благодарим вас за прохождение опроса и дарим вам промокод скидку на наши прошивки при покупке любого оборудования! Наши уникальные прошивки увеличивают эффективность майнеров до 40-50% Введите номер телефона, чтобы мы могли связаться с вами.',
+      'Готово! Мы благодарим вас за прохождение опроса и дарим вам промокод на скидку на наши прошивки при покупке любого оборудования! Наши уникальные прошивки увеличивают эффективность майнеров до 40-50%! Введите номер телефона, чтобы мы могли связаться с вами.',
     'quiz.question.your_choice': 'Свой вариант',
     'quiz.question1.answer1': 'От 300 000 руб.',
     'quiz.question1.answer2': 'От 300 000 руб. до 2 000 000 руб.',
