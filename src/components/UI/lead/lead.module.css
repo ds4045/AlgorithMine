@@ -1,0 +1,11 @@
+.request_wrapper {
+  margin-top: 30px;
+}
+.inpWrapper {
+  height: 60px;
+}
+
+.label {
+  color: red;
+  opacity: 0.5;
+}

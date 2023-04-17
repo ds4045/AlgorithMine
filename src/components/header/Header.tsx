@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Avatar, Badge, Button, Dropdown, Input, MenuProps, Switch } from 'antd';
 import { LogoutOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
-import ToggleColorThemes from '../UI/ToggleColorThemes';
+
 import styles from './header.module.css';
-import MainLogoButton from '../UI/MainLogoButton';
+
 import { FormattedMessage } from 'react-intl';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,7 +13,9 @@ import { isAuthFalse } from '../../redux/authSlice';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
 import { CategoryType, UserFirestoreDB } from '../../types/types';
 import { pushAddedItems } from '../../redux/cartSlice';
-import SocialNetwork from '../UI/SocialNetwork';
+import SocialNetwork from '../UI/soc_network_icons/SocialNetwork';
+import ToggleColorThemes from '../UI/toggle_color/ToggleColorThemes';
+import MainLogoButton from '../UI/logo/MainLogoButton';
 const { Search } = Input;
 
 type HeaderProps = {
@@ -87,7 +89,9 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className={styles.header}>
-      <MainLogoButton />
+      <span onClick={() => navigate('/')}>
+        <MainLogoButton />
+      </span>
       <div className={styles.header_btn_group}>
         <Dropdown menu={{ items }} placement="bottom" arrow={{ pointAtCenter: true }}>
           <Button className={styles.width90}>

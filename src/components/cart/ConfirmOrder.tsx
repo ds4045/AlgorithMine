@@ -1,14 +1,14 @@
 import { FC, useState } from 'react';
 
 import { Button, Modal } from 'antd';
-import UserContactsInputs from './UserContactsInputs';
 import { FormattedMessage } from 'react-intl';
 import useAlert from '../../hooks/useAlert';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { validateName, validatePhoneNumber } from '../../helpers/validate';
+import { validateEmail, validateName, validatePhoneNumber } from '../../helpers/validate';
 import { useNavigate } from 'react-router-dom';
 import { addOrderToDB } from '../../firbase/addOrderToDB';
 import { AddedCartItems } from '../../redux/cartSlice';
+import Lead from '../UI/lead/Lead';
 
 type ConfirmOrderProps = {
   totalPrice: number;
@@ -17,10 +17,12 @@ type ConfirmOrderProps = {
 export type InputValueType = {
   phone: string;
   name: string;
+  email: string;
 };
 export type InputErrorType = {
   phone: boolean;
   name: boolean;
+  email: boolean;
 };
 const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
   const navigate = useNavigate();
@@ -28,21 +30,25 @@ const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
   const [alertSuccess, alertError, contextHolder] = useAlert();
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [value, setValue] = useState<InputValueType>({
+  const initialStateValue = {
     phone: me?.phone ?? '',
     name: me?.name ?? '',
-  });
-  const dispatch = useAppDispatch();
-  const [error, setError] = useState<InputErrorType>({
+    email: me?.email ?? '',
+  };
+  const initialStateError = {
     phone: me?.phone ? validatePhoneNumber(me.phone) : false,
     name: me?.name ? validateName(me.name) : false,
-  });
+    email: me?.email ? validateEmail(me.email) : false,
+  };
+  const [value, setValue] = useState<InputValueType>(initialStateValue);
+  const dispatch = useAppDispatch();
+  const [error, setError] = useState<InputErrorType>(initialStateError);
   const showModal = () => {
     setOpen(true);
   };
 
   const handleOk = async () => {
-    if (error.name && error.phone) {
+    if (error.name && error.phone && error.email) {
       setConfirmLoading(true);
       await addOrderToDB(
         me?.id ?? 'guest' + Date.now(),
@@ -56,28 +62,16 @@ const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
       setConfirmLoading(false);
       handleCancel();
       alertSuccess(<FormattedMessage id="cart.alert_success_order" />);
-      setValue({
-        name: '',
-        phone: '',
-      });
-      setError({
-        name: false,
-        phone: false,
-      });
+      setValue(initialStateValue);
+      setError(initialStateError);
       navigate('/cart/success');
     } else alertError(<FormattedMessage id="cart.alert_error_order" />);
   };
 
   const handleCancel = () => {
     setOpen(false);
-    setValue({
-      name: '',
-      phone: '',
-    });
-    setError({
-      name: false,
-      phone: false,
-    });
+    setValue(initialStateValue);
+    setError(initialStateError);
   };
 
   return (
@@ -97,7 +91,7 @@ const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
         onOk={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}>
-        <UserContactsInputs value={value} setValue={setValue} error={error} setError={setError} />
+        <Lead value={value} setValue={setValue} error={error} setError={setError} />
       </Modal>
     </>
   );

@@ -10,7 +10,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { DB } from './firebaseConfig';
-import { Item, OrderType, UserFirestoreDB } from '../types/types';
+import { Item, LeadType, OrderType, UserFirestoreDB } from '../types/types';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -22,6 +22,8 @@ const switchNameDB = (nameDB: string) => {
       return collection(DB, 'users');
     case 'orders':
       return collection(DB, 'orders');
+    case 'leads':
+      return collection(DB, 'leads');
     default:
       return alert('Something went wrong');
   }
@@ -36,7 +38,10 @@ export const getDataFromDB = async (nameDB: string) => {
     console.log(err);
   }
 };
-export const addDataForDB = async (nameDB: string, data: Item | UserFirestoreDB | OrderType) => {
+export const addDataForDB = async (
+  nameDB: string,
+  data: Item | UserFirestoreDB | OrderType | LeadType,
+) => {
   const db = switchNameDB(nameDB);
   try {
     await addDoc(db as CollectionReference<DocumentData>, data);

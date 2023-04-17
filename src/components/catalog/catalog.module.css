@@ -1,7 +1,9 @@
+.catalog {
+  display: flex;
+}
 .menu {
   height: 100vh;
   width: 230px;
-  position: fixed;
 }
 .icon_sort {
   font-size: 22px;
@@ -13,8 +15,9 @@
   grid-template-rows: 50px 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  margin-left: 300px;
   height: inherit;
+  width: 100%;
+  margin-left: 50px;
 }
 .btn_groups {
   display: flex;
@@ -41,7 +44,6 @@
   margin-right: 50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   height: 100%;
@@ -98,7 +100,6 @@
     margin-right: 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     height: 100%;
   }
 }
@@ -107,7 +108,6 @@
     margin-right: 10px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     height: 100%;
   }
 }
@@ -116,7 +116,6 @@
     margin-right: 10px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
     height: 100%;
   }
 }

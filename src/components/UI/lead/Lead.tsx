@@ -1,9 +1,9 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { ConfigProvider, Input } from 'antd';
-import styles from './cart.module.css';
-import { InputErrorType, InputValueType } from './ConfirmOrder';
+import styles from './lead.module.css';
+import { InputErrorType, InputValueType } from '../../cart/ConfirmOrder';
 import { FormattedMessage } from 'react-intl';
-import { validateName, validatePhoneNumber } from '../../helpers/validate';
+import { validateEmail, validateName, validatePhoneNumber } from '../../../helpers/validate';
 
 type PhoneNumberInputType = {
   value: InputValueType;
@@ -20,6 +20,10 @@ const UserContactsInputs: FC<PhoneNumberInputType> = ({ value, error, setError, 
   const onChangeHandlerName = (e: ChangeEvent<HTMLInputElement>) => {
     setValue((prev) => ({ ...prev, name: e.target.value }));
     setError((prev) => ({ ...prev, name: validateName(e.target.value) }));
+  };
+  const onChangeHandlerEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue((prev) => ({ ...prev, email: e.target.value }));
+    setError((prev) => ({ ...prev, email: validateEmail(e.target.value) }));
   };
   return (
     <ConfigProvider
@@ -40,6 +44,19 @@ const UserContactsInputs: FC<PhoneNumberInputType> = ({ value, error, setError, 
           />
           <label className={styles.label}>
             {!error.phone && <FormattedMessage id="cart.error_phone" />}
+          </label>
+        </div>
+        <div className={styles.inpWrapper}>
+          <Input
+            addonBefore={<FormattedMessage id="cart.inp_email" />}
+            allowClear
+            placeholder="example@gmail.com"
+            value={value.email}
+            onChange={onChangeHandlerEmail}
+            status={!error.email ? 'error' : ''}
+          />
+          <label className={styles.label}>
+            {!error.email && <FormattedMessage id="cart.error_email" />}
           </label>
         </div>
         <div className={styles.inpWrapper}>

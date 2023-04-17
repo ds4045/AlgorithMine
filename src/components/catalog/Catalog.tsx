@@ -155,7 +155,7 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
   const [alertSuccess, alertError, contextHolder] = useAlert();
 
   return (
-    <div>
+    <div className={styles.catalog}>
       {contextHolder}
       <Menu
         className={styles.menu}

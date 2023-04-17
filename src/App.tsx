@@ -23,9 +23,10 @@ import { pushAddedItems } from './redux/cartSlice';
 import { fetchItems } from './api/fetchItems';
 import { CategoryType } from './types/types';
 import OrderSuccess from './components/cart/OrderSuccess';
-import AboutUs from './components/about_us/aboutUs';
 import { PhoneOutlined } from '@ant-design/icons';
 import Quiz from './components/carousel/quiz/Quiz';
+import AboutUs from './components/about_us/aboutUs';
+import ButtonScrollUp from './components/UI/button_scroll_up/buttonScrollUp';
 
 const App = () => {
   useAutoSignIn();
@@ -53,23 +54,26 @@ const App = () => {
       }}>
       <IntlProvider locale={locale} messages={messages[locale]}>
         <div className={darkThemes ? 'App_dark' : 'App_light'}>
+          {location.pathname !== '/login' && (
+            <>
+              <CryptoTicker />
+              <Header
+                setCurrentCategory={setCurrentCategory}
+                onLocaleChange={handleLocaleChange}
+                setDarkThemes={setDarkThemes}
+                darkThemes={darkThemes}
+                me={me}
+                locale={locale}
+              />
+            </>
+          )}
           <Routes>
             <Route
               path="/"
               element={
                 <>
-                  <CryptoTicker />
-                  <Header
-                    setCurrentCategory={setCurrentCategory}
-                    onLocaleChange={handleLocaleChange}
-                    setDarkThemes={setDarkThemes}
-                    darkThemes={darkThemes}
-                    me={me}
-                    locale={locale}
-                  />
                   <Carousel />
                   <Popular setCurrentCategory={setCurrentCategory} />
-                  <Footer />
                 </>
               }
             />
@@ -98,10 +102,11 @@ const App = () => {
               className="btn_call_me"
               shape="circle"
               type="primary"
-              style={{ right: 30 }}
               icon={<PhoneOutlined />}
             />
           )}
+          <ButtonScrollUp />
+          <Footer />
         </div>
       </IntlProvider>
     </ConfigProvider>

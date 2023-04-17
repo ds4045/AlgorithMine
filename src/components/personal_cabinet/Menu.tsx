@@ -111,7 +111,7 @@ const App: FC<MenuTypeProps> = ({ setActualPage }) => {
     getItem(
       <div
         onClick={() => {
-          navigate('/');
+          navigate(-1);
         }}>
         <FormattedMessage id="auth.btn_back" />
       </div>,

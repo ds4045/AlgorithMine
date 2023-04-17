@@ -130,3 +130,19 @@ export type AddOrderType = (
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
   me?: UserFirestoreDB,
 ) => void;
+export type LeadType = {
+  id: string;
+  date: string;
+  email: string;
+  name: string;
+  phone: string;
+  quiz: QuizType;
+  type?: 'order' | 'quiz' | 'call';
+};
+export type QuizType =
+  | {
+      answer1: string | number;
+      answer2: string | number;
+      answer3: string | number;
+    }
+  | {};

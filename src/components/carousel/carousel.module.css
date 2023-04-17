@@ -88,3 +88,10 @@
 .send_request_text {
   margin-bottom: 30px;
 }
+.btn_group {
+  margin-top: 24px;
+}
+.inp_question {
+  width: 100px;
+  margin-left: 10px;
+}
