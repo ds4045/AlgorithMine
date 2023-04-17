@@ -29,7 +29,7 @@ const PersonalCabinet: FC<PersonalCabinetProps> = ({ me }) => {
         setRenderPage(<Favorites me={me} />);
         break;
       case 'contacts':
-        setRenderPage(<Contacts me={me} />);
+        setRenderPage(<Contacts />);
         break;
       default:
         break;

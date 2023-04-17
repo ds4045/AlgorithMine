@@ -20,7 +20,7 @@ import { useAppSelector } from '../../redux/hooks';
 import { middleScore } from '../../helpers/middleScore';
 import { CategoryType } from '../../types/types';
 import { renderItemByCategory } from '../../helpers/renderItemByCategory';
-import Comparison from './comporison/Comparison';
+import Comparison from './comparison/Comparison';
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -45,6 +45,7 @@ type CatalogProps = {
 const rootSubmenuKeys = ['Asic', 'Accessory', 'GPU', 'Comparison', 'Cart', 'Back'];
 const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
   const navigate = useNavigate();
+  const comparisonItems = useAppSelector((state) => state.comparison.addedItems);
   const [isComparison, setIsComparison] = useState(false);
   const addedItems = useAppSelector((state) => state.cart.addedItems);
   const totalUnits = addedItems.reduce((acc, curr) => acc + curr.count, 0);
@@ -126,7 +127,7 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
       ],
     ),
     getItem(
-      <Badge count={1} offset={[10, 0]} color="#F94F0C">
+      <Badge count={comparisonItems.length} offset={[10, 0]} color="#F94F0C">
         <div onClick={() => setIsComparison(true)}>
           <FormattedMessage id="catalog.comparison" />
         </div>
@@ -171,7 +172,6 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
         />
         <Drawer
           size="large"
-          title="Basic Drawer"
           placement="right"
           onClose={() => setIsComparison(false)}
           open={isComparison}>

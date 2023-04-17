@@ -131,3 +131,9 @@
   align-items: center;
   justify-content: start;
 }
+.comparison_wrapper {
+  position: relative;
+}
+.comparison_empty {
+  margin-top: 15%;
+}

@@ -25,6 +25,7 @@ import { CategoryType } from './types/types';
 import OrderSuccess from './components/cart/OrderSuccess';
 import AboutUs from './components/about_us/aboutUs';
 import { PhoneOutlined } from '@ant-design/icons';
+import Quiz from './components/carousel/quiz/Quiz';
 
 const App = () => {
   useAutoSignIn();
@@ -42,66 +43,66 @@ const App = () => {
     fetchItems(dispatch);
   }, [dispatch]);
   return (
-    <ConfigProvider locale={locale === 'ru' ? ruRU : enUS}>
+    <ConfigProvider
+      locale={locale === 'ru' ? ruRU : enUS}
+      theme={{
+        algorithm: darkThemes ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        token: {
+          colorPrimary: '#F94F0C',
+        },
+      }}>
       <IntlProvider locale={locale} messages={messages[locale]}>
-        <ConfigProvider
-          theme={{
-            algorithm: darkThemes ? theme.darkAlgorithm : theme.defaultAlgorithm,
-            token: {
-              colorPrimary: '#F94F0C',
-            },
-          }}>
-          <div className={darkThemes ? 'App_dark' : 'App_light'}>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <CryptoTicker />
-                    <Header
-                      setCurrentCategory={setCurrentCategory}
-                      onLocaleChange={handleLocaleChange}
-                      setDarkThemes={setDarkThemes}
-                      darkThemes={darkThemes}
-                      me={me}
-                      locale={locale}
-                    />
-                    <Carousel />
-                    <Popular setCurrentCategory={setCurrentCategory} />
-                    <Footer />
-                  </>
-                }
-              />
-              <Route path="register" element={<Register />} />
-              <Route path="login" element={<Login />} />
-              <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
-              <Route
-                path="catalog"
-                element={
-                  <Catalog
-                    currentCategory={currentCategory}
+        <div className={darkThemes ? 'App_dark' : 'App_light'}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <CryptoTicker />
+                  <Header
                     setCurrentCategory={setCurrentCategory}
+                    onLocaleChange={handleLocaleChange}
+                    setDarkThemes={setDarkThemes}
+                    darkThemes={darkThemes}
+                    me={me}
+                    locale={locale}
                   />
-                }
-              />
-              <Route path="cart" element={<Cart />} />
-              <Route path="cart/success" element={<OrderSuccess />} />
-              <Route path="about-us" element={<AboutUs />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            {(location.pathname === '/' ||
-              location.pathname === '/catalog' ||
-              location.pathname === '/cart') && (
-              <FloatButton
-                className="btn_call_me"
-                shape="circle"
-                type="primary"
-                style={{ right: 30 }}
-                icon={<PhoneOutlined />}
-              />
-            )}
-          </div>
-        </ConfigProvider>
+                  <Carousel />
+                  <Popular setCurrentCategory={setCurrentCategory} />
+                  <Footer />
+                </>
+              }
+            />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
+            <Route
+              path="catalog"
+              element={
+                <Catalog
+                  currentCategory={currentCategory}
+                  setCurrentCategory={setCurrentCategory}
+                />
+              }
+            />
+            <Route path="cart" element={<Cart />} />
+            <Route path="cart/success" element={<OrderSuccess />} />
+            <Route path="about-us" element={<AboutUs />} />
+            <Route path="quiz" element={<Quiz />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          {(location.pathname === '/' ||
+            location.pathname === '/catalog' ||
+            location.pathname === '/cart') && (
+            <FloatButton
+              className="btn_call_me"
+              shape="circle"
+              type="primary"
+              style={{ right: 30 }}
+              icon={<PhoneOutlined />}
+            />
+          )}
+        </div>
       </IntlProvider>
     </ConfigProvider>
   );

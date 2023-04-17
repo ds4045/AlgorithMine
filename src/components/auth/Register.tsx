@@ -11,14 +11,17 @@ import { addNewUserForDB } from '../../firbase/firebaseAPI';
 import { isAuthTrue } from '../../redux/authSlice';
 import { UserFirestoreDB } from '../../types/types';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
+import { Spin } from 'antd';
 
 const Register: FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [registerEmail, setRegisterEmail] = useState<string>('');
   const [registerPassword, setRegisterPassword] = useState<string>('');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleRegisterSubmit = async (e: FormEvent<HTMLFormElement>) => {
     try {
+      setIsLoading(true);
       e.preventDefault();
       await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       const newUser: UserFirestoreDB = {
@@ -47,38 +50,41 @@ const Register: FC = () => {
       setRegisterPassword('');
     } catch (err: any) {
       alert(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
-
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.form_container}>
-        <h3>
-          <FormattedMessage id="auth.titleCreate" />
-        </h3>
-        <Form
-          handleSubmit={handleRegisterSubmit}
-          setEmail={setRegisterEmail}
-          setPassword={setRegisterPassword}
-          email={registerEmail}
-          password={registerPassword}
-          buttonName={<FormattedMessage id="auth.btn_register" />}
-        />
-        <GoogleAuth buttonName={<FormattedMessage id="auth.titleRegGoogle" />} />
-        <div className={styles.links}>
-          <Link to="/login">
-            <p>
-              <FormattedMessage id="auth.btn_i_have_acc" />
-            </p>
-          </Link>
-          <Link to="/">
-            <p>
-              <FormattedMessage id="auth.btn_back" />
-            </p>
-          </Link>
+    <Spin spinning={isLoading}>
+      <div className={styles.wrapper}>
+        <div className={styles.form_container}>
+          <h3>
+            <FormattedMessage id="auth.titleCreate" />
+          </h3>
+          <Form
+            handleSubmit={handleRegisterSubmit}
+            setEmail={setRegisterEmail}
+            setPassword={setRegisterPassword}
+            email={registerEmail}
+            password={registerPassword}
+            buttonName={<FormattedMessage id="auth.btn_register" />}
+          />
+          <GoogleAuth buttonName={<FormattedMessage id="auth.titleRegGoogle" />} />
+          <div className={styles.links}>
+            <Link to="/login">
+              <p>
+                <FormattedMessage id="auth.btn_i_have_acc" />
+              </p>
+            </Link>
+            <Link to="/">
+              <p>
+                <FormattedMessage id="auth.btn_back" />
+              </p>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </Spin>
   );
 };
 

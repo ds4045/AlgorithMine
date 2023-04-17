@@ -5,6 +5,7 @@
   "dependencies": {
     "@ant-design/colors": "^7.0.0",
     "@ant-design/icons": "^5.0.1",
+    "@pbe/react-yandex-maps": "^1.2.4",
     "@react-firebase/auth": "^0.2.10",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",

@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { toggleFavoritesHandler } from '../../../firbase/toggleFavoretesHandler';
 import { addItem } from '../../../redux/cartSlice';
 import ReviewsCatalog from '../reviews/ReviewsCatalog';
+import { addItemToComparison } from '../../../redux/comparisonSlice';
 
 type CardModalProps = {
   onClose: () => void;
@@ -48,6 +49,15 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
     dispatch(addItem(item));
     alertSuccess(<FormattedMessage id="cart.add_item_alert" />);
   };
+  const addToComparison = (
+    item: Item,
+    alertError: (text: React.ReactNode) => void,
+    alertSuccess: (text: React.ReactNode) => void,
+  ) => {
+    if (item.section === 'Asic' || item.section === 'GPU')
+      dispatch(addItemToComparison({ item, alertError, alertSuccess }));
+    else alertError(<FormattedMessage id="cart.comparison_error_type" />);
+  };
   return (
     item && (
       <Drawer title={item.title} placement="right" size="large" onClose={onClose} open={open}>
@@ -83,7 +93,7 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
             <Button onClick={addToCart} type="primary">
               <FormattedMessage id="catalog.card.modal_add_to_cart" />
             </Button>
-            <Button>
+            <Button onClick={() => addToComparison(item, alertError, alertSuccess)}>
               <FormattedMessage id="catalog.card.modal_add_to_сomparison" />
             </Button>
             <Button onClick={toggleFavorite} loading={isLoading}>

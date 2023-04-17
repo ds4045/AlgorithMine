@@ -2,7 +2,7 @@ import { PhoneOutlined } from '@ant-design/icons';
 import styles from './contacts.module.css';
 import { Link } from 'react-router-dom';
 
-const Contacts = () => {
+const SocialNetwork = () => {
   return (
     <div className={styles.card}>
       <PhoneOutlined />
@@ -106,4 +106,4 @@ const Contacts = () => {
     </div>
   );
 };
-export default Contacts;
+export default SocialNetwork;

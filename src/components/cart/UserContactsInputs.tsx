@@ -28,31 +28,33 @@ const UserContactsInputs: FC<PhoneNumberInputType> = ({ value, error, setError, 
           colorPrimary: 'green',
         },
       }}>
-      <div className={styles.inpWrapper}>
-        <Input
-          addonBefore={<FormattedMessage id="cart.inp_phone" />}
-          allowClear
-          placeholder="+7(123)-456-78-90"
-          value={value.phone}
-          onChange={onChangeHandlerPhone}
-          status={!error.phone ? 'error' : ''}
-        />
-        <label className={styles.label}>
-          {!error.phone && <FormattedMessage id="cart.error_phone" />}
-        </label>
-      </div>
-      <div className={styles.inpWrapper}>
-        <Input
-          addonBefore={<FormattedMessage id="cart.inp_name" />}
-          allowClear
-          placeholder="..."
-          value={value.name}
-          onChange={onChangeHandlerName}
-          status={!error.name ? 'error' : ''}
-        />
-        <label className={styles.label}>
-          {!error.name && <FormattedMessage id="cart.error_name" />}
-        </label>
+      <div className={styles.request_wrapper}>
+        <div className={styles.inpWrapper}>
+          <Input
+            addonBefore={<FormattedMessage id="cart.inp_phone" />}
+            allowClear
+            placeholder="+7(123)-456-78-90"
+            value={value.phone}
+            onChange={onChangeHandlerPhone}
+            status={!error.phone ? 'error' : ''}
+          />
+          <label className={styles.label}>
+            {!error.phone && <FormattedMessage id="cart.error_phone" />}
+          </label>
+        </div>
+        <div className={styles.inpWrapper}>
+          <Input
+            addonBefore={<FormattedMessage id="cart.inp_name" />}
+            allowClear
+            placeholder="..."
+            value={value.name}
+            onChange={onChangeHandlerName}
+            status={!error.name ? 'error' : ''}
+          />
+          <label className={styles.label}>
+            {!error.name && <FormattedMessage id="cart.error_name" />}
+          </label>
+        </div>
       </div>
     </ConfigProvider>
   );

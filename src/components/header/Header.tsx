@@ -4,7 +4,6 @@ import { LogoutOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/
 import ToggleColorThemes from '../UI/ToggleColorThemes';
 import styles from './header.module.css';
 import MainLogoButton from '../UI/MainLogoButton';
-import Contacts from '../UI/Contacts';
 import { FormattedMessage } from 'react-intl';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,6 +13,7 @@ import { isAuthFalse } from '../../redux/authSlice';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
 import { CategoryType, UserFirestoreDB } from '../../types/types';
 import { pushAddedItems } from '../../redux/cartSlice';
+import SocialNetwork from '../UI/SocialNetwork';
 const { Search } = Input;
 
 type HeaderProps = {
@@ -108,7 +108,7 @@ const Header: React.FC<HeaderProps> = ({
         unCheckedChildren="Eng"
         onClick={onLocaleChange}
       />
-      <Contacts />
+      <SocialNetwork />
       <ToggleColorThemes setDarkThemes={setDarkThemes} darkThemes={darkThemes} />
       <Badge count={totalUnits} color="#F94F0C">
         <ShoppingCartOutlined
@@ -116,32 +116,28 @@ const Header: React.FC<HeaderProps> = ({
           className={`${styles.cart} ${darkThemes ? styles.dark : styles.light}`}
         />
       </Badge>
-      <Avatar
-        className={styles.header_login_icon}
-        size={40}
-        icon={
-          isAuth ? (
-            <LogoutOutlined onClick={logOut} />
-          ) : (
-            <UserOutlined
-              onClick={() => {
-                navigate('/login');
-              }}
-            />
-          )
-        }
-      />
       {isAuth ? (
-        <Avatar
-          className={styles.ava}
-          size={40}
-          src={me?.image}
-          onClick={() => {
-            navigate('/personal-cabinet');
-          }}
-        />
+        <>
+          <LogoutOutlined onClick={logOut} className={styles.header_login_icon} />
+          <Avatar
+            className={styles.ava}
+            size={40}
+            src={me?.image}
+            onClick={() => {
+              navigate('/personal-cabinet');
+            }}
+          />
+        </>
       ) : (
-        <FormattedMessage id="header.login" />
+        <>
+          <UserOutlined
+            className={styles.header_login_icon}
+            onClick={() => {
+              navigate('/login');
+            }}
+          />
+          <FormattedMessage id="header.login" />
+        </>
       )}
     </header>
   );
