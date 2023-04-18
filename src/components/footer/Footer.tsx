@@ -7,7 +7,7 @@ const Footer = () => {
     <>
       <Divider />
       <footer className={styles.footer}>
-        <span className={styles.year}>©2023</span>
+        <span className={styles.year}>ALGORITHMINE ©2023 All Rights Reserved</span>
         <span className={styles.footer_span}>
           Made by
           <span className={styles.author}>ds4045</span>

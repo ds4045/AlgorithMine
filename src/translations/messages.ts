@@ -6,7 +6,6 @@ interface Messages {
 
 const messages: Messages = {
   en: {
-    'logo.algorithm': 'algorithm',
     'not_found.text': 'Sorry, the page you visited does not exist.',
     'header.services': 'Services',
     'header.blog': 'Blog',
@@ -17,12 +16,12 @@ const messages: Messages = {
     'header.aboutUs': 'About us',
     'header.login': 'Sign in',
     'carousel.title1': 'title1',
-    'carousel.title2': 'Profitability calculator',
+    'carousel.calculator': 'Profitability calculator',
     'carousel.quiz': 'Answer the questions and get a discount promo code',
     'carousel.btn1': 'Btn1',
     'carousel.btn_calc': 'Сalculate',
     'carousel.btn_quiz': 'Go to questions',
-    'popular.title': 'Popular Products',
+    'popular.title': 'Popular manufacturer',
     'popular.all_btn': 'All Products',
     'auth.error': 'Authorization error, try again later',
     'auth.titleGoogle': 'Login with Google',
@@ -157,10 +156,11 @@ const messages: Messages = {
     'posts.date': 'New ▼',
     'posts.all': 'All articles',
     'posts.card_read': 'Read',
+    'posts.check_login': 'Only registered users are allowed to rate',
+    'app.get_lead': 'Still have questions? Leave a request and our specialists will call you back',
   },
 
   ru: {
-    'logo.algorithm': 'алгоритм',
     'not_found.text': 'Извините, страница, которую вы посетили, не существует.',
     'header.services': 'Услуги',
     'header.catalog': 'Каталог',
@@ -176,7 +176,7 @@ const messages: Messages = {
     'carousel.btn1': 'Кнопка1',
     'carousel.btn_calc': 'Рассчитать',
     'carousel.btn_quiz': 'Перейти к вопросам',
-    'popular.title': 'Популярные товары',
+    'popular.title': 'Популярные производители',
     'popular.all_btn': 'Все товары',
     'auth.error': 'Ошибка,попробуйте позже',
     'auth.titleGoogle': 'Войти с помощью Google',
@@ -311,6 +311,8 @@ const messages: Messages = {
     'posts.date': 'Новые ▼',
     'posts.all': 'Все статьи',
     'posts.card_read': 'Читать',
+    'posts.check_login': 'Ставить оценку могут только зарегестрированные пользователи',
+    'app.get_lead': 'Остались вопросы?Оставтье заявку и наши специалисты вам перезвонят',
   },
 };
 

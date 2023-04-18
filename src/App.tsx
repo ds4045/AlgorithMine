@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { ConfigProvider, FloatButton, theme } from 'antd';
 import Header from './components/header/Header';
 import ruRU from 'antd/lib/locale/ru_RU';
@@ -27,25 +27,28 @@ import { PhoneOutlined } from '@ant-design/icons';
 import Quiz from './components/carousel/quiz/Quiz';
 import AboutUs from './components/about_us/aboutUs';
 import ButtonScrollUp from './components/UI/button_scroll_up/buttonScrollUp';
-import Blog from './components/blog/Blog';
 import PostPage from './components/blog/posts/PostPage';
 import { fetchPosts } from './api/fetchPosts';
-
+import GetLead from './components/lead/GetLead';
+const Blog = lazy(() => import('./components/blog/Blog'));
 const App = () => {
   useAutoSignIn();
+  const [isModalGetLead, setIsModalGetLead] = useState(false);
   const location = useLocation();
   const dispatch = useAppDispatch();
   const me = useAppSelector((state) => state.auth.login);
   const [currentCategory, setCurrentCategory] = useState<CategoryType>('Asic');
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
+  const [loadingPosts, setLoadingPosts] = useState<boolean>(false);
+
   const handleLocaleChange = () => {
     locale === 'en' ? setLocale('ru') : setLocale('en');
   };
   useEffect(() => {
     dispatch(pushAddedItems(loadCartFromLocalStorage('cart')));
     fetchItems(dispatch);
-    fetchPosts(dispatch);
+    fetchPosts(dispatch, setLoadingPosts);
   }, [dispatch]);
   return (
     <ConfigProvider
@@ -97,7 +100,14 @@ const App = () => {
             <Route path="cart/success" element={<OrderSuccess />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="quiz" element={<Quiz />} />
-            <Route path="blog" element={<Blog />} />
+            <Route
+              path="blog"
+              element={
+                <Suspense>
+                  <Blog loading={loadingPosts} />
+                </Suspense>
+              }
+            />
             <Route path="blog/:id" element={<PostPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -105,12 +115,14 @@ const App = () => {
             location.pathname === '/catalog' ||
             location.pathname === '/cart') && (
             <FloatButton
+              onClick={() => setIsModalGetLead(true)}
               className="btn_call_me"
               shape="circle"
               type="primary"
               icon={<PhoneOutlined />}
             />
           )}
+          <GetLead setIsModalOpen={setIsModalGetLead} isModalOpen={isModalGetLead} />
           <ButtonScrollUp />
           <Footer />
         </div>

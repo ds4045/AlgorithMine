@@ -24,7 +24,7 @@ function Carousel() {
       ),
       image: 'https://delen.ru/wp-content/uploads/2018/11/nutrennjaja-norma-rentabelnosti-jeto.jpg',
       button: (
-        <div onClick={() => navigate('/blog')}>
+        <div onClick={() => navigate('/')}>
           <FormattedMessage id="carousel.btn_calc" />
         </div>
       ),

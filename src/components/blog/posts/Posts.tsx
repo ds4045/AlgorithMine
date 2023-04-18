@@ -52,7 +52,7 @@ const Posts: FC<PostsProps> = () => {
       <BlogNavigation setSortedPosts={setSortedPosts} sortedPosts={sortedPosts} />
       <div className={styles.posts_wrapper}>
         {renderPosts.map((post) => (
-          <SinglePost id={post.id} key={post.id} image={post.image} title={post.title} />
+          <SinglePost key={post.id} post={post} />
         ))}
       </div>
     </>

@@ -26,10 +26,11 @@ export type InputErrorType = {
 };
 const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
   const navigate = useNavigate();
-  const me = useAppSelector((state) => state.auth.login);
+  const dispatch = useAppDispatch();
   const [alertSuccess, alertError, contextHolder] = useAlert();
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const me = useAppSelector((state) => state.auth.login);
   const initialStateValue = {
     phone: me?.phone ?? '',
     name: me?.name ?? '',
@@ -41,7 +42,6 @@ const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
     email: me?.email ? validateEmail(me.email) : false,
   };
   const [value, setValue] = useState<InputValueType>(initialStateValue);
-  const dispatch = useAppDispatch();
   const [error, setError] = useState<InputErrorType>(initialStateError);
   const showModal = () => {
     setOpen(true);

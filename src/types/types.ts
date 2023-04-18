@@ -151,7 +151,7 @@ export type PostType = {
   image: string;
   title: string;
   text: string;
-  like: number;
+  like: string[];
   viewing: number;
   date: string;
   section: 'news' | 'post';

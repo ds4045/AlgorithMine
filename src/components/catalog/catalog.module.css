@@ -43,6 +43,7 @@
 .cards_table {
   margin-right: 50px;
   display: grid;
+  width: 200px;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
@@ -99,7 +100,7 @@
   .cards_table {
     margin-right: 10px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     height: 100%;
   }
 }
@@ -107,7 +108,7 @@
   .cards_table {
     margin-right: 10px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     height: 100%;
   }
 }
@@ -115,7 +116,7 @@
   .cards_table {
     margin-right: 10px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     height: 100%;
   }
 }

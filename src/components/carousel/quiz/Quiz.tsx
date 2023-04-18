@@ -5,12 +5,12 @@ import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { SmileOutlined } from '@ant-design/icons';
 import Question from './Question';
-import UserContactsInputs from '../../UI/lead/Lead';
 import { InputErrorType, InputValueType } from '../../cart/ConfirmOrder';
 import { validateEmail, validateName, validatePhoneNumber } from '../../../helpers/validate';
 import { useAppSelector } from '../../../redux/hooks';
 import { addLeadToDB } from '../../../firbase/addLeadToDB';
 import { QuizType } from '../../../types/types';
+import Lead from '../../UI/lead/Lead';
 
 const Quiz: React.FC = () => {
   const navigate = useNavigate();
@@ -94,7 +94,7 @@ const Quiz: React.FC = () => {
       content: (
         <div className={styles.send_request}>
           <p className={styles.send_request_text}>{<FormattedMessage id="quiz.question4" />}</p>
-          <UserContactsInputs value={value} setValue={setValue} error={error} setError={setError} />
+          <Lead value={value} setValue={setValue} error={error} setError={setError} />
         </div>
       ),
     },

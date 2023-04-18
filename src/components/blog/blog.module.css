@@ -1,13 +1,29 @@
+.blog_wrapper {
+  height: 100%;
+}
+.skeleton_wrapper {
+  margin-top: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.skeleton {
+  width: 250px;
+  height: 350px;
+  margin: 30px auto 0 auto;
+}
 .posts_wrapper {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  height: 100%;
+  grid-template-rows: 1fr;
+  height: 100vh;
   width: 100%;
 }
 @media (max-width: 1800px) {
   .posts_wrapper {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
   }
@@ -16,6 +32,7 @@
   .posts_wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
   }
@@ -24,6 +41,7 @@
   .posts_wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
   }
@@ -33,6 +51,7 @@
   margin-left: 2.5em;
 }
 .post {
+  height: 350px;
   margin: 30px auto 0 auto;
 }
 .btn_read {
@@ -72,6 +91,30 @@
   margin-left: 15px;
 }
 .post_image {
-  width: 100%;
-  height: 200px;
+  width: auto;
+  height: 250px;
+}
+.like {
+  cursor: pointer;
+  opacity: 0.8;
+  color: red;
+  transition: 0.2s ease-in-out;
+}
+.like:hover {
+  color: grey;
+  opacity: 0.5;
+}
+.dislike {
+  cursor: pointer;
+  opacity: 0.8;
+  color: grey;
+  transition: 0.2s ease-in-out;
+}
+.dislike:hover {
+  color: red;
+  opacity: 0.5;
+}
+.spinner {
+  height: 18px;
+  width: 40px;
 }
