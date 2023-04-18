@@ -24,6 +24,8 @@ const switchNameDB = (nameDB: string) => {
       return collection(DB, 'orders');
     case 'leads':
       return collection(DB, 'leads');
+    case 'posts':
+      return collection(DB, 'posts');
     default:
       return alert('Something went wrong');
   }

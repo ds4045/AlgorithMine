@@ -3,7 +3,7 @@
   align-content: center;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   padding: 0px;
   margin: 0px;
@@ -123,53 +123,13 @@
   flex-direction: column;
   align-items: start;
   width: 60%;
-
-  background-color: #f0f5fb;
 }
 
 .footer {
   text-align: center;
   font-size: small;
   font-weight: 400;
-
   bottom: 0;
-  background-color: rgb(250, 251, 251);
-  /* background-color: rgb(250, 251, 251); */
   padding: 16px;
   margin-top: 20px;
-}
-
-.company_info {
-  display: flex;
-  /* flex-direction: column; */
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  background-color: #fff;
-  padding: 24px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* max-width: 100%; */
-  width: 60%;
-  margin: 0 auto;
-}
-
-.company_name {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.company_address {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 16px;
-}
-
-.company_description {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
 }

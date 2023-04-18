@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './aboutUs.module.css';
-import MapComponent from '../UI/MapComponent';
 import ButtonScrollUp from '../UI/button_scroll_up/buttonScrollUp';
+import Contacts from '../personal_cabinet/contacts/Contacts';
 
 const AboutUs: FC = () => {
   return (
@@ -82,16 +82,7 @@ const AboutUs: FC = () => {
           <p></p>
         </div>
       </div>
-      <div className={styles.company_info}>
-        <div>
-          <h2 className={styles.company_name}>IMINING Co.</h2>
-          <p className={styles.company_address}>88 Pine St 26th Floor, New York, NY 10005, USA</p>
-          <p className={styles.company_description}> tel. +18774000297</p>
-        </div>
-        <div className={styles.map_wrapper}>
-          <MapComponent />
-        </div>
-      </div>
+      <Contacts />
       <div className={styles.footer}>IMINING ©2023 All Rights Reserved</div>
       <ButtonScrollUp />
     </div>

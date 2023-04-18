@@ -27,6 +27,9 @@ import { PhoneOutlined } from '@ant-design/icons';
 import Quiz from './components/carousel/quiz/Quiz';
 import AboutUs from './components/about_us/aboutUs';
 import ButtonScrollUp from './components/UI/button_scroll_up/buttonScrollUp';
+import Blog from './components/blog/Blog';
+import PostPage from './components/blog/posts/PostPage';
+import { fetchPosts } from './api/fetchPosts';
 
 const App = () => {
   useAutoSignIn();
@@ -36,13 +39,16 @@ const App = () => {
   const [currentCategory, setCurrentCategory] = useState<CategoryType>('Asic');
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
+  const posts = useAppSelector((state) => state.posts.posts);
   const handleLocaleChange = () => {
     locale === 'en' ? setLocale('ru') : setLocale('en');
   };
   useEffect(() => {
     dispatch(pushAddedItems(loadCartFromLocalStorage('cart')));
     fetchItems(dispatch);
+    fetchPosts(dispatch);
   }, [dispatch]);
+  console.log(posts);
   return (
     <ConfigProvider
       locale={locale === 'ru' ? ruRU : enUS}
@@ -93,6 +99,9 @@ const App = () => {
             <Route path="cart/success" element={<OrderSuccess />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="quiz" element={<Quiz />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="blog/:id" element={<PostPage />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
           {(location.pathname === '/' ||

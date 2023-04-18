@@ -18,12 +18,16 @@ function Carousel() {
     },
     {
       title: (
-        <p>
-          <FormattedMessage id="carousel.title2" />
+        <p className={styles.quiz_title} style={{ background: 'transparent' }}>
+          <FormattedMessage id="carousel.calculator" />
         </p>
       ),
-      image: 'https://i.ytimg.com/vi/RNrP8xMEv7o/maxresdefault.jpg',
-      button: <FormattedMessage id="carousel.btn2" />,
+      image: 'https://delen.ru/wp-content/uploads/2018/11/nutrennjaja-norma-rentabelnosti-jeto.jpg',
+      button: (
+        <div onClick={() => navigate('/blog')}>
+          <FormattedMessage id="carousel.btn_calc" />
+        </div>
+      ),
     },
     {
       title: (
@@ -46,7 +50,7 @@ function Carousel() {
         <div key={index} className={styles.wrapper}>
           <div className={styles.pos_absolute}>
             {item.title}
-            <Button type="default" className={styles.pos_absolute_btn}>
+            <Button type="primary" className={styles.pos_absolute_btn}>
               {item.button}
             </Button>
           </div>

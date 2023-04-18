@@ -146,3 +146,13 @@ export type QuizType =
       answer3: string | number;
     }
   | {};
+export type PostType = {
+  id: string;
+  image: string;
+  title: string;
+  text: string;
+  like: number;
+  viewing: number;
+  date: string;
+  section: 'news' | 'post';
+};

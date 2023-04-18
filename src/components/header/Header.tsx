@@ -1,9 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Avatar, Badge, Button, Dropdown, Input, MenuProps, Switch } from 'antd';
+import { Avatar, Badge, Button, Dropdown, MenuProps, Switch } from 'antd';
 import { LogoutOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
-
 import styles from './header.module.css';
-
 import { FormattedMessage } from 'react-intl';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,7 +14,6 @@ import { pushAddedItems } from '../../redux/cartSlice';
 import SocialNetwork from '../UI/soc_network_icons/SocialNetwork';
 import ToggleColorThemes from '../UI/toggle_color/ToggleColorThemes';
 import MainLogoButton from '../UI/logo/MainLogoButton';
-const { Search } = Input;
 
 type HeaderProps = {
   onLocaleChange: () => void;
@@ -39,7 +36,6 @@ const Header: React.FC<HeaderProps> = ({
   const totalUnits = addedItems.reduce((acc, curr) => acc + curr.count, 0);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const onSearch = (value: string) => console.log(value);
   const logOut = async () => {
     dispatch(pushAddedItems([]));
     dispatch(isAuthFalse());
@@ -104,7 +100,9 @@ const Header: React.FC<HeaderProps> = ({
         <Button className={styles.width90} onClick={() => navigate('/about-us')}>
           <FormattedMessage id="header.aboutUs" />
         </Button>
-        <Search placeholder="..." onSearch={onSearch} allowClear style={{ width: 200 }} />
+        <Button className={styles.width90} onClick={() => navigate('/blog')}>
+          <FormattedMessage id="header.blog" />
+        </Button>
       </div>
       <Switch
         checked={locale === 'ru'}

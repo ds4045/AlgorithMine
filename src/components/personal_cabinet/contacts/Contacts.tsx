@@ -31,7 +31,7 @@ const Contacts: FC<ContactsProps> = () => {
             123@123.ru
           </Descriptions.Item>
           <Descriptions.Item label={<FormattedMessage id="pc.contacts.address" />} span={5}>
-            No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+            <FormattedMessage id="pc.company_address" />
           </Descriptions.Item>
         </Descriptions>
         <MapComponent />
