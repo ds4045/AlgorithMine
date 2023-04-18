@@ -39,7 +39,6 @@ const App = () => {
   const [currentCategory, setCurrentCategory] = useState<CategoryType>('Asic');
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
-  const posts = useAppSelector((state) => state.posts.posts);
   const handleLocaleChange = () => {
     locale === 'en' ? setLocale('ru') : setLocale('en');
   };
@@ -48,7 +47,6 @@ const App = () => {
     fetchItems(dispatch);
     fetchPosts(dispatch);
   }, [dispatch]);
-  console.log(posts);
   return (
     <ConfigProvider
       locale={locale === 'ru' ? ruRU : enUS}
@@ -101,7 +99,6 @@ const App = () => {
             <Route path="quiz" element={<Quiz />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:id" element={<PostPage />} />
-
             <Route path="*" element={<NotFound />} />
           </Routes>
           {(location.pathname === '/' ||

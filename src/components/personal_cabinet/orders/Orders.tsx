@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useAppSelector } from '../../../redux/hooks';
+import { sortByDate } from '../../../helpers/sortByDate';
 type OrdersProps = {
   me: UserFirestoreDB | null;
 };
@@ -77,11 +78,7 @@ const Orders: FC<OrdersProps> = ({ me }) => {
       title: <FormattedMessage id="pk.orders.data" />,
       dataIndex: 'date',
       sorter: {
-        compare: (a, b) => {
-          const dateA = a.date.split('.').reverse().join('-');
-          const dateB = b.date.split('.').reverse().join('-');
-          return new Date(dateA).getTime() - new Date(dateB).getTime();
-        },
+        compare: sortByDate,
       },
     },
     {

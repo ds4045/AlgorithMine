@@ -1,12 +1,16 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './blog.module.css';
 import { Select } from 'antd';
 import { FormattedMessage } from 'react-intl';
-type BlogNavigationProps = {};
+import { SortedPostsType } from './posts/Posts';
+type BlogNavigationProps = {
+  setSortedPosts: Dispatch<SetStateAction<SortedPostsType>>;
+  sortedPosts: SortedPostsType;
+};
 
-const BlogNavigation: FC<BlogNavigationProps> = () => {
+const BlogNavigation: FC<BlogNavigationProps> = ({ setSortedPosts, sortedPosts }) => {
   const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+    setSortedPosts(value as SortedPostsType);
   };
 
   const items = [
@@ -21,7 +25,7 @@ const BlogNavigation: FC<BlogNavigationProps> = () => {
       label: <FormattedMessage id="posts.articles" />,
       options: [
         { label: <FormattedMessage id="posts.date" />, value: 'date_posts' },
-        { label: <FormattedMessage id="posts.popular" />, value: 'date_popular' },
+        { label: <FormattedMessage id="posts.popular" />, value: 'popular_posts' },
       ],
     },
     {
@@ -32,7 +36,7 @@ const BlogNavigation: FC<BlogNavigationProps> = () => {
   return (
     <div className={styles.blog_nav}>
       <Select
-        defaultValue={'all_posts'}
+        defaultValue={sortedPosts}
         style={{ width: 200 }}
         onChange={handleChange}
         options={items}
