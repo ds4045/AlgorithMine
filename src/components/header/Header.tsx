@@ -94,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({
             <FormattedMessage id="header.catalog" />
           </Button>
         </Dropdown>
-        <Button className={styles.width90}>
+        <Button className={styles.width90} onClick={() => navigate('/services')}>
           <FormattedMessage id="header.services" />
         </Button>
         <Button className={styles.width90} onClick={() => navigate('/about-us')}>

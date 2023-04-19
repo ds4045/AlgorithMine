@@ -1,0 +1,40 @@
+.delivery_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delivery_img {
+  margin: 5px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 620px;
+  color: white;
+  padding: 50px;
+  font-size: 30px;
+  text-shadow: 1px 1px #000;
+  background-image: url('https://ibmm.ru/image/cache/catalog/catalog/view/theme/oct_remarket/image/img.webp');
+}
+.delivery_img_ship {
+  margin: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 620px;
+  color: white;
+  padding: 50px;
+  font-size: 30px;
+  text-shadow: 1px 1px #000;
+  border-radius: 10px;
+  background-image: url('https://tamozhnya-info.ru/wp-content/uploads/2015/09/%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D0%B0-%D0%BC%D0%BE%D1%80%D0%B5%D0%BC-1024x739.jpg');
+}
+.description h3 {
+  margin: 10px;
+  padding: 10px;
+}
+.description p {
+  margin: 20px;
+  padding: 20px;
+  opacity: 0.7;
+}

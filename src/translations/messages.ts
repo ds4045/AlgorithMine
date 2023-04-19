@@ -18,7 +18,7 @@ const messages: Messages = {
     'carousel.title1': 'title1',
     'carousel.calculator': 'Profitability calculator',
     'carousel.quiz': 'Answer the questions and get a discount promo code',
-    'carousel.btn1': 'Btn1',
+    'carousel.delivery': 'Shipping from China at wholesale prices',
     'carousel.btn_calc': 'Сalculate',
     'carousel.btn_quiz': 'Go to questions',
     'popular.title': 'Popular manufacturer',
@@ -158,6 +158,85 @@ const messages: Messages = {
     'posts.card_read': 'Read',
     'posts.check_login': 'Only registered users are allowed to rate',
     'app.get_lead': 'Still have questions? Leave a request and our specialists will call you back',
+    'services.mining_hotel': 'Mining hotel',
+    'services.mining_hotel.delivery': 'Shipping to the data center',
+    'services.mining_hotel.placement': 'Equipment placement',
+    'services.mining_hotel.security': 'Round-the-clock paramilitary guard',
+    'services.mining_hotel.works': 'Ensuring uninterrupted operation',
+    'services.mining_hotel.time':
+      'Uptime of 99% ensures high reliability: this way your equipment will not be idle and will bring more profit.',
+    'services.mining_hotel.energy':
+      'Low cost of electricity It is fully legal electricity - 4.3 rubles per kWh with VAT.',
+    'services.mining_hotel.security_icon':
+      'Rosgvardia security The entire facility is guarded around the clock - all equipment is secure.',
+    'services.mining_hotel.camera':
+      'Placement monitoring In online format, you can monitor the effectiveness of your equipment from anywhere in the world.',
+    'services.mining_pool': 'Mining pool',
+    'services.mining_pool.easy': 'Easy connection',
+    'services.mining_pool.commissions': 'Lowest commissions',
+    'services.mining_pool.online': 'Online 24/7',
+    'services.mining_pool.money':
+      'One of the most profitable pools, thanks to the reward systems PPLNS and SOLO, as well as low commissions.',
+    'services.mining_pool.team':
+      'We are qualified pool support staff, miners, entrepreneurs, programmers.',
+    'services.mining_pool.profit':
+      'Highest performance with excellent connectivity.Our pool will increase your income!',
+    'services.mining_pool.invest':
+      'We support only short-term and long-term promising projects. With a good volume, a great team and the product as a whole.',
+    'services.invest_mining': 'Investing in mining',
+    'services.invest_mining.title': 'Investments in mining from 20% p.a.',
+    'services.invest_mining.how': 'How will the process be structured?',
+    'services.invest_mining.find':
+      'Selection of equipment for your needs and budget.Depending on your goals and budget, our experts will prompt, what equipment is ideal for you.',
+    'services.invest_mining.open':
+      'We work openly and for the safety of our customers we have a contract.',
+    'services.invest_mining.insurance':
+      'All the equipment we bring is fully insured. Therefore, your funds will be safe.',
+    'services.invest_mining.data_center':
+      "The company's own data center allows you to place devices in a special-equipped room with round-the-clock security, cheap power and specialists who will monitor the devices around the clock.",
+    'services.invest_mining.help':
+      'Our specialists will connect your equipment to the mining pool, set up all the processes and do all the technical work.',
+    'services.invest_mining.error':
+      'In case of any malfunctions or questions during the operation of the equipment, our 24-hour technical support service will help you at any time.',
+    'services.repair': 'Repair of equipment',
+    'services.repair.why': 'WHY WE?',
+    'services.repair.company': 'We are one of the largest companies in the country to repair asics',
+    'services.repair.diagnostics':
+      'Free diagnostics. Quick diagnostics from 20 min. After the diagnostics you will agree with the cost of repair of your asics',
+    'services.repair.in_stock':
+      'Parts are available! We use only original spare parts when repairing antminer S19 and other models.',
+    'services.repair.insurance':
+      'Guarantee up to 1 year. We provide a guarantee up to 1 year, we are fully responsible for the work. We are confident in the quality of the repairs we make.',
+    'services.repair.repair':
+      'We repair any model. We have 28 engineers on staff! Repairs from 30 minutes! We work as fast as possible.',
+    'calculator.title': 'Calculate your profitability',
+    'calculator.th': 'Total TH',
+    'calculator.btc': 'BTC price in USD',
+    'calculator.power': 'Power in W',
+    'calculator.cost': 'Electricity costs USD/kWh',
+    'calculator.pool': 'Pool fee in %',
+    'calculator.calc': 'Calculate',
+    'calculator.res': 'Profit for 30 days will be ~ ',
+    'delivery.fast': 'Fastest equipment delivery in the IT market',
+    'delivery.ship': 'Delivery all over the CIS',
+    'delivery.payment': 'Payment and delivery',
+    'delivery.payment.description':
+      'In 7 years of operation, AlgorithMine has made more than 50,000 shipments in various ways.',
+    'delivery.delivery.variants': 'WAYS OF DELIVERY',
+    'delivery.delivery.variants_self': 'Self-delivery',
+    'delivery.delivery.variants_self_description':
+      'To get your order from Promminer yourself, you can choose the option of self-pickup. After the manager calls you and confirms the availability of the goods, you can come and pick up your order. The central office of Promminer is located in Moscow, Polykarpova street, 27 st3.',
+    'delivery.delivery.variants_sdek': 'CDEK delivery',
+    'delivery.delivery.variants_sdek_description':
+      'CDEK Shipping CDEK shipping is a popular shipping option in Russia or the CIS. This method involves the use of a third-party transportation company for transportation. Delivery is made to the nearest delivery point in your city or to the address you specify. Delivery is free for orders over 300,000 rubles.',
+    'delivery.delivery.variants_line': 'Delovye linii delivery',
+    'delivery.delivery.variants_line_description':
+      'Delivery is carried out by the shipping company "Business Line" to the selected delivery point in your city. With an order of 300 000 rubles and more delivery is free of charge.',
+    'delivery.pay': 'Payment',
+    'delivery.variants':
+      'Payment for the selected equipment can be made in any way convenient for you.',
+    'delivery.variants_description':
+      "Credit card: you can pay for your order with a Visa or Mastercard credit card. Debit card: you can pay for your order with a debit card linked to your bank account. Bank transfer: you can pay for your order directly from your bank account to the company's account. At the office of the company: you can pay for your order at the central office of the company at the address: Moscow, Polykarpova street, 27, st3. After confirming your order on the website, our manager will contact you to clarify the details of delivery and placement of equipment.",
   },
 
   ru: {
@@ -173,7 +252,7 @@ const messages: Messages = {
     'carousel.title1': 'Заголовок1',
     'carousel.calculator': 'Калькулятор доходности',
     'carousel.quiz': 'Oтветь на вопросы и получи промокод нa скидку',
-    'carousel.btn1': 'Кнопка1',
+    'carousel.delivery': 'Доставка из Китая по оптовым ценам',
     'carousel.btn_calc': 'Рассчитать',
     'carousel.btn_quiz': 'Перейти к вопросам',
     'popular.title': 'Популярные производители',
@@ -313,6 +392,85 @@ const messages: Messages = {
     'posts.card_read': 'Читать',
     'posts.check_login': 'Ставить оценку могут только зарегестрированные пользователи',
     'app.get_lead': 'Остались вопросы?Оставтье заявку и наши специалисты вам перезвонят',
+    'services.mining_hotel': 'Майнинг отель',
+    'services.mining_hotel.delivery': 'Доставка в дата-центр',
+    'services.mining_hotel.placement': 'Размещение оборудования',
+    'services.mining_hotel.security': 'Круглосуточная военизированная охрана',
+    'services.mining_hotel.works': 'Обеспечение бесперебойной работы',
+    'services.mining_hotel.time':
+      'Uptime 99% обеспечивает высокую надежность: таким образом ваше оборудование не будет простаивать и будет приносить больше прибыли.',
+    'services.mining_hotel.energy':
+      'Низкая стоимость электроэнергии Это полностью легальная электроэнергия — 4,3 рубля кВТ/час с НДС.',
+    'services.mining_hotel.security_icon':
+      'Охрана Росгвардии Весь объект в круглосуточном режиме находится под охраной — все оборудование надежно защищено.',
+    'services.mining_hotel.camera':
+      'Мониторинг размещения В онлайн формате сможете отслеживать эффективность вашего оборудования из любой точки мира.',
+    'services.mining_pool': 'Майнинг пул',
+    'services.mining_pool.easy': 'Простое подключение',
+    'services.mining_pool.commissions': 'Самые низкие комиссии',
+    'services.mining_pool.online': 'Онлайн 24/7',
+    'services.mining_pool.money':
+      'Один из самых прибыльных пулов, благодаря системам вознаграждения PPLNS и SOLO, а так же низким комиссиям.',
+    'services.mining_pool.team':
+      'Мы квалифицированные сотрудники поддержки пула, майнеры, предприниматели, программисты.',
+    'services.mining_pool.profit':
+      'Высочайшая производительность с отличной связью.Наш пул увеличит ваши доходы!',
+    'services.mining_pool.invest':
+      'Мы поддерживаем только краткосрочные и долгосрочные перспективные проекты. С хорошим объемом, отличной командой и продуктом в целом.',
+    'services.invest_mining': 'Инвестиции в майнинг',
+    'services.invest_mining.title': 'Инвестиции в майнинг от 20% годовых',
+    'services.invest_mining.how': 'Как будет построен процесс?',
+    'services.invest_mining.find':
+      'Подбор оборудования под ваши потребности и бюджет.В зависимости от ваших целей и бюджета наши специалисты подскажут, какое оборудование идеально подойдет именно вам.',
+    'services.invest_mining.open':
+      'Мы работаем открыто и в целях безопасности наших клиентов заключаем договор.',
+    'services.invest_mining.insurance':
+      'Всё оборудование, которые мы привозим — полностью застраховано. Поэтому ваши средства будут в безопасности.',
+    'services.invest_mining.data_center':
+      'Собственный дата-центр компании позволяет разместить устройства в специально-оборудованном помещении с круглосуточной охраной, дешёвой электроэнергией и специалистами, которые в круглосуточном режиме будут следить за работой аппаратов.',
+    'services.invest_mining.help':
+      'Наши специалисты сами подключат ваше оборудование к майнинг-пулу, настроят все процессы и сделают всю техническую работу.',
+    'services.invest_mining.error':
+      'В случае каких-то неисправностей или возникших вопросов в процессе эксплуатации оборудования наша круглосуточная служба технической поддержки в любое время окажет вам помощь.',
+    'services.repair': 'Ремонт оборудования',
+    'services.repair.why': 'ПОЧЕМУ МЫ?',
+    'services.repair.company': 'Мы одна из самых крупных компаний в стране по ремонту асиков',
+    'services.repair.diagnostics':
+      'Бесплатная диагностика. Быстрая диагностика от 20 мин. После диагностики с Вами согласовывают стоимость ремонта Ваших асиков',
+    'services.repair.in_stock':
+      'Запчасти в наличии! При ремонте antminer S19 и других моделей, мы используем только оригинальные запчасти.',
+    'services.repair.insurance':
+      'Гарантия до 1-го года. Предоставляем гарантию до 1 года, несем полную ответственность за работу. Мы уверены в качестве ремонта, который производим.',
+    'services.repair.repair':
+      'Ремонтируем любую модель. У нас в штате 28 инженеров! Ремонт от 30 минут! Мы работаем максимально оперативно.',
+    'calculator.title': 'Рассчитайте свою доходность',
+    'calculator.th': 'Всего TH',
+    'calculator.btc': 'Цена BTC в USD',
+    'calculator.power': 'Мощность в W',
+    'calculator.cost': 'Затраты на электроэнергию USD/kWh',
+    'calculator.pool': 'Плата за пул в %',
+    'calculator.calc': 'Рассчитать',
+    'calculator.res': 'Прибыль за 30 дней составит ~ ',
+    'delivery.fast': 'Самая быстрая доставка оборудования на IT рынке',
+    'delivery.ship': 'Доставка по всему СНГ',
+    'delivery.payment': 'Оплата и доставка',
+    'delivery.payment.description':
+      'За 7 лет работы, компания AlgorithMine осуществила более 50 000 отгрузок различными способами.',
+    'delivery.delivery.variants': 'СПОСОБЫ ДОСТАВКИ',
+    'delivery.delivery.variants_self': 'Самовывоз',
+    'delivery.delivery.variants_self_description':
+      'Самовывоз Чтобы получить заказ от Promminer самостоятельно, вы можете выбрать вариант самовывоза. После того, как вам позвонит менеджер и подтвердит наличие товара, можете приехать и забрать свой заказ. Центральный офис компании Promminer находится в Москве, по адресу: ул. Поликарпова, 27 ст3',
+    'delivery.delivery.variants_sdek': 'Доставка CDEK',
+    'delivery.delivery.variants_sdek_description':
+      'Доставка CDEK Доставка товара транспортной компанией – популярный вариант доставки по РФ или СНГ. Этот способ предполагает использование сторонней транспортной компании для перевозки. Доставка осуществляется до ближайшего к вам пункта выдачи в вашем городе или на указанный вами адрес. При заказе от 300 000 руб доставка бесплатная.',
+    'delivery.delivery.variants_line': 'Доставка “Деловые линии"',
+    'delivery.delivery.variants_line_description':
+      'Доставка осуществляется транспортной компанией “Деловые линии” до выбранного пункта выдачи в вашем городе. При заказе от 300 000 руб доставка бесплатная.',
+    'delivery.pay': 'Оплата',
+    'delivery.variants':
+      'Оплата выбранного вами оборудования может быть осуществлена любым удобным для вас способом',
+    'delivery.variants_description':
+      'Кредитная карта: вы можете оплатить свой заказ с помощью кредитной карты Visa или Mastercard. Дебетовая карта: вы можете оплатить свой заказ с помощью дебетовой карты, привязанной к вашему банковскому счету. Банковский перевод: вы можете оплатить свой заказ напрямую со своего банковского счета на счет компании. В офисе компании: вы можете оплатить свой заказа в центральном офисе компании по адресу: г. Москва, ул. Поликарпова, 27 ст3. После подтверждения заказа на сайте с вами свяжется менеджер нашей компании для уточнения деталей доставки и размещения оборудования.',
   },
 };
 

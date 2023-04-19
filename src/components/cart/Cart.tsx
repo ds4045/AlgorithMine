@@ -84,7 +84,7 @@ const Cart: FC<CartProps> = () => {
               title={<FormattedMessage id="cart.contacts" />}
               className={styles.order_contacts}>
               <Descriptions.Item label={<FormattedMessage id="cart.address" />}>
-                Zhou Maomao
+                <FormattedMessage id="pc.company_address" />
               </Descriptions.Item>
               <Descriptions.Item label={<FormattedMessage id="cart.phone" />}>
                 1810000000

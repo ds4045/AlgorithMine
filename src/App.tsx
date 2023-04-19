@@ -30,6 +30,9 @@ import ButtonScrollUp from './components/UI/button_scroll_up/buttonScrollUp';
 import PostPage from './components/blog/posts/PostPage';
 import { fetchPosts } from './api/fetchPosts';
 import GetLead from './components/lead/GetLead';
+import Services from './components/services/Services';
+import Calculator from './components/carousel/calculator/Calculator';
+import Delivery from './components/carousel/delivery/Delivery';
 const Blog = lazy(() => import('./components/blog/Blog'));
 const App = () => {
   useAutoSignIn();
@@ -100,6 +103,8 @@ const App = () => {
             <Route path="cart/success" element={<OrderSuccess />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="quiz" element={<Quiz />} />
+            <Route path="calculator" element={<Calculator />} />
+            <Route path="delivery" element={<Delivery />} />
             <Route
               path="blog"
               element={
@@ -109,9 +114,12 @@ const App = () => {
               }
             />
             <Route path="blog/:id" element={<PostPage />} />
+            <Route path="services" element={<Services />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
           {(location.pathname === '/' ||
+            location.pathname === '/services' ||
             location.pathname === '/catalog' ||
             location.pathname === '/cart') && (
             <FloatButton

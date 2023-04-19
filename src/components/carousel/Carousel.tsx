@@ -8,13 +8,16 @@ function Carousel() {
   const carouselData = [
     {
       title: (
-        <p>
-          <FormattedMessage id="carousel.title1" />
+        <p className={styles.quiz_title} style={{ background: 'transparent' }}>
+          <FormattedMessage id="carousel.delivery" />
         </p>
       ),
-      image:
-        'https://www.also.com/ec/cms5/6000/blog/channel-insights/channel-insights-data-center-with-multiple-rows-of-fully-operational-server-racks-modern-telecommunications-cloud-computing-artificial-intelligence-database-super-computer-technology_267083342_800px.jpg',
-      button: <FormattedMessage id="carousel.btn1" />,
+      image: 'https://guangzhou-cargo.ru/uploads/s/x/a/m/xammjkzebspk/img/full_iIKE1czB.jpg',
+      button: (
+        <div onClick={() => navigate('/delivery')}>
+          <FormattedMessage id="catalog.card.btn_more" />
+        </div>
+      ),
     },
     {
       title: (
@@ -24,7 +27,7 @@ function Carousel() {
       ),
       image: 'https://delen.ru/wp-content/uploads/2018/11/nutrennjaja-norma-rentabelnosti-jeto.jpg',
       button: (
-        <div onClick={() => navigate('/')}>
+        <div onClick={() => navigate('/calculator')}>
           <FormattedMessage id="carousel.btn_calc" />
         </div>
       ),

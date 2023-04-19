@@ -1,0 +1,24 @@
+.calc_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.calc_wrapper h2 {
+  text-align: center;
+  margin: 50px;
+}
+.inp {
+  margin-left: calc(50% - 200px);
+  margin-right: calc(50% - 200px);
+  width: 400px;
+  margin-top: 10px;
+}
+.calc_wrapper h3 {
+  text-align: center;
+  margin: 50px;
+}
+.btn {
+  margin-top: 10px;
+  margin-left: calc(50% - 60px);
+  margin-right: calc(50% - 60px);
+  width: 120px;
+}

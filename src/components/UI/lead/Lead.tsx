@@ -12,7 +12,7 @@ type PhoneNumberInputType = {
   setError: Dispatch<SetStateAction<InputErrorType>>;
 };
 
-const UserContactsInputs: FC<PhoneNumberInputType> = ({ value, error, setError, setValue }) => {
+const Lead: FC<PhoneNumberInputType> = ({ value, error, setError, setValue }) => {
   const onChangeHandlerPhone = (e: ChangeEvent<HTMLInputElement>) => {
     setValue((prev) => ({ ...prev, phone: e.target.value }));
     setError((prev) => ({ ...prev, phone: validatePhoneNumber(e.target.value) }));
@@ -77,4 +77,4 @@ const UserContactsInputs: FC<PhoneNumberInputType> = ({ value, error, setError, 
   );
 };
 
-export default UserContactsInputs;
+export default Lead;

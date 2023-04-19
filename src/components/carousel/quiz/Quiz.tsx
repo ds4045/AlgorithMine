@@ -114,7 +114,7 @@ const Quiz: React.FC = () => {
   };
   const [api, contextHolder] = notification.useNotification();
   const submitHandler = async () => {
-    if (error.name && error.phone) {
+    if (error.name && error.phone && error.email) {
       setIsLoading(true);
       await addLeadToDB(value.phone, value.email, value.name, quiz);
       setIsLoading(false);

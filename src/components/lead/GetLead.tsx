@@ -5,6 +5,7 @@ import { validateEmail, validateName, validatePhoneNumber } from '../../helpers/
 import { InputErrorType, InputValueType } from '../cart/ConfirmOrder';
 import { Modal } from 'antd';
 import { FormattedMessage } from 'react-intl';
+import { addLeadToDB } from '../../firbase/addLeadToDB';
 type GetLeadProps = {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   isModalOpen: boolean;
@@ -24,16 +25,23 @@ const GetLead: FC<GetLeadProps> = ({ isModalOpen, setIsModalOpen }) => {
   };
   const [value, setValue] = useState<InputValueType>(initialStateValue);
   const [error, setError] = useState<InputErrorType>(initialStateError);
-
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const handleOk = async () => {
+    if (error.name && error.phone && error.email) {
+      setIsLoading(true);
+      await addLeadToDB(value.phone, value.email, value.name);
+      setIsLoading(false);
+      setIsModalOpen(false);
+      setValue(initialStateValue);
+      setError(initialStateError);
+    }
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
   return (
-    <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+    <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} confirmLoading={isLoading}>
       <div>
         <p>
           <FormattedMessage id="app.get_lead" />

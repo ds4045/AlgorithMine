@@ -1,0 +1,105 @@
+.anchor {
+  background-color: white;
+  color: black;
+  padding-left: 20px;
+}
+.services_wrapper {
+  width: 100vw;
+  height: fit-content;
+}
+.hotel_img {
+  background-image: url('https://promminer.ru/data_center/slide.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+  text-shadow: 1px 1px #000;
+}
+.hotel_list {
+  color: white;
+  font-size: 30px;
+  letter-spacing: 5px;
+  padding: 150px 50px;
+}
+.hotel_benefits {
+  display: flex;
+  justify-content: space-between;
+}
+.hotel_benefits span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 50px 30px 50px;
+}
+.hotel_icon {
+  font-size: 30px;
+}
+.pool_img {
+  background-image: url('https://img.currency.com/imgs/articles/1200x627x1/shutterstock_1022617045_0.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+  text-shadow: 1px 1px #000;
+}
+.invest_wrapper {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.invest_img {
+  width: 100%;
+  height: 500px;
+  background-image: url('https://promminer.ru/investment/invest.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-shadow: 1px 1px #000;
+}
+.invest_img h2 {
+  padding: 50px;
+  color: white;
+}
+.invest_text {
+  padding: 40px;
+}
+.invest_text li {
+  margin: 10px;
+}
+.repair_header {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+.img_repair_wrapper {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
+.img_repair_wrapper div {
+  font-weight: bold;
+  letter-spacing: 5;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  height: 300px;
+  color: white;
+  padding: 50px 30px 0 30px;
+  text-shadow: 1px 1px #000;
+}
+
+.img_repair_diagnostic {
+  background-image: url('https://kargoline.ru/images/asics.jpg');
+}
+.img_repair_in_stock {
+  background-image: url('https://miningshop.ru/images/uslugi/s19pro.png');
+}
+.img_repair_warranty {
+  background-image: url('https://bitok.shop/wa-data/public/blog/img/1-6.jpg');
+}
+.img_repair_repair {
+  background-image: url('https://ru-teh.com/img/course5_asic.jpg');
+}
