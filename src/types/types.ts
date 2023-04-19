@@ -19,7 +19,7 @@ export type UserFirestoreDB = {
   phone: string;
   orders: OrderType[];
   cart: Item[];
-  isAdmin: boolean;
+  readonly isAdmin: boolean;
   favorites: string[];
 };
 
@@ -38,8 +38,9 @@ export type ItemOptional = {
   payback: number;
   profit: number;
   expenditure: number;
-  currency: string[];
+  currency: string;
 };
+
 export type Item = {
   id: string;
   title: string;
@@ -155,4 +156,10 @@ export type PostType = {
   viewing: number;
   date: string;
   section: 'news' | 'post';
+};
+export type FieldType = {
+  field: string;
+  value: string | number;
+  type: string;
+  error: boolean;
 };

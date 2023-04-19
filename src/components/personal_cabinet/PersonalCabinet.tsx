@@ -6,7 +6,8 @@ import ReviewsPC from './reviews/ReviewsPC';
 import { UserFirestoreDB } from '../../types/types';
 import Favorites from './favorites/Favorites';
 import Contacts from './contacts/Contacts';
-export type ActualPageType = 'settings' | 'orders' | 'reviews' | 'favorites' | 'contacts';
+import Admin from './admin/Admin';
+export type ActualPageType = 'settings' | 'orders' | 'reviews' | 'favorites' | 'contacts' | 'admin';
 type PersonalCabinetProps = {
   me: UserFirestoreDB | null;
 };
@@ -28,6 +29,9 @@ const PersonalCabinet: FC<PersonalCabinetProps> = ({ me }) => {
       case 'favorites':
         setRenderPage(<Favorites me={me} />);
         break;
+      case 'admin':
+        if (me?.isAdmin) setRenderPage(<Admin me={me} />);
+        break;
       case 'contacts':
         setRenderPage(<Contacts />);
         break;
@@ -37,7 +41,7 @@ const PersonalCabinet: FC<PersonalCabinetProps> = ({ me }) => {
   }, [actualPage, me]);
   return (
     <>
-      <Menu setActualPage={setActualPage} />
+      <Menu setActualPage={setActualPage} me={me} />
       {renderPage}
     </>
   );

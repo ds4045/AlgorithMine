@@ -44,7 +44,6 @@ const App = () => {
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
   const [loadingPosts, setLoadingPosts] = useState<boolean>(false);
-
   const handleLocaleChange = () => {
     locale === 'en' ? setLocale('ru') : setLocale('en');
   };

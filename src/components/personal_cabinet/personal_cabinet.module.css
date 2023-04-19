@@ -74,6 +74,11 @@
 .contacts_icon:hover {
   transform: scale(1.2);
 }
+
+.admin_btn_group {
+  display: flex;
+}
+
 @media only screen and (max-width: 768px) {
   .personal_data {
     width: 80%;

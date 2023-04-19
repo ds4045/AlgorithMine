@@ -4,10 +4,12 @@ import { ReviewsUserType, UserFirestoreDB } from '../types/types';
 
 export type AuthStateType = {
   isAuth: boolean;
+  isAdmin: boolean;
   login: null | UserFirestoreDB;
 };
 const initialState: AuthStateType = {
   isAuth: false,
+  isAdmin: false,
   login: null,
 };
 
@@ -18,9 +20,11 @@ export const authSlice = createSlice({
     isAuthTrue: (state, action: PayloadAction<UserFirestoreDB>) => {
       state.isAuth = true;
       state.login = action.payload;
+      state.isAdmin = action.payload.isAdmin;
     },
     isAuthFalse: (state) => {
       state.isAuth = false;
+      state.isAdmin = false;
       state.login = null;
     },
     addReviewUser: (state, action: PayloadAction<ReviewsUserType>) => {

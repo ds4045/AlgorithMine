@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/hooks';
 import { FormattedMessage } from 'react-intl';
 import GoogleAuth from './GoogleAuth';
-import { addNewUserForDB } from '../../firbase/firebaseAPI';
+import { addNewDataForDBWithId } from '../../firbase/firebaseAPI';
 import { isAuthTrue } from '../../redux/authSlice';
 import { UserFirestoreDB } from '../../types/types';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
@@ -39,7 +39,7 @@ const Register: FC = () => {
         favorites: [],
         id: auth.currentUser?.uid ?? '',
       };
-      addNewUserForDB(newUser);
+      addNewDataForDBWithId(newUser, 'users');
       dispatch(isAuthTrue(newUser));
       navigate('/');
       setUserDataCookie({

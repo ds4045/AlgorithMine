@@ -7,6 +7,7 @@ import {
   MenuUnfoldOutlined,
   PhoneOutlined,
   RollbackOutlined,
+  SecurityScanOutlined,
   SettingFilled,
 } from '@ant-design/icons';
 import { Button, Menu, MenuProps } from 'antd';
@@ -14,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { ActualPageType } from './PersonalCabinet';
 import styles from './personal_cabinet.module.css';
+import { UserFirestoreDB } from '../../types/types';
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -33,8 +35,9 @@ function getItem(
 }
 type MenuTypeProps = {
   setActualPage: Dispatch<SetStateAction<ActualPageType>>;
+  me: UserFirestoreDB | null;
 };
-const App: FC<MenuTypeProps> = ({ setActualPage }) => {
+const App: FC<MenuTypeProps> = ({ setActualPage, me }) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const items: MenuItem[] = [
@@ -122,6 +125,22 @@ const App: FC<MenuTypeProps> = ({ setActualPage }) => {
         }}
       />,
     ),
+    me?.isAdmin
+      ? getItem(
+          <div
+            onClick={() => {
+              setActualPage('admin');
+            }}>
+            Админ
+          </div>,
+          '7',
+          <SecurityScanOutlined
+            onClick={() => {
+              setActualPage('admin');
+            }}
+          />,
+        )
+      : null,
   ];
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);

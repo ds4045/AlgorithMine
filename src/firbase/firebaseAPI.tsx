@@ -52,12 +52,23 @@ export const addDataForDB = async (
     console.log(err);
   }
 };
-export const addNewUserForDB = async (user: UserFirestoreDB) => {
+export const addNewDataForDBWithId = async (
+  data: UserFirestoreDB | Item,
+  type: 'users' | 'items',
+  setIsLoading?: Dispatch<SetStateAction<any>>,
+  alertSuccess?: (text: ReactNode) => void,
+  alertError?: (text: ReactNode) => void,
+) => {
   try {
-    const res = await setDoc(doc(collection(DB, 'users'), user.id), user);
+    setIsLoading && setIsLoading(true);
+    const res = await setDoc(doc(collection(DB, type), data.id), data);
+    alertSuccess && alertSuccess('Успешно');
     console.log(res);
   } catch (err) {
     console.log(err);
+    alertError && alertError('Ошибка');
+  } finally {
+    setIsLoading && setIsLoading(false);
   }
 };
 export const updateForFirestore = async (

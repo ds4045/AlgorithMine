@@ -9,7 +9,7 @@ import { fetchSingleUser } from '../../api/fetchUsers';
 import { isAuthTrue } from '../../redux/authSlice';
 import { UserFirestoreDB } from '../../types/types';
 import { setUserDataCookie } from '../../hooks/useAutoSignIn';
-import { addNewUserForDB } from '../../firbase/firebaseAPI';
+import { addNewDataForDBWithId } from '../../firbase/firebaseAPI';
 
 type GoogleFormProps = {
   buttonName: any;
@@ -42,7 +42,7 @@ const GoogleAuth: FC<GoogleFormProps> = ({ buttonName }) => {
             favorites: [],
             id: auth.currentUser?.uid ?? '',
           };
-          await addNewUserForDB(newUser as UserFirestoreDB);
+          await addNewDataForDBWithId(newUser as UserFirestoreDB, 'users');
         }
         dispatch(isAuthTrue(newUser as UserFirestoreDB));
         setUserDataCookie({
