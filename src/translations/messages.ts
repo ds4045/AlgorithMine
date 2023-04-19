@@ -237,6 +237,50 @@ const messages: Messages = {
       'Payment for the selected equipment can be made in any way convenient for you.',
     'delivery.variants_description':
       "Credit card: you can pay for your order with a Visa or Mastercard credit card. Debit card: you can pay for your order with a debit card linked to your bank account. Bank transfer: you can pay for your order directly from your bank account to the company's account. At the office of the company: you can pay for your order at the central office of the company at the address: Moscow, Polykarpova street, 27, st3. After confirming your order on the website, our manager will contact you to clarify the details of delivery and placement of equipment.",
+    'about_us.we':
+      'We are a team of professionals engaged in the sale, installation, configuration and repair of mining equipment and accessories from world manufacturers, with an emphasis on environmental friendliness and energy efficiency.',
+    'about_us.we2':
+      'ALGORITHMINE was born out of a passion for innovative technology and a desire to provide our customers with the most advanced and environmentally friendly cryptocurrency mining solutions.',
+    'about_us.history': "COMPANY'S HISTORY",
+    'about_us.history_2017':
+      'ALGORITHMINE was founded by a group of like-minded people with the goal of making the world of cryptocurrency accessible to everyone.',
+    'about_us.history_2018':
+      'The company is gaining credibility in the market thanks to its professional and customer-oriented activities.',
+    'about_us.history_2019':
+      'ALGORITHMINE establishes active cooperation with global manufacturers and becomes a leader in the mining equipment market.',
+    'about_us.history_2020':
+      "Eco-friendliness and energy savings are becoming key priorities in the company's equipment and solutions offerings.",
+    'about_us.history_2021':
+      'ALGORITHMINE strengthens its market position by increasing the network of partners and expanding the range of equipment.',
+    'about_us.history_2022':
+      'The company implements innovative technologies to improve service and offer cutting-edge solutions.',
+    'about_us.history_2023':
+      'ALGORITHMINE continues to expand into the global marketplace, maintaining a focus on sustainability and energy conservation.',
+    'about_us.p1':
+      'We believe in the power of cryptocurrency as an important element of the modern world, and we strive to facilitate access to this world for each of you, while preserving our planet for future generations.',
+    'about_us.p2':
+      'We are well aware of the power consumption issues in the mining industry, and we are actively working to offer our customers energy-efficient equipment that will reduce their environmental footprint.',
+    'about_us.p3':
+      'Eco-friendliness and energy savings are our key priorities. When you work with ALGORITHMINE you can count on the following:',
+    'about_us.li1':
+      "A wide range of energy-efficient equipment from the world's leading manufacturers",
+    'about_us.li2':
+      'Professional installation, setup and repair of your mining equipment in accordance with environmental standards',
+    'about_us.li3':
+      'Constant updating of our range, thanks to close cooperation with manufacturers who care about the environment',
+    'about_us.li4':
+      'Individual approach to each client, assistance in choosing the best and environmentally friendly equipment for your purposes',
+    'about_us.li5': 'Prompt and high-quality technical support',
+    'about_us.li6':
+      'A flexible system of discounts and loyalty for our regular customers, additional bonuses and benefits for those who focus on environmental friendliness and energy saving',
+    'about_us.p4':
+      'We are grateful to you for your interest in our company and pleased to be your guide to the world of green cryptocurrency mining.',
+    'about_us.p5':
+      'Together with ALGORITHMINE you will take the first steps to success in this promising and exciting industry, contribute to the preservation of natural resources and build a beautiful future for all mankind.',
+    'about_us.p6':
+      "Join us, and let's grow and develop together, taking care of the well-being of our planet!",
+    'about_us.p7':
+      'With respect and faith in our successful and environmentally responsible cooperation, ALGORITHMINE Team!',
   },
 
   ru: {
@@ -471,6 +515,50 @@ const messages: Messages = {
       'Оплата выбранного вами оборудования может быть осуществлена любым удобным для вас способом',
     'delivery.variants_description':
       'Кредитная карта: вы можете оплатить свой заказ с помощью кредитной карты Visa или Mastercard. Дебетовая карта: вы можете оплатить свой заказ с помощью дебетовой карты, привязанной к вашему банковскому счету. Банковский перевод: вы можете оплатить свой заказ напрямую со своего банковского счета на счет компании. В офисе компании: вы можете оплатить свой заказа в центральном офисе компании по адресу: г. Москва, ул. Поликарпова, 27 ст3. После подтверждения заказа на сайте с вами свяжется менеджер нашей компании для уточнения деталей доставки и размещения оборудования.',
+    'about_us.we':
+      'Мы - команда профессионалов, занимающаяся продажей, установкой, настройкой и ремонтом майнинг оборудования и комплектующих от мировых производителей, с акцентом наэкологичность и энергосбережение.',
+    'about_us.we2':
+      'ALGORITHMINE возникла из страсти к инновационным технологиям и стремлению предоставить нашим клиентам самые передовые и экологически дружественные решения в области криптовалютного майнинга.',
+    'about_us.history': 'ИСТОРИЯ КОМПАНИИ',
+    'about_us.history_2017':
+      'ALGORITHMINE основана группой единомышленников с целью сделать мир криптовалют доступным для всех.',
+    'about_us.history_2018':
+      'Компания завоевывает доверие на рынке благодаря профессиональной и клиентоориентированной деятельности.',
+    'about_us.history_2019':
+      'ALGORITHMINE устанавливает активное сотрудничество с мировыми производителями и становится лидером на рынке майнинг оборудования.',
+    'about_us.history_2020':
+      'Экологичность и энергосбережение становятся ключевыми приоритетами компании в предложении оборудования и решений.',
+    'about_us.history_2021':
+      'ALGORITHMINE укрепляет свои позиции на рынке, наращивая сеть партнеров и расширяя ассортимент оборудования.',
+    'about_us.history_2022':
+      'Компания внедряет инновационные технологии для улучшения качества обслуживания и предложения передовых решений.',
+    'about_us.history_2023':
+      'ALGORITHMINE продолжает экспансию на мировой рынок, сохраняя акцент на экологичности и энергосбережении.',
+    'about_us.p1':
+      'Мы верим в мощь криптовалюты как важного элемента современного мира и стремимся облегчить доступ к этому миру для каждого из Вас, сохраняя при этом нашу планету для будущих поколений.',
+    'about_us.p2':
+      'Мы прекрасно понимаем проблемы, связанные с энергопотреблением в индустрии майнинга, и активно работаем над тем, чтобы предложить нашим клиентам энергоэффективное оборудование, что позволит снизить воздействие на окружающую среду.',
+    'about_us.p3':
+      'Экологичность и энергосбережение – вот наши ключевые приоритеты. Сотрудничая с ALGORITHMINE, Вы можете рассчитывать на следующее:',
+    'about_us.li1':
+      'Широкий ассортимент энергоэффективного оборудования от ведущих мировых производителей',
+    'about_us.li2':
+      'Профессиональная установка, настройка и ремонт вашего майнинг оборудования с учетом экологических стандартов',
+    'about_us.li3':
+      'Постоянное обновление нашего ассортимента, благодаря тесному сотрудничеству с производителями, заботящимися об окружающей среде',
+    'about_us.li4':
+      'Индивидуальный подход к каждому клиенту, помощь в выборе оптимального и экологичного оборудования для Ваших целей',
+    'about_us.li5': 'Оперативная и качественная техническая поддержка',
+    'about_us.li6':
+      'Гибкая система скидок и лояльности для наших постоянных клиентов, дополнительные бонусы и преимущества для тех, кто делает акцент на экологичности и энергосбережении',
+    'about_us.p4':
+      'Мы благодарны Вам за проявленный интерес к нашей компании и рады быть Вашим проводником в мир экологичного криптовалютного майнинга.',
+    'about_us.p5':
+      'Вместе с ALGORITHMINE Вы сделаете первые шаги к успеху в этой перспективной и захватывающей отрасли, внесете свой вклад в сохранение природных ресурсов и строительства прекрасного будущего для всего человечества.',
+    'about_us.p6':
+      'Присоединяйтесь к нам, и будем расти и развиваться вместе, заботясь о благополучии нашей планеты!',
+    'about_us.p7':
+      'С уважением и верой в наше успешное и экологически ответственное сотрудничество, Команда ALGORITHMINE!',
   },
 };
 

@@ -110,7 +110,8 @@ const Quiz: React.FC = () => {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 16,
-    height: 350,
+    minHeight: 350,
+    height: 'fit-content',
   };
   const [api, contextHolder] = notification.useNotification();
   const submitHandler = async () => {

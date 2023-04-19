@@ -23,3 +23,13 @@
 .year {
   margin-bottom: 10px;
 }
+@media only screen and (max-width: 767px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .footer_span {
+    display: none;
+  }
+}

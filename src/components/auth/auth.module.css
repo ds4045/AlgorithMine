@@ -110,3 +110,109 @@
   font-size: 18px;
   color: inherit;
 }
+
+@media only screen and (max-width: 767px) {
+  .form_container {
+    width: 90%;
+  }
+  .form_container h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  .form_container input[type='email'],
+  .form_container input[type='password'] {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .form_container button[type='submit'],
+  .form_container button {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .login_with_Google {
+    max-width: 100%;
+  }
+  .login_with_Google h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+  .login_with_Google button {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .links {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .links a {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .form_container {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .form_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 500px;
+    height: 100%;
+  }
+  .form_container h3 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .form_container input[type='email'],
+  .form_container input[type='password'] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .form_container button[type='submit'],
+  .form_container button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background-color: #505051;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .form_container button:hover {
+    background-color: #1d1f2f;
+  }
+  .form_container button:active {
+    background-color: #0d0f1f;
+  }
+}

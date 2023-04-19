@@ -22,3 +22,11 @@
   margin-right: calc(50% - 60px);
   width: 120px;
 }
+@media (max-width: 576px) {
+  .inp {
+    margin-left: calc(50% - 175px);
+    margin-right: calc(50% - 175px);
+    width: 350px;
+    margin-top: 10px;
+  }
+}

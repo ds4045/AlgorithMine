@@ -102,3 +102,55 @@
 .price {
   color: #f94f0c;
 }
+@media only screen and (max-width: 1024px) {
+  .wrapper_cart {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cart {
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .carts {
+    height: auto;
+    overflow: unset;
+  }
+
+  .get_order {
+    height: auto;
+  }
+
+  .get_order_price {
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .get_order_btn_groups {
+    padding: 10px;
+  }
+
+  .about_order {
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .order_contacts {
+    width: 100%;
+  }
+
+  .units {
+    font-size: 12px;
+  }
+
+  .inp {
+    height: auto;
+    margin-top: 5px;
+  }
+
+  .spinner {
+    font-size: 20px;
+  }
+}

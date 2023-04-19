@@ -103,3 +103,105 @@
 .img_repair_repair {
   background-image: url('https://ru-teh.com/img/course5_asic.jpg');
 }
+
+/* стили для телефонов и планшетов */
+
+@media only screen and (max-width: 768px) {
+  .anchor {
+    padding-left: 10px;
+  }
+
+  .hotel_list {
+    font-size: 20px;
+    padding: 100px 20px;
+  }
+
+  .hotel_benefits {
+    flex-direction: column;
+  }
+
+  .hotel_benefits span {
+    margin: 10px 0 30px 0;
+  }
+
+  .hotel_icon {
+    font-size: 20px;
+  }
+
+  .invest_img h2 {
+    padding: 20px;
+  }
+
+  .invest_text {
+    padding: 20px;
+  }
+
+  .img_repair_wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .img_repair_wrapper div {
+    height: 150px;
+    padding: 30px 20px 0 20px;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .anchor {
+    padding-left: 20px;
+  }
+
+  .services_wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hotel_list {
+    font-size: 30px;
+    padding: 150px 50px;
+  }
+
+  .hotel_benefits {
+    justify-content: space-between;
+  }
+
+  .hotel_benefits span {
+    margin: 10px 50px 30px 50px;
+  }
+
+  .hotel_icon {
+    font-size: 30px;
+  }
+
+  .invest_wrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .invest_img h2 {
+    padding: 50px;
+    color: white;
+  }
+
+  .invest_text {
+    padding: 40px;
+  }
+
+  .img_repair_wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+  }
+
+  .img_repair_wrapper div {
+    height: 300px;
+    padding: 50px 30px 0 30px;
+    font-size: 18px;
+  }
+}

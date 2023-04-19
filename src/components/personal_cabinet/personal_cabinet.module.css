@@ -74,3 +74,73 @@
 .contacts_icon:hover {
   transform: scale(1.2);
 }
+@media only screen and (max-width: 768px) {
+  .personal_data {
+    width: 80%;
+  }
+  .img {
+    height: 150px;
+  }
+  .title_section {
+    margin-bottom: 20px;
+  }
+  .review {
+    width: 100%;
+  }
+  .review_img {
+    width: 80px;
+  }
+  .wrapper_pk_settings {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .personal_data {
+    width: 90%;
+  }
+  .img {
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  .title_section {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .inp_wrapper div {
+    margin: 3px;
+  }
+  .wrapper_pk_settings {
+    width: 150px;
+  }
+  .contacts_icon {
+    margin-left: 3px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .personal_data {
+    width: 95%;
+  }
+  .img {
+    height: 80px;
+    margin-bottom: 5px;
+  }
+  .title_section {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .inp_wrapper div {
+    margin: 2px;
+  }
+  .wrapper_pk_settings {
+    width: 120px;
+  }
+  .contacts_icon {
+    margin-left: 2px;
+    width: 14px;
+    height: 14px;
+  }
+}

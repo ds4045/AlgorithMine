@@ -104,6 +104,7 @@ const Header: React.FC<HeaderProps> = ({
           <FormattedMessage id="header.blog" />
         </Button>
       </div>
+
       <Switch
         checked={locale === 'ru'}
         checkedChildren="Ru"

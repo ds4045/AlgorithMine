@@ -64,7 +64,7 @@ const App = () => {
       }}>
       <IntlProvider locale={locale} messages={messages[locale]}>
         <div className={darkThemes ? 'App_dark' : 'App_light'}>
-          {location.pathname !== '/login' && (
+          {location.pathname !== '/login' && location.pathname !== '/register' && (
             <>
               <CryptoTicker />
               <Header

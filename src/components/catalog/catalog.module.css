@@ -137,3 +137,44 @@
 .comparison_empty {
   margin-top: 15%;
 }
+@media screen and (max-width: 768px) {
+  .menu {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .wrapper {
+    margin-left: 0;
+  }
+
+  .cards_table {
+    margin-right: 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card_horizontal {
+    width: 100%;
+  }
+
+  .horizontal_description {
+    padding: 5px;
+  }
+
+  .btn_groups_modal {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .menu {
+    width: 200px;
+  }
+  .icon_sort {
+    font-size: 18px;
+  }
+
+  .cards_table {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

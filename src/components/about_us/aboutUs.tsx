@@ -1,90 +1,130 @@
 import { FC } from 'react';
 import styles from './aboutUs.module.css';
-import ButtonScrollUp from '../UI/button_scroll_up/buttonScrollUp';
 import Contacts from '../personal_cabinet/contacts/Contacts';
+import { Timeline } from 'antd';
+import { ClockCircleOutlined } from '@ant-design/icons';
+import VideoPlayer from '../videoPlayer/VideoPlayer';
+import { FormattedMessage } from 'react-intl';
 
 const AboutUs: FC = () => {
   return (
     <div className={styles.layout}>
+      <img
+        className={styles.banner}
+        src="https://s1.hostingkartinok.com/uploads/images/2023/04/daa71dd3a58e462739e3fac40ab45af0.jpg"
+        alt="ALGORITHMINE.jpg"
+      />
       <div className={styles.content}>
         <div className={styles.content_div}>
           <p>
-            Мы - команда профессионалов, занимающаяся продажей, установкой, настройкой и ремонтом
-            майнинг оборудования и комплектующих от мировых производителей, с акцентом на
-            экологичность и энергосбережение.
+            <FormattedMessage id="about_us.we" />
           </p>
           <p>
-            IMINING возникла из страсти к инновационным технологиям и стремлению предоставить нашим
-            клиентам самые передовые и экологически дружественные решения в области криптовалютного
-            майнинга.
-          </p>
-          <p>
-            Мы верим в мощь криптовалюты как важного элемента современного мира и стремимся
-            облегчить доступ к этому миру для каждого из Вас, сохраняя при этом нашу планету для
-            будущих поколений.
-          </p>
-          <p>
-            Мы прекрасно понимаем проблемы, связанные с энергопотреблением в индустрии майнинга, и
-            активно работаем над тем, чтобы предложить нашим клиентам энергоэффективное
-            оборудование, что позволит снизить воздействие на окружающую среду.
-          </p>
-          <p>
-            Экологичность и энергосбережение – вот наши ключевые приоритеты. Сотрудничая с IMINING,
-            Вы можете рассчитывать на следующее:
+            <FormattedMessage id="about_us.we2" />
           </p>
 
+          <div className={styles.history}>
+            <div className={styles.Header_Wrapper}>
+              <h2>
+                <FormattedMessage id="about_us.history" />
+              </h2>
+            </div>
+
+            <div className={styles.timeline_div}>
+              <Timeline
+                style={{ fontSize: '20px' }}
+                mode="alternate"
+                items={[
+                  {
+                    color: 'green',
+                    label: '2017',
+                    children: <FormattedMessage id="about_us.history_2017" />,
+                    style: { left: 0, padding: 0 },
+                  },
+                  {
+                    color: 'green',
+                    label: '2018',
+                    children: <FormattedMessage id="about_us.history_2018" />,
+                  },
+                  {
+                    color: 'green',
+                    label: '2019',
+                    children: <FormattedMessage id="about_us.history_2019" />,
+                  },
+                  {
+                    color: 'green',
+                    label: '2020',
+                    children: <FormattedMessage id="about_us.history_2020" />,
+                  },
+                  {
+                    color: 'green',
+                    label: '2021',
+                    children: <FormattedMessage id="about_us.history_2021" />,
+                  },
+                  {
+                    color: 'green',
+                    label: '2022',
+                    children: <FormattedMessage id="about_us.history_2022" />,
+                  },
+                  {
+                    color: 'green',
+                    label: '2023',
+                    dot: <ClockCircleOutlined className="timeline-clock-icon" />,
+                    children: <FormattedMessage id="about_us.history_2023" />,
+                  },
+                ]}
+              />
+            </div>
+          </div>
+          <div className={styles.wrapper_video}>
+            <VideoPlayer videoId="186251146" width="800px" height="400px" autoplay />
+          </div>
+          <p>
+            <FormattedMessage id="about_us.p1" />
+          </p>
+          <p>
+            <FormattedMessage id="about_us.p2" />
+          </p>
+          <p>
+            <FormattedMessage id="about_us.p3" />
+          </p>
           <div className={styles.wrapper_div}>
             <ul>
               <li>
-                Широкий ассортимент энергоэффективного оборудования от ведущих мировых
-                производителей;
+                <FormattedMessage id="about_us.li1" />
               </li>
               <li>
-                Профессиональная установка, настройка и ремонт вашего майнинг оборудования с учетом
-                экологических стандартов;
+                <FormattedMessage id="about_us.li2" />
               </li>
               <li>
-                Постоянное обновление нашего ассортимента, благодаря тесному сотрудничеству с
-                производителями, заботящимися об окружающей среде;
+                <FormattedMessage id="about_us.li3" />
               </li>
               <li>
-                Индивидуальный подход к каждому клиенту, помощь в выборе оптимального и экологичного
-                оборудования для Ваших целей;
+                <FormattedMessage id="about_us.li4" />
               </li>
-              <li>Оперативная и качественная техническая поддержка;</li>
               <li>
-                Гибкая система скидок и лояльности для наших постоянных клиентов, дополнительные
-                бонусы и преимущества для тех, кто делает акцент на экологичности и
-                энергосбережении.
+                <FormattedMessage id="about_us.li5" />
+              </li>
+              <li>
+                <FormattedMessage id="about_us.li6" />
               </li>
             </ul>
           </div>
-
           <p>
-            Мы благодарны Вам за проявленный интерес к нашей компании и рады быть Вашим проводником
-            в мир экологичного криптовалютного майнинга.
+            <FormattedMessage id="about_us.p4" />
           </p>
           <p>
-            Вместе с IMINING Вы сделаете первые шаги к успеху в этой перспективной и захватывающей
-            отрасли, внесете свой вклад в сохранение природных ресурсов и строительства прекрасного
-            будущего для всего человечества.
-          </p>
-
-          <p>
-            Присоединяйтесь к нам, и будем расти и развиваться вместе, заботясь о благополучии нашей
-            планеты!
+            <FormattedMessage id="about_us.p5" />
           </p>
           <p>
-            С уважением и верой в наше успешное и экологически ответственное сотрудничество, Команда
-            IMINING!
+            <FormattedMessage id="about_us.p6" />
           </p>
-
-          <p></p>
+          <p>
+            <FormattedMessage id="about_us.p7" />
+          </p>
         </div>
       </div>
       <Contacts />
-      <div className={styles.footer}>IMINING ©2023 All Rights Reserved</div>
-      <ButtonScrollUp />
     </div>
   );
 };

@@ -6,3 +6,18 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
 }
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .title {
+    margin: 30px;
+    font-size: 24px;
+  }
+  .wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
