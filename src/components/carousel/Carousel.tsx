@@ -12,7 +12,7 @@ function Carousel() {
           <FormattedMessage id="carousel.delivery" />
         </p>
       ),
-      image: 'https://guangzhou-cargo.ru/uploads/s/x/a/m/xammjkzebspk/img/full_iIKE1czB.jpg',
+      image: 'https://www.jde.ru/img/mainimg/service_china.jpg',
       button: (
         <div onClick={() => navigate('/delivery')}>
           <FormattedMessage id="catalog.card.btn_more" />

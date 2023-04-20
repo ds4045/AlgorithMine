@@ -74,7 +74,9 @@
 .contacts_icon:hover {
   transform: scale(1.2);
 }
-
+.menu_mobile {
+  display: none;
+}
 @media only screen and (max-width: 768px) {
   .personal_data {
     width: 80%;
@@ -118,6 +120,24 @@
     margin-left: 3px;
     width: 16px;
     height: 16px;
+  }
+  .menu {
+    display: none;
+  }
+  .btn_open_settings {
+    display: none;
+  }
+  .menu_mobile {
+    margin-top: 100px;
+    display: flex;
+    cursor: pointer;
+    gap: 20px;
+    width: 100%;
+    position: absolute;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+    opacity: 0.7;
   }
 }
 

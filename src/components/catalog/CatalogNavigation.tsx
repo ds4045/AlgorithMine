@@ -88,7 +88,12 @@ const CatalogNavigation: FC<CatalogNavigationProps> = ({
         }}>
         <TableOutlined className={styles.icon_sort} />
       </Button>
-      <Pagination current={currentPage} onChange={onChange} total={pages} />
+      <Pagination
+        current={currentPage}
+        onChange={onChange}
+        total={pages}
+        className={styles.pagination}
+      />
     </div>
   );
 };

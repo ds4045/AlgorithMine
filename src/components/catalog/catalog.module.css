@@ -167,14 +167,25 @@
 }
 
 @media screen and (max-width: 480px) {
+  .wrapper {
+    display: block;
+  }
+  .catalog {
+    flex-direction: column;
+  }
   .menu {
-    width: 200px;
+    width: 100%;
   }
   .icon_sort {
     font-size: 18px;
   }
-
+  .pagination {
+    display: none;
+  }
   .cards_table {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .more_btn {
+    display: none;
   }
 }

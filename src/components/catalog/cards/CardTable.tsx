@@ -7,7 +7,7 @@ import { Item } from '../../../types/types';
 import { useAppDispatch } from '../../../redux/hooks';
 import { addItem } from '../../../redux/cartSlice';
 import CardModal from './CardModal';
-
+import styles from '../catalog.module.css';
 type CardTableProps = {
   item: Item;
   score: number;
@@ -36,7 +36,7 @@ const CardTable: FC<CardTableProps> = ({ item, score, alertSuccess, alertError }
           width: 350,
         }}
         actions={[
-          <Button key="more" onClick={showDescription}>
+          <Button className={styles.more_btn} key="more" onClick={showDescription}>
             <FormattedMessage id="catalog.card.btn_more" />
           </Button>,
           <Button key="buy" onClick={buyHandler} type="primary">

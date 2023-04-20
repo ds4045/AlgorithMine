@@ -14,6 +14,8 @@ import { pushAddedItems } from '../../redux/cartSlice';
 import SocialNetwork from '../UI/soc_network_icons/SocialNetwork';
 import ToggleColorThemes from '../UI/toggle_color/ToggleColorThemes';
 import MainLogoButton from '../UI/logo/MainLogoButton';
+import { BsTelegram } from 'react-icons/bs';
+import { RiWhatsappFill } from 'react-icons/ri';
 
 type HeaderProps = {
   onLocaleChange: () => void;
@@ -111,7 +113,17 @@ const Header: React.FC<HeaderProps> = ({
         unCheckedChildren="Eng"
         onClick={onLocaleChange}
       />
-      <SocialNetwork />
+      <span className={styles.contacts}>
+        <SocialNetwork />
+      </span>
+      <span className={styles.contacts_mobile}>
+        <a href="https://www.whatsapp.com/" target="blank">
+          <RiWhatsappFill className={styles.wa} />
+        </a>
+        <a href="https://telegram.org/" target="blank">
+          <BsTelegram className={styles.tg} />
+        </a>
+      </span>
       <ToggleColorThemes setDarkThemes={setDarkThemes} darkThemes={darkThemes} />
       <Badge count={totalUnits} color="#F94F0C">
         <ShoppingCartOutlined

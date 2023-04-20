@@ -7,6 +7,7 @@ import { UserFirestoreDB } from '../../types/types';
 import Favorites from './favorites/Favorites';
 import Contacts from './contacts/Contacts';
 import Admin from './admin/Admin';
+import MenuMobile from './MenuMobile';
 export type ActualPageType = 'settings' | 'orders' | 'reviews' | 'favorites' | 'contacts' | 'admin';
 type PersonalCabinetProps = {
   me: UserFirestoreDB | null;
@@ -41,6 +42,7 @@ const PersonalCabinet: FC<PersonalCabinetProps> = ({ me }) => {
   }, [actualPage, me]);
   return (
     <>
+      <MenuMobile isAdmin={me?.isAdmin ?? false} setActualPage={setActualPage} />
       <Menu setActualPage={setActualPage} me={me} />
       {renderPage}
     </>

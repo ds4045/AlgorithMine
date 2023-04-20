@@ -12,6 +12,9 @@
   height: 350px;
   margin: 30px auto 0 auto;
 }
+.post_image {
+  object-fit: cover;
+}
 .posts_wrapper {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
