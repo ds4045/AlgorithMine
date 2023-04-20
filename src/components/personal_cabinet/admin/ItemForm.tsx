@@ -1,9 +1,9 @@
-import { Button, Checkbox } from 'antd';
+import { Button, Checkbox, Radio, RadioChangeEvent, Select } from 'antd';
 import { ChangeEvent, Dispatch, FC, ReactNode, SetStateAction, useEffect, useState } from 'react';
 import styles from './admin.module.css';
 import { FieldType, Item } from '../../../types/types';
 import ItemFormField from './ItemFormField';
-import { validateSwitchFormItem } from '../../../helpers/validateSwitchFormItem';
+import { allMakers, validateSwitchFormItem } from '../../../helpers/validateSwitchFormItem';
 import { nanoid } from 'nanoid';
 import { randomSku } from '../../../helpers/randomSku';
 import { addNewDataForDBWithId } from '../../../firbase/firebaseAPI';
@@ -23,18 +23,6 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
       value: item?.title ?? '',
       type: 'string',
       error: validateSwitchFormItem('title', item?.title ?? ''),
-    },
-    {
-      field: 'maker',
-      value: item?.maker ?? '',
-      type: 'string',
-      error: validateSwitchFormItem('maker', item?.maker ?? ''),
-    },
-    {
-      field: 'section',
-      value: item?.section ?? '',
-      type: 'string',
-      error: validateSwitchFormItem('section', item?.section ?? ''),
     },
     {
       field: 'images',
@@ -121,7 +109,7 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
   };
 
   const checkSubmit = () => requiredFields.some((el) => !el.error);
-  const submit = () => {
+  const submit = async () => {
     if (checkSubmit()) {
       alertError('Заполните обязательные поля');
       return;
@@ -138,15 +126,23 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
     }
     const newItem: Item = {
       ...required,
+      section: valueSection,
+      maker: valueMaker,
       optional,
       id: item?.id ?? nanoid(),
       sku: item?.sku ?? randomSku(),
       inStock: item?.inStock ?? inStock,
       reviews: item?.reviews ?? [],
     };
+    await addNewDataForDBWithId(newItem, 'items', setIsLoading, alertSuccess, alertError);
     setRequiredFields(reqFields);
     setOptionalFields(optFields);
-    addNewDataForDBWithId(newItem, 'items', setIsLoading, alertSuccess, alertError);
+  };
+  const [valueSection, setValueSection] = useState(item?.section ?? 'Asic');
+  const [valueMaker, setValueMaker] = useState(item?.maker ?? 'WhatsMiner');
+
+  const onChange = (e: RadioChangeEvent) => {
+    setValueSection(e.target.value);
   };
   return (
     <div className={styles.request_wrapper}>
@@ -158,6 +154,20 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
         className={styles.checkbox}
         checked={inStock}
         onChange={(e) => setInStock(e.target.checked)}
+      />
+      <div className={styles.section_radio}>
+        Section:
+        <Radio.Group onChange={onChange} value={valueSection}>
+          <Radio value={'Asic'}>Asic</Radio>
+          <Radio value={'Accessories'}>Accessories</Radio>
+          <Radio value={'GPU'}>GPU</Radio>
+        </Radio.Group>
+      </div>
+      <Select
+        className={styles.select_maker}
+        value={valueMaker}
+        onChange={(value) => setValueMaker(value)}
+        options={allMakers}
       />
       {requiredFields.map((el, ind) => (
         <ItemFormField
@@ -172,8 +182,9 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
         />
       ))}
       <Button
+        className={styles.btn_120}
         onClick={() => {
-          setIsShowOptional(true);
+          setIsShowOptional((prev) => !prev);
         }}>
         Optional
       </Button>
@@ -190,7 +201,11 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
             onChangeHandlerField={onChangeHandlerField}
           />
         ))}
-      <Button onClick={submit} disabled={checkSubmit()} loading={isLoading}>
+      <Button
+        className={styles.btn_120}
+        onClick={submit}
+        disabled={checkSubmit()}
+        loading={isLoading}>
         Изменить
       </Button>
     </div>

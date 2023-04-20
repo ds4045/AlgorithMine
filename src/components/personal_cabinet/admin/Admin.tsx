@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { Item, UserFirestoreDB } from '../../../types/types';
-import styles from '../personal_cabinet.module.css';
+import styles from './admin.module.css';
 import { Button, Input, Spin } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import ItemForm from './ItemForm';
@@ -39,24 +39,22 @@ const Admin: FC<AdminProps> = ({ me }) => {
     setCurrentItem(null);
   };
   return (
-    <Spin spinning={loading}>
-      <div className={styles.wrapper}>
+    <div className={styles.request_wrapper}>
+      <Spin spinning={loading}>
         {contextHolder}
-        <div className={styles.personal_data}>
-          <div className={styles.admin_btn_group}>
-            <Button onClick={updateDB}>Обновить БД</Button>
-            <Button onClick={() => setCurrentPage('items')}>Добавить товар</Button>
-            <Button onClick={() => setCurrentPage('posts')}>Добавить пост</Button>
-            <Search placeholder="Поиск по sku" onSearch={onSearch} enterButton allowClear />
-          </div>
-          {currentPage === 'items' ? (
-            <ItemForm item={currentItem} alertSuccess={alertSuccess} alertError={alertError} />
-          ) : (
-            <PostForm alertSuccess={alertSuccess} alertError={alertError} />
-          )}
+        <div className={styles.admin_btn_group}>
+          <Button onClick={updateDB}>Обновить БД</Button>
+          <Button onClick={() => setCurrentPage('items')}>Добавить товар</Button>
+          <Button onClick={() => setCurrentPage('posts')}>Добавить пост</Button>
+          <Search placeholder="Поиск по sku" onSearch={onSearch} enterButton allowClear />
         </div>
-      </div>
-    </Spin>
+        {currentPage === 'items' ? (
+          <ItemForm item={currentItem} alertSuccess={alertSuccess} alertError={alertError} />
+        ) : (
+          <PostForm alertSuccess={alertSuccess} alertError={alertError} />
+        )}
+      </Spin>
+    </div>
   );
 };
 

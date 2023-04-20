@@ -1,12 +1,25 @@
 .request_wrapper {
-  margin-top: 30px;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin_btn_group {
+  display: flex;
 }
 .inpWrapper {
   height: 60px;
   width: 400px;
 }
-
+.section_radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.select_maker {
+  width: 400px;
+  margin-bottom: 10px;
+}
 .label {
   color: red;
   opacity: 0.5;
@@ -25,7 +38,20 @@
 .radio_btn {
   margin: 15px;
 }
+.btn_120 {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
 @media only screen and (max-width: 450px) {
+  .inpWrapper {
+    height: 60px;
+    width: 300px;
+  }
+  .admin_btn_group {
+    display: flex;
+    flex-direction: column;
+  }
   .title {
     font-size: 14px;
     margin: 5px;
@@ -38,5 +64,9 @@
     color: red;
     opacity: 0.5;
     width: 300px;
+  }
+  .select_maker {
+    width: 300px;
+    margin-bottom: 10px;
   }
 }

@@ -1,17 +1,16 @@
-const allMakers = [
-  'WhatsMiner',
-  'Antminer',
-  'AvalonMiner',
-  'Innosilicon',
-  'Gold Shell',
-  'Parts',
-  'Accessory',
-  'NVIDIA',
-  'AMD',
-  'MSI',
-  'ASUS',
+export const allMakers = [
+  { label: 'WhatsMiner', value: 'WhatsMiner' },
+  { label: 'Antminer', value: 'Antminer' },
+  { label: 'AvalonMiner', value: 'AvalonMiner' },
+  { label: 'Innosilicon', value: 'Innosilicon' },
+  { label: 'Gold Shell', value: 'Gold Shel' },
+  { label: 'Parts', value: 'Parts' },
+  { label: 'Accessory', value: 'Accessory' },
+  { label: 'NVIDIA', value: 'NVIDIA' },
+  { label: 'AMD', value: 'AMD' },
+  { label: 'MSI', value: 'MSI' },
+  { lavel: 'ASUS', value: 'ASUS' },
 ];
-const allSections = ['Asic', 'Accessories', 'GPU'];
 export const validateSwitchFormItem = (filed: string, value: string | number) => {
   switch (filed) {
     case 'text':
@@ -22,12 +21,6 @@ export const validateSwitchFormItem = (filed: string, value: string | number) =>
     case 'description':
     case 'descriptionRU': {
       return typeof value === 'string' && value.trim().length > 0;
-    }
-    case 'maker': {
-      return typeof value === 'string' && allMakers.includes(value);
-    }
-    case 'section': {
-      return typeof value === 'string' && allSections.includes(value);
     }
     case 'hashrate':
     case 'payback':
