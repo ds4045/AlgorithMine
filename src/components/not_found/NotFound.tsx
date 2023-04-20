@@ -11,7 +11,7 @@ const NotFound: React.FC = () => {
       title="404"
       subTitle={<FormattedMessage id="not_found.text" />}
       extra={
-        <Button type="primary" onClick={() => navigate('/')}>
+        <Button type="primary" onClick={() => navigate(-1)}>
           <FormattedMessage id="auth.btn_back" />
         </Button>
       }

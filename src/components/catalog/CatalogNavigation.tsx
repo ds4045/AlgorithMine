@@ -1,6 +1,6 @@
 import { TableOutlined, UnorderedListOutlined } from '@ant-design/icons';
-import { Button, Input, Pagination, PaginationProps, Select } from 'antd';
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { Button, Input, Select } from 'antd';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styles from './catalog.module.css';
 import { CategoryType, Item } from '../../types/types';
@@ -20,11 +20,6 @@ const CatalogNavigation: FC<CatalogNavigationProps> = ({
   items,
   currentCategory,
 }) => {
-  const pages = Math.ceil(items.length / 2);
-  const [currentPage, setCurrentPage] = useState(1);
-  const onChange: PaginationProps['onChange'] = (page) => {
-    setCurrentPage(page);
-  };
   const onSearch = (search: string) => {
     dispatch(searchItem(search.trim()));
   };
@@ -88,12 +83,6 @@ const CatalogNavigation: FC<CatalogNavigationProps> = ({
         }}>
         <TableOutlined className={styles.icon_sort} />
       </Button>
-      <Pagination
-        current={currentPage}
-        onChange={onChange}
-        total={pages}
-        className={styles.pagination}
-      />
     </div>
   );
 };

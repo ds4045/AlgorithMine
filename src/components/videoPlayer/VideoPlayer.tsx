@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface VimeoVideoProps {
   videoId: string;
@@ -7,12 +7,7 @@ interface VimeoVideoProps {
   autoplay?: boolean;
 }
 
-const VideoPlayer: React.FC<VimeoVideoProps> = ({
-  videoId,
-  width,
-  height,
-  autoplay,
-}) => {
+const VideoPlayer: React.FC<VimeoVideoProps> = ({ videoId, width, height, autoplay }) => {
   const autoplayParam = autoplay ? 1 : 0;
 
   return (
