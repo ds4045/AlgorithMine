@@ -14,6 +14,8 @@ const allMakers = [
 const allSections = ['Asic', 'Accessories', 'GPU'];
 export const validateSwitchFormItem = (filed: string, value: string | number) => {
   switch (filed) {
+    case 'text':
+    case 'image':
     case 'currency':
     case 'title':
     case 'images':

@@ -1,13 +1,17 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import styles from './admin.module.css';
 import { Input } from 'antd';
 import { FieldType } from '../../../types/types';
 
 type ItemFormFieldProps = {
-  field: any;
-  onChangeHandlerField: any;
+  field: string;
+  onChangeHandlerField: (
+    e: ChangeEvent<HTMLInputElement>,
+    field: string,
+    set: Dispatch<SetStateAction<FieldType[]>>,
+  ) => void;
   error: boolean;
-  value: any;
+  value: string | number;
   type: string;
   required: boolean;
   set: Dispatch<SetStateAction<FieldType[]>>;

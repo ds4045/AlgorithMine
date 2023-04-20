@@ -123,7 +123,7 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
   const checkSubmit = () => requiredFields.some((el) => !el.error);
   const submit = () => {
     if (checkSubmit()) {
-      alert('error');
+      alertError('Заполните обязательные поля');
       return;
     }
     let required: any = {};
@@ -150,7 +150,10 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
   };
   return (
     <div className={styles.request_wrapper}>
-      in Stock:
+      <h4 className={styles.title}>
+        {item?.title ? `Редактирование товара ${item.title}` : 'Создание нового товара'}
+      </h4>
+      inStock:
       <Checkbox
         className={styles.checkbox}
         checked={inStock}

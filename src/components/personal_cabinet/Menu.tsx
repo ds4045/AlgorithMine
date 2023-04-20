@@ -37,7 +37,7 @@ type MenuTypeProps = {
   setActualPage: Dispatch<SetStateAction<ActualPageType>>;
   me: UserFirestoreDB | null;
 };
-const App: FC<MenuTypeProps> = ({ setActualPage, me }) => {
+const MenuComponent: FC<MenuTypeProps> = ({ setActualPage, me }) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const items: MenuItem[] = [
@@ -161,4 +161,4 @@ const App: FC<MenuTypeProps> = ({ setActualPage, me }) => {
   );
 };
 
-export default App;
+export default MenuComponent;

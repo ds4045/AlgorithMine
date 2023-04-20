@@ -7,6 +7,7 @@ import ItemForm from './ItemForm';
 import { useAlert } from '../../../hooks/useAlert';
 import { fetchItems } from '../../../api/fetchItems';
 import { fetchPosts } from '../../../api/fetchPosts';
+import PostForm from './PostForm';
 
 type AdminProps = {
   me: UserFirestoreDB;
@@ -27,6 +28,8 @@ const Admin: FC<AdminProps> = ({ me }) => {
       alertError('Товар не найден');
     }
   };
+  const [currentPage, setCurrentPage] = useState<'items' | 'posts'>('items');
+
   const [currentItem, setCurrentItem] = useState<null | Item>(null);
   const updateDB = async () => {
     setLoading(true);
@@ -42,11 +45,15 @@ const Admin: FC<AdminProps> = ({ me }) => {
         <div className={styles.personal_data}>
           <div className={styles.admin_btn_group}>
             <Button onClick={updateDB}>Обновить БД</Button>
-            <Button>Добавить товар</Button>
-            <Button>Добавить пост</Button>
+            <Button onClick={() => setCurrentPage('items')}>Добавить товар</Button>
+            <Button onClick={() => setCurrentPage('posts')}>Добавить пост</Button>
             <Search placeholder="Поиск по sku" onSearch={onSearch} enterButton allowClear />
           </div>
-          <ItemForm item={currentItem} alertSuccess={alertSuccess} alertError={alertError} />
+          {currentPage === 'items' ? (
+            <ItemForm item={currentItem} alertSuccess={alertSuccess} alertError={alertError} />
+          ) : (
+            <PostForm alertSuccess={alertSuccess} alertError={alertError} />
+          )}
         </div>
       </div>
     </Spin>

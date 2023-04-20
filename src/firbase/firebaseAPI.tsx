@@ -10,7 +10,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { DB } from './firebaseConfig';
-import { Item, LeadType, OrderType, UserFirestoreDB } from '../types/types';
+import { Item, LeadType, OrderType, PostType, UserFirestoreDB } from '../types/types';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -42,7 +42,7 @@ export const getDataFromDB = async (nameDB: string) => {
 };
 export const addDataForDB = async (
   nameDB: string,
-  data: Item | UserFirestoreDB | OrderType | LeadType,
+  data: Item | UserFirestoreDB | OrderType | LeadType | PostType,
 ) => {
   const db = switchNameDB(nameDB);
   try {

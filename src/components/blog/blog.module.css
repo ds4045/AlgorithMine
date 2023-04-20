@@ -46,6 +46,15 @@
     width: 100%;
   }
 }
+@media (max-width: 500px) {
+  .posts_wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+  }
+}
 .blog_nav {
   width: 100%;
   margin-left: 2.5em;
@@ -117,134 +126,4 @@
 .spinner {
   height: 18px;
   width: 40px;
-}
-
-@media (max-width: 768px) {
-  .blog_wrapper {
-    height: auto;
-  }
-  .skeleton_wrapper {
-    margin-top: 30px;
-    flex-direction: column;
-  }
-  .skeleton {
-    width: 80%;
-    height: 250px;
-    margin: 30px auto;
-  }
-  .posts_wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    height: auto;
-  }
-  .post {
-    height: auto;
-    margin: 30px 0;
-  }
-  .blog_nav {
-    margin: 0;
-    padding: 10px;
-    text-align: center;
-  }
-  .post_page_img {
-    width: 100%;
-    margin: 30px auto;
-  }
-  .post_text {
-    margin: 20px;
-  }
-  .post_icons {
-    margin: 10px;
-  }
-  .icon_wrapper {
-    margin: 10px;
-  }
-  .spinner {
-    height: 14px;
-    width: 30px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .skeleton_wrapper {
-    margin-top: 45px;
-  }
-  .skeleton {
-    width: 40%;
-    height: 350px;
-    margin: 30px auto 0 auto;
-  }
-  .posts_wrapper {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
-    height: auto;
-  }
-  .post {
-    height: auto;
-    margin: 30px 0;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1199px) {
-  .skeleton_wrapper {
-    margin-top: 45px;
-  }
-  .skeleton {
-    width: 30%;
-    height: 350px;
-    margin: 30px auto 0 auto;
-  }
-  .posts_wrapper {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: auto;
-    height: auto;
-  }
-  .post {
-    height: auto;
-    margin: 30px 0;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1439px) {
-  .skeleton_wrapper {
-    margin-top: 45px;
-  }
-  .skeleton {
-    width: 25%;
-    height: 350px;
-    margin: 30px auto 0 auto;
-  }
-  .posts_wrapper {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: auto;
-    height: auto;
-  }
-  .post {
-    height: auto;
-    margin: 30px 0;
-  }
-}
-
-@media (min-width: 1440px) {
-  .skeleton_wrapper {
-    margin-top: 60px;
-  }
-  .skeleton {
-    width: 20%;
-    height: 350px;
-    margin: 30px auto 0 auto;
-  }
-}
-@media (max-width: 450px) {
-  .posts_wrapper {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: auto;
-    height: auto;
-    margin-left: 50px;
-  }
 }
