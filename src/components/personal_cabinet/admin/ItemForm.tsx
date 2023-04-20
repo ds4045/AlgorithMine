@@ -206,7 +206,7 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
         onClick={submit}
         disabled={checkSubmit()}
         loading={isLoading}>
-        Изменить
+        Создать
       </Button>
     </div>
   );

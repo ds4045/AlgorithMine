@@ -33,7 +33,7 @@ const CardTable: FC<CardTableProps> = ({ item, score, alertSuccess, alertError }
     <div>
       <Card
         style={{
-          width: 350,
+          width: 340,
         }}
         actions={[
           <Button className={styles.more_btn} key="more" onClick={showDescription}>

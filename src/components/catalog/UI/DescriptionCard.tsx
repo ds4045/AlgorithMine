@@ -18,7 +18,7 @@ const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, th, score }) 
       <li>
         <FormattedMessage id="catalog.card.btn_from" /> {price}$
       </li>
-      {th && <li>TH/s {th}</li>}
+      {th && <li>HR/s {th}</li>}
       <li>
         <Rate value={score} disabled />
       </li>

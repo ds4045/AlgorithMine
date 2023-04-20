@@ -3,7 +3,7 @@ export const allMakers = [
   { label: 'Antminer', value: 'Antminer' },
   { label: 'AvalonMiner', value: 'AvalonMiner' },
   { label: 'Innosilicon', value: 'Innosilicon' },
-  { label: 'Gold Shell', value: 'Gold Shel' },
+  { label: 'Gold Shell', value: 'Gold Shell' },
   { label: 'Parts', value: 'Parts' },
   { label: 'Accessory', value: 'Accessory' },
   { label: 'NVIDIA', value: 'NVIDIA' },

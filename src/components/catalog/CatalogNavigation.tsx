@@ -42,12 +42,12 @@ const CatalogNavigation: FC<CatalogNavigationProps> = ({
         dispatch(sortItem(renderItems));
         break;
       }
-      case 'By THUp': {
+      case 'By HRUp': {
         renderItems.sort((a, b) => a.optional?.hashrate - b.optional?.hashrate);
         dispatch(sortItem(renderItems));
         break;
       }
-      case 'By THDown': {
+      case 'By HRDown': {
         renderItems.sort((a, b) => b.optional?.hashrate - a.optional?.hashrate);
         dispatch(sortItem(renderItems));
         break;
@@ -65,8 +65,8 @@ const CatalogNavigation: FC<CatalogNavigationProps> = ({
       value: 'By priceDown',
       label: <FormattedMessage id="catalog.sort.price_down" />,
     },
-    { value: 'By THUp', label: <FormattedMessage id="catalog.sort.ths_up" /> },
-    { value: 'By THDown', label: <FormattedMessage id="catalog.sort.ths_down" /> },
+    { value: 'By HRUp', label: <FormattedMessage id="catalog.sort.ths_up" /> },
+    { value: 'By HRDown', label: <FormattedMessage id="catalog.sort.ths_down" /> },
     { value: 'By rate', label: <FormattedMessage id="catalog.sort.rate" /> },
   ];
   if (currentCategory === 'Parts' || currentCategory === 'Accessory') {

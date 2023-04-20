@@ -15,9 +15,9 @@ export const renderItemByCategory = (category: CategoryType, items: Item[]) => {
     case 'Gold Shell':
       return items.filter((el) => el.maker === 'Gold Shell');
     case 'Parts':
-      return items.filter((el) => el.section === 'Parts');
+      return items.filter((el) => el.maker === 'Parts');
     case 'Accessory':
-      return items.filter((el) => el.section === 'Accessory');
+      return items.filter((el) => el.maker === 'Accessory');
     case 'NVIDIA':
       return items.filter((el) => el.maker === 'NVIDIA');
     case 'AMD':

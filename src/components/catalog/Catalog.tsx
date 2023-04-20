@@ -90,7 +90,7 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
       <div>
         <FormattedMessage id="header.catalog_accessories" />
       </div>,
-      'Accessory',
+      'Accessories',
       <UsbOutlined />,
       [
         getItem(
