@@ -63,8 +63,11 @@
   flex: 1;
   padding: 10px;
 }
-
+.card_image {
+  object-fit: cover;
+}
 .horizontal_options {
+  width: 140px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Image } from 'antd';
-
+import styles from '../catalog.module.css';
 type ImageCatalogProps = {
   visible: any;
   setVisible: any;
@@ -10,6 +10,7 @@ const ImageCatalog: FC<ImageCatalogProps> = ({ visible, setVisible, images }) =>
   return (
     <>
       <Image
+        className={styles.card_image}
         preview={{ visible: false }}
         width={300}
         height={200}
