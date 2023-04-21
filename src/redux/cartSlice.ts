@@ -16,7 +16,7 @@ const initialState: BasketStateType = {
   orderedItems: [],
 };
 
-export const counterSlice = createSlice({
+export const cartSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
@@ -52,5 +52,5 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, pushAddedItems, pushOrderedItems } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { addItem, removeItem, pushAddedItems, pushOrderedItems } = cartSlice.actions;
+export default cartSlice.reducer;
