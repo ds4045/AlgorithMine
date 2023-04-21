@@ -144,7 +144,10 @@ const Header: React.FC<HeaderProps> = ({
           />
         </>
       ) : (
-        <>
+        <span
+          onClick={() => {
+            navigate('/login');
+          }}>
           <UserOutlined
             className={styles.header_login_icon}
             onClick={() => {
@@ -152,7 +155,7 @@ const Header: React.FC<HeaderProps> = ({
             }}
           />
           <FormattedMessage id="header.login" />
-        </>
+        </span>
       )}
     </header>
   );
