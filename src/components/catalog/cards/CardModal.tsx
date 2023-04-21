@@ -84,8 +84,7 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
           <Divider />
           <Descriptions title={<FormattedMessage id="catalog.card.modal_delivery" />}>
             <Descriptions.Item>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi recusandae optio dolore
-              quasi laudantium eaque voluptates nostrum architecto quia magnam!
+              <FormattedMessage id="catalog.card.modal_delivery_description" />
             </Descriptions.Item>
           </Descriptions>
           <Divider />

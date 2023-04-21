@@ -61,6 +61,8 @@ const messages: Messages = {
     'catalog.card.description': 'Description',
     'catalog.card.btn_from': 'from',
     'catalog.card.modal_expenditure': 'Expenditure',
+    'catalog.card.modal_delivery_description':
+      'Self-delivery:Moscow, Polykarpova street, 27c3,Delivery:SDEK,Business lines(from 300000rub free)',
     'catalog.card.modal_profit': 'Profit',
     'catalog.card.modal_payback': 'Payback',
     'catalog.card.modal_hashrate': 'Hashrate',
@@ -387,6 +389,8 @@ const messages: Messages = {
     'cart.promo_success': 'Промкод успешно приминен',
     'cart.promo_error': 'Такого промокода не существует',
     'cart.contacts': 'Наши контакты',
+    'catalog.card.modal_delivery_description':
+      'Самовывоз:Москва, улица Поликарпова, 27с3,Доставка:СДЕК,Деловые линии(от 300000руб бесплатно)',
     'cart.add_item_alert': 'Товар добавлен к корзину',
     'cart.total_price': 'Итог:',
     'cart.order_success':
