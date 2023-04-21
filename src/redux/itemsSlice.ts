@@ -10,7 +10,7 @@ const initialState: AllItemsState = {
   searchedItems: [],
 };
 
-export const usersSlice = createSlice({
+export const itemsSlice = createSlice({
   name: 'allItems',
   initialState,
   reducers: {
@@ -58,5 +58,5 @@ export const usersSlice = createSlice({
 });
 
 export const { addItemToStore, pushAllItems, addReviewItem, searchItem, sortItem, replaceItem } =
-  usersSlice.actions;
-export default usersSlice.reducer;
+  itemsSlice.actions;
+export default itemsSlice.reducer;
