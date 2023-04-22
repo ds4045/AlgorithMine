@@ -34,6 +34,7 @@ const Orders: FC<OrdersProps> = ({ me }) => {
         <Popover
           content={
             <List
+              className={styles.popover}
               itemLayout="horizontal"
               dataSource={el.orderedItems}
               renderItem={(item) => (

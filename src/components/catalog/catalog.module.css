@@ -32,7 +32,6 @@
   margin-top: 5px;
 }
 .btn_groups_modal {
-  position: absolute;
   display: flex;
   left: 50%;
   right: 50%;

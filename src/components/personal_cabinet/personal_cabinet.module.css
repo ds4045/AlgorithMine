@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100%;
+  min-height: 70vh;
 }
 .personal_data {
   height: 100%;
@@ -61,8 +61,13 @@
 .review_img {
   width: 100px;
 }
+.popover {
+  height: 300px;
+  overflow: scroll;
+}
 .popover_orders {
   width: 250px;
+  overflow: scroll;
 }
 .contacts_icon {
   margin-left: 5px;

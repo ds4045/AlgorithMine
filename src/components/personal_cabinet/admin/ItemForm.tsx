@@ -1,4 +1,4 @@
-import { Button, Checkbox, Radio, RadioChangeEvent, Select } from 'antd';
+import { Button, Checkbox, Radio, Select } from 'antd';
 import { ChangeEvent, Dispatch, FC, ReactNode, SetStateAction, useEffect, useState } from 'react';
 import styles from './admin.module.css';
 import { FieldType, Item } from '../../../types/types';
@@ -15,8 +15,10 @@ type ItemFormProps = {
 
 const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
   const [showOptional, setIsShowOptional] = useState(false);
-  const [inStock, setInStock] = useState(item?.inStock ?? false);
+  const [inStock, setInStock] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [valueSection, setValueSection] = useState('Asic');
+  const [valueMaker, setValueMaker] = useState('WhatsMiner');
   const reqFields: FieldType[] = [
     {
       field: 'title',
@@ -86,6 +88,9 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
   useEffect(() => {
     setRequiredFields(reqFields);
     setOptionalFields(optFields);
+    setValueSection(item?.section ?? 'Asic');
+    setValueMaker(item?.maker ?? 'WhatsMiner');
+    setInStock(item?.inStock ?? false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
@@ -138,12 +143,7 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
     setRequiredFields(reqFields);
     setOptionalFields(optFields);
   };
-  const [valueSection, setValueSection] = useState(item?.section ?? 'Asic');
-  const [valueMaker, setValueMaker] = useState(item?.maker ?? 'WhatsMiner');
 
-  const onChange = (e: RadioChangeEvent) => {
-    setValueSection(e.target.value);
-  };
   return (
     <div className={styles.request_wrapper}>
       <h4 className={styles.title}>
@@ -157,7 +157,7 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
       />
       <div className={styles.section_radio}>
         Section:
-        <Radio.Group onChange={onChange} value={valueSection}>
+        <Radio.Group onChange={(e) => setValueSection(e.target.value)} value={valueSection}>
           <Radio value={'Asic'}>Asic</Radio>
           <Radio value={'Accessories'}>Accessories</Radio>
           <Radio value={'GPU'}>GPU</Radio>
@@ -206,7 +206,7 @@ const ItemForm: FC<ItemFormProps> = ({ item, alertSuccess, alertError }) => {
         onClick={submit}
         disabled={checkSubmit()}
         loading={isLoading}>
-        Создать
+        {item?.title ? 'Изменить' : 'Создать'}
       </Button>
     </div>
   );
