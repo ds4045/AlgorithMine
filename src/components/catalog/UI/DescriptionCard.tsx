@@ -5,20 +5,20 @@ import { FormattedMessage } from 'react-intl';
 type DescriptionCardProps = {
   price: number;
   title: string;
-  th: number | undefined;
+  hr: number | undefined;
   score: number;
 };
 
-const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, th, score }) => {
+const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, hr, score }) => {
   return (
     <ul className={styles.card_ul}>
       <li>
         <b>{title}</b>
       </li>
       <li>
-        <FormattedMessage id="catalog.card.btn_from" /> {price}$
+        <FormattedMessage id="catalog.card.btn_from" /> {price}₽
       </li>
-      {th && <li>HR/s {th}</li>}
+      {hr && <li>{`${hr} ${hr > 1000 ? 'MH/s' : 'TH/s'}`}</li>}
       <li>
         <Rate value={score} disabled />
       </li>

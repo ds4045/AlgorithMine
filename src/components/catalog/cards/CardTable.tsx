@@ -48,7 +48,7 @@ const CardTable: FC<CardTableProps> = ({ item, score, alertSuccess, alertError }
           <DescriptionCard
             price={item.price}
             title={item.title}
-            th={item.optional?.hashrate}
+            hr={item.optional?.hashrate}
             score={score}
           />
         </div>

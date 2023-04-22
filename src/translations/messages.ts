@@ -65,7 +65,7 @@ const messages: Messages = {
       'Self-delivery:Moscow, Polykarpova street, 27c3,Delivery:SDEK,Business lines(from 300000rub free)',
     'catalog.card.modal_profit': 'Profit',
     'catalog.card.modal_payback': 'Payback',
-    'catalog.card.modal_hashrate': 'Hashrate',
+    'catalog.card.modal_th': 'Hashrate',
     'catalog.card.modal_price': 'Price',
     'catalog.card.modal_maker': 'Manufacturer',
     'catalog.card.modal_inStock': 'In stock',

@@ -8,6 +8,7 @@ import { toggleFavoritesHandler } from '../../../firbase/toggleFavoretesHandler'
 import { addItem } from '../../../redux/cartSlice';
 import ReviewsCatalog from '../reviews/ReviewsCatalog';
 import { addItemToComparison } from '../../../redux/comparisonSlice';
+import { switchDescriptionHashrate } from '../../../helpers/switchDescripyionHashrate';
 
 type CardModalProps = {
   onClose: () => void;
@@ -73,7 +74,7 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
               <Descriptions.Item
                 key={el.key}
                 label={<FormattedMessage id={`catalog.card.modal_${el.key}`} />}>
-                {el.value}
+                {switchDescriptionHashrate(el)}
               </Descriptions.Item>
             ))}
           </Descriptions>

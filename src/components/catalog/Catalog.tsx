@@ -53,7 +53,7 @@ const Catalog: FC<CatalogProps> = ({ currentCategory, setCurrentCategory }) => {
     rootSubmenuKeys.find((el) => el === currentCategory) ?? 'Asic',
   ]);
   const [cardsPosition, setCardsPosition] = useState<'cards_horizontal' | 'cards_table'>(
-    'cards_horizontal',
+    'cards_table',
   );
 
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
