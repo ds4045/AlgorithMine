@@ -53,7 +53,7 @@ const Cart: FC<CartProps> = () => {
               <span className={styles.units}>
                 <FormattedMessage id="cart.total_price" />
               </span>
-              {totalPrice}$
+              {totalPrice}₽
             </span>
           </div>
           <div className={styles.get_order_btn_groups}>

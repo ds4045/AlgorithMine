@@ -84,7 +84,7 @@ const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
         title={
           <span>
             <FormattedMessage id="cart.order_confirm" />
-            {totalPrice}$
+            {totalPrice}₽
           </span>
         }
         open={open}
