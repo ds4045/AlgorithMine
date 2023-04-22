@@ -100,15 +100,8 @@
   display: flex;
   justify-content: space-between;
 }
-@media (max-width: 1800px) {
-  .cards_table {
-    margin-right: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    height: 100%;
-  }
-}
-@media (max-width: 1500px) {
+
+@media (max-width: 1600px) {
   .cards_table {
     margin-right: 10px;
     display: grid;
