@@ -175,9 +175,6 @@
   .icon_sort {
     font-size: 18px;
   }
-  .pagination {
-    display: none;
-  }
   .cards_table {
     grid-template-columns: repeat(1, 1fr);
   }
