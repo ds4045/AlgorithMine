@@ -4,6 +4,7 @@ import items from './itemsSlice';
 import cart from './cartSlice';
 import comparison from './comparisonSlice';
 import posts from './postsSlice';
+import currentCategory from './currentCategorySlice';
 export const store = configureStore({
   reducer: {
     auth,
@@ -11,6 +12,7 @@ export const store = configureStore({
     cart,
     comparison,
     posts,
+    currentCategory,
   },
 });
 

@@ -1,5 +1,5 @@
 import { Rate } from 'antd';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import styles from '../catalog.module.css';
 import { FormattedMessage } from 'react-intl';
 type DescriptionCardProps = {
@@ -26,4 +26,4 @@ const DescriptionCard: FC<DescriptionCardProps> = ({ price, title, hr, score }) 
   );
 };
 
-export default DescriptionCard;
+export default memo(DescriptionCard);

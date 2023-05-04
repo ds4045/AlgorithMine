@@ -1,10 +1,12 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { FC, useCallback } from 'react';
 import styles from './popular.module.css';
 import { FormattedMessage } from 'react-intl';
 import PopularSingle from './PopularSingle';
 import { Button } from 'antd';
 import { CategoryType } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
+import { setCurrentCategory } from '../../redux/currentCategorySlice';
+import { useAppDispatch } from '../../redux/hooks';
 const popularItems = [
   {
     id: 1,
@@ -28,15 +30,13 @@ const popularItems = [
     title: 'Gold Shell',
   },
 ];
-type PopularProps = {
-  setCurrentCategory: Dispatch<SetStateAction<CategoryType>>;
-};
-const Popular: FC<PopularProps> = ({ setCurrentCategory }) => {
+const Popular: FC = () => {
   const navigate = useNavigate();
-  const buttonHandler = () => {
-    setCurrentCategory('Asic');
+  const dispatch = useAppDispatch();
+  const buttonHandler = useCallback(() => {
+    dispatch(setCurrentCategory('Asic'));
     navigate('/catalog');
-  };
+  }, [dispatch, navigate]);
   return (
     <>
       <h2 className={styles.title}>
@@ -47,12 +47,7 @@ const Popular: FC<PopularProps> = ({ setCurrentCategory }) => {
       </h2>
       <div className={styles.wrapper}>
         {popularItems.map((el) => (
-          <PopularSingle
-            key={el.id}
-            title={el.title as CategoryType}
-            image={el.image}
-            setCurrentCategory={setCurrentCategory}
-          />
+          <PopularSingle key={el.id} title={el.title as CategoryType} image={el.image} />
         ))}
       </div>
     </>

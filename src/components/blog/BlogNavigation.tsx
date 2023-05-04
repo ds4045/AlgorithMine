@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, useCallback } from 'react';
 import styles from './blog.module.css';
 import { Select } from 'antd';
 import { FormattedMessage } from 'react-intl';
@@ -9,9 +9,12 @@ type BlogNavigationProps = {
 };
 
 const BlogNavigation: FC<BlogNavigationProps> = ({ setSortedPosts, sortedPosts }) => {
-  const handleChange = (value: string) => {
-    setSortedPosts(value as SortedPostsType);
-  };
+  const handleChange = useCallback(
+    (value: string) => {
+      setSortedPosts(value as SortedPostsType);
+    },
+    [setSortedPosts],
+  );
 
   const items = [
     {

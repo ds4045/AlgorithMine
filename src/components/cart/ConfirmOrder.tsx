@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useMemo, useState } from 'react';
 
 import { Button, Modal } from 'antd';
 import { FormattedMessage } from 'react-intl';
@@ -31,26 +31,36 @@ const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const me = useAppSelector((state) => state.auth.login);
-  const initialStateValue = {
-    phone: me?.phone ?? '',
-    name: me?.name ?? '',
-    email: me?.email ?? '',
-  };
-  const initialStateError = {
-    phone: me?.phone ? validatePhoneNumber(me.phone) : false,
-    name: me?.name ? validateName(me.name) : false,
-    email: me?.email ? validateEmail(me.email) : false,
-  };
+  const initialStateValue = useMemo(
+    () => ({
+      phone: me?.phone ?? '',
+      name: me?.name ?? '',
+      email: me?.email ?? '',
+    }),
+    [me?.email, me?.name, me?.phone],
+  );
+  const initialStateError = useMemo(
+    () => ({
+      phone: me?.phone ? validatePhoneNumber(me.phone) : false,
+      name: me?.name ? validateName(me.name) : false,
+      email: me?.email ? validateEmail(me.email) : false,
+    }),
+    [me?.email, me?.name, me?.phone],
+  );
   const [value, setValue] = useState<InputValueType>(initialStateValue);
   const [error, setError] = useState<InputErrorType>(initialStateError);
   const showModal = () => {
     setOpen(true);
   };
-
-  const handleOk = async () => {
+  const handleCancel = useCallback(() => {
+    setOpen(false);
+    setValue(initialStateValue);
+    setError(initialStateError);
+  }, [initialStateError, initialStateValue]);
+  const handleOk = useCallback(async () => {
     if (error.name && error.phone && error.email) {
       setConfirmLoading(true);
-      await addOrderToDB(
+      addOrderToDB(
         me?.id ?? 'guest' + Date.now(),
         items,
         totalPrice,
@@ -66,13 +76,23 @@ const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
       setError(initialStateError);
       navigate('/cart/success');
     } else alertError(<FormattedMessage id="cart.alert_error_order" />);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-    setValue(initialStateValue);
-    setError(initialStateError);
-  };
+  }, [
+    alertError,
+    alertSuccess,
+    dispatch,
+    error.email,
+    error.name,
+    error.phone,
+    handleCancel,
+    initialStateError,
+    initialStateValue,
+    items,
+    me,
+    navigate,
+    totalPrice,
+    value.name,
+    value.phone,
+  ]);
 
   return (
     <>

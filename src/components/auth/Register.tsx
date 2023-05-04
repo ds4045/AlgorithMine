@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { FC, FormEvent, useState } from 'react';
+import { FC, FormEvent, useCallback, useState } from 'react';
 import { auth } from '../../firbase/firebaseConfig';
 import styles from './auth.module.css';
 import Form from '../UI/Form';
@@ -19,41 +19,44 @@ const Register: FC = () => {
   const [registerPassword, setRegisterPassword] = useState<string>('');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const handleRegisterSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    try {
-      setIsLoading(true);
-      e.preventDefault();
-      await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      const newUser: UserFirestoreDB = {
-        name: auth.currentUser?.displayName ?? '',
-        surname: '',
-        email: auth.currentUser?.email ?? '',
-        age: '',
-        reviews: {},
-        image: auth.currentUser?.photoURL ?? '',
-        orders: [],
-        city: '',
-        phone: '',
-        cart: [],
-        isAdmin: false,
-        favorites: [],
-        id: auth.currentUser?.uid ?? '',
-      };
-      addNewDataForDBWithId(newUser, 'users');
-      dispatch(isAuthTrue(newUser));
-      navigate('/');
-      setUserDataCookie({
-        email: registerEmail,
-        password: registerPassword,
-      });
-      setRegisterEmail('');
-      setRegisterPassword('');
-    } catch (err: any) {
-      alert(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const handleRegisterSubmit = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      try {
+        setIsLoading(true);
+        e.preventDefault();
+        await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+        const newUser: UserFirestoreDB = {
+          name: auth.currentUser?.displayName ?? '',
+          surname: '',
+          email: auth.currentUser?.email ?? '',
+          age: '',
+          reviews: {},
+          image: auth.currentUser?.photoURL ?? '',
+          orders: [],
+          city: '',
+          phone: '',
+          cart: [],
+          isAdmin: false,
+          favorites: [],
+          id: auth.currentUser?.uid ?? '',
+        };
+        addNewDataForDBWithId(newUser, 'users');
+        dispatch(isAuthTrue(newUser));
+        navigate('/');
+        setUserDataCookie({
+          email: registerEmail,
+          password: registerPassword,
+        });
+        setRegisterEmail('');
+        setRegisterPassword('');
+      } catch (err: any) {
+        alert(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [dispatch, navigate, registerEmail, registerPassword],
+  );
   return (
     <Spin spinning={isLoading}>
       <div className={styles.wrapper}>

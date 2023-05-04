@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import { ConfigProvider, FloatButton, theme } from 'antd';
 import Header from './components/header/Header';
 import ruRU from 'antd/lib/locale/ru_RU';
@@ -21,7 +21,6 @@ import Cart from './components/cart/Cart';
 import { loadCartFromLocalStorage } from './helpers/localStorage';
 import { pushAddedItems } from './redux/cartSlice';
 import { fetchItems } from './api/fetchItems';
-import { CategoryType } from './types/types';
 import OrderSuccess from './components/cart/OrderSuccess';
 import { PhoneOutlined } from '@ant-design/icons';
 import Quiz from './components/carousel/quiz/Quiz';
@@ -40,18 +39,20 @@ const App = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const me = useAppSelector((state) => state.auth.login);
-  const [currentCategory, setCurrentCategory] = useState<CategoryType>('Asic');
+  const items = useAppSelector((state) => state.items.items);
+
   const [locale, setLocale] = useState<'ru' | 'en'>('ru');
   const [darkThemes, setDarkThemes] = useState<boolean>(false);
   const [loadingPosts, setLoadingPosts] = useState<boolean>(false);
-  const handleLocaleChange = () => {
+  const handleLocaleChange = useCallback(() => {
     locale === 'en' ? setLocale('ru') : setLocale('en');
-  };
+  }, [locale]);
   useEffect(() => {
+    if (items.length !== 0) return;
     dispatch(pushAddedItems(loadCartFromLocalStorage('cart')));
     fetchItems(dispatch);
     fetchPosts(dispatch, setLoadingPosts);
-  }, [dispatch]);
+  }, [dispatch, items.length]);
   return (
     <ConfigProvider
       locale={locale === 'ru' ? ruRU : enUS}
@@ -67,7 +68,6 @@ const App = () => {
             <>
               <CryptoTicker />
               <Header
-                setCurrentCategory={setCurrentCategory}
                 onLocaleChange={handleLocaleChange}
                 setDarkThemes={setDarkThemes}
                 darkThemes={darkThemes}
@@ -82,22 +82,14 @@ const App = () => {
               element={
                 <>
                   <Carousel />
-                  <Popular setCurrentCategory={setCurrentCategory} />
+                  <Popular />
                 </>
               }
             />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
             <Route path="personal-cabinet" element={<PersonalCabinet me={me} />} />
-            <Route
-              path="catalog"
-              element={
-                <Catalog
-                  currentCategory={currentCategory}
-                  setCurrentCategory={setCurrentCategory}
-                />
-              }
-            />
+            <Route path="catalog" element={<Catalog />} />
             <Route path="cart" element={<Cart />} />
             <Route path="cart/success" element={<OrderSuccess />} />
             <Route path="about-us" element={<AboutUs />} />

@@ -1,5 +1,5 @@
 import { Button, Descriptions, Divider, Drawer, Popover } from 'antd';
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import styles from '../catalog.module.css';
 import { FormattedMessage } from 'react-intl';
 import { Item, ItemOptional, ItemOptionalFields, UserFirestoreDB } from '../../../types/types';
@@ -117,4 +117,4 @@ const CardModal: FC<CardModalProps> = ({ onClose, open, item, alertSuccess, aler
   );
 };
 
-export default CardModal;
+export default memo(CardModal);

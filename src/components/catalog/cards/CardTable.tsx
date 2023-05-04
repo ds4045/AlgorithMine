@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import { Button, Card } from 'antd';
 import ImageCatalog from '../UI/ImageCatalog';
 import DescriptionCard from '../UI/DescriptionCard';
@@ -64,4 +64,4 @@ const CardTable: FC<CardTableProps> = ({ item, score, alertSuccess, alertError }
   );
 };
 
-export default CardTable;
+export default memo(CardTable);

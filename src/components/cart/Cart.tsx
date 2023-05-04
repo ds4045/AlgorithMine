@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { Button, Descriptions, Divider, Input, Space } from 'antd';
 import styles from './cart.module.css';
 import SingleCartItem from './SingleCartItem';
@@ -8,9 +8,8 @@ import useAlert from '../../hooks/useAlert';
 import { useAppSelector } from '../../redux/hooks';
 import ConfirmOrder from './ConfirmOrder';
 import EmptyCart from './EmptyCart';
-type CartProps = {};
 const promo = ['new10'];
-const Cart: FC<CartProps> = () => {
+const Cart: FC = () => {
   const navigate = useNavigate();
   const addedItems = useAppSelector((state) => state.cart.addedItems);
   const [isOpenInput, setIsOpenInput] = useState(false);
@@ -23,8 +22,13 @@ const Cart: FC<CartProps> = () => {
     } else alertError(<FormattedMessage id="cart.promo_error" />);
     setValue('');
   };
-  const totalCount = addedItems.reduce((acc, item) => acc + item.count, 0);
-  const totalPrice = addedItems.reduce((acc, item) => acc + item.price * item.count, 0);
+  const total = useMemo(
+    () => ({
+      totalCount: addedItems.reduce((acc, item) => acc + item.count, 0),
+      totalPrice: addedItems.reduce((acc, item) => acc + item.price * item.count, 0),
+    }),
+    [addedItems],
+  );
   return (
     <div className={styles.layout}>
       <Divider plain>
@@ -44,7 +48,7 @@ const Cart: FC<CartProps> = () => {
         <div className={styles.get_order}>
           <div className={styles.get_order_price}>
             <span>
-              {totalCount}
+              {total.totalCount}
               <span className={styles.units}>
                 <FormattedMessage id="cart.units" />
               </span>
@@ -53,7 +57,7 @@ const Cart: FC<CartProps> = () => {
               <span className={styles.units}>
                 <FormattedMessage id="cart.total_price" />
               </span>
-              {totalPrice}₽
+              {total.totalPrice}₽
             </span>
           </div>
           <div className={styles.get_order_btn_groups}>
@@ -75,7 +79,7 @@ const Cart: FC<CartProps> = () => {
                 <FormattedMessage id="cart.promo" />
               </Button>
             )}
-            <ConfirmOrder totalPrice={totalPrice} items={addedItems} />
+            <ConfirmOrder totalPrice={total.totalPrice} items={addedItems} />
           </div>
           <Divider />
           <div className={styles.about_order}>

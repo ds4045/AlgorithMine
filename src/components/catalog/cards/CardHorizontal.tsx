@@ -1,5 +1,5 @@
 import { Button, Card } from 'antd';
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import styles from '../catalog.module.css';
 import ImageCatalog from '../UI/ImageCatalog';
 
@@ -68,4 +68,4 @@ const CardHorizontal: FC<CardHorizontalProps> = ({ item, score, alertSuccess, al
   );
 };
 
-export default CardHorizontal;
+export default memo(CardHorizontal);

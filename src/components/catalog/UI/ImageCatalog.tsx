@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction, memo } from 'react';
 import { Image } from 'antd';
 import styles from '../catalog.module.css';
 type ImageCatalogProps = {
-  visible: any;
-  setVisible: any;
+  visible: boolean;
+  setVisible: Dispatch<SetStateAction<boolean>>;
   images: string[];
 };
 const ImageCatalog: FC<ImageCatalogProps> = ({ visible, setVisible, images }) => {
@@ -28,4 +28,4 @@ const ImageCatalog: FC<ImageCatalogProps> = ({ visible, setVisible, images }) =>
   );
 };
 
-export default ImageCatalog;
+export default memo(ImageCatalog);

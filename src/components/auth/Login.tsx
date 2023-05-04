@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { FC, FormEvent, useState } from 'react';
+import { FC, FormEvent, useCallback, useState } from 'react';
 import { auth } from '../../firbase/firebaseConfig';
 import styles from './auth.module.css';
 import Form from '../UI/Form';
@@ -19,30 +19,33 @@ const Login: FC = () => {
   const [loginPassword, setLoginPassword] = useState<string>('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const handleLoginWithEmailPasswordSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    try {
-      setIsLoading(true);
-      e.preventDefault();
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      setLoginEmail('');
-      setLoginPassword('');
-      if (auth.currentUser?.uid) {
-        const newUser = await fetchSingleUser(dispatch, auth.currentUser.uid);
-        newUser && dispatch(isAuthTrue(newUser as UserFirestoreDB));
-        navigate('/');
-        setUserDataCookie({
-          email: loginEmail,
-          password: loginPassword,
-        });
-      } else {
-        return alert('Login failed');
+  const handleLoginWithEmailPasswordSubmit = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      try {
+        setIsLoading(true);
+        e.preventDefault();
+        await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+        setLoginEmail('');
+        setLoginPassword('');
+        if (auth.currentUser?.uid) {
+          const newUser = await fetchSingleUser(dispatch, auth.currentUser.uid);
+          newUser && dispatch(isAuthTrue(newUser as UserFirestoreDB));
+          navigate('/');
+          setUserDataCookie({
+            email: loginEmail,
+            password: loginPassword,
+          });
+        } else {
+          return alert('Login failed');
+        }
+      } catch (err: any) {
+        alert(err.message);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (err: any) {
-      alert(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+    [dispatch, loginEmail, loginPassword, navigate],
+  );
   return (
     <Spin spinning={isLoading}>
       <div className={styles.wrapper}>

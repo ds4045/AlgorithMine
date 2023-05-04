@@ -1,20 +1,22 @@
 import { Card } from 'antd';
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { FC, useCallback } from 'react';
 import { CategoryType } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
+import { setCurrentCategory } from '../../redux/currentCategorySlice';
+import { useAppDispatch } from '../../redux/hooks';
 
 const { Meta } = Card;
 type PopularSingleProps = {
   title: CategoryType;
   image: string;
-  setCurrentCategory: Dispatch<SetStateAction<CategoryType>>;
 };
-const PopularSingle: FC<PopularSingleProps> = ({ title, image, setCurrentCategory }) => {
+const PopularSingle: FC<PopularSingleProps> = ({ title, image }) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const buttonHandler = () => {
-    setCurrentCategory(title);
+  const buttonHandler = useCallback(() => {
+    dispatch(setCurrentCategory(title));
     navigate('/catalog');
-  };
+  }, [dispatch, navigate, title]);
   return (
     <Card
       onClick={buttonHandler}
