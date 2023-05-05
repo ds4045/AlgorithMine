@@ -23,6 +23,8 @@ const Contacts: FC<ContactsProps> = () => {
             <a href="https://www.whatsapp.com/" target="blank">
               <WhatsappIcon className={styles.contacts_icon} />
             </a>
+          </Descriptions.Item>
+          <Descriptions.Item label={<FormattedMessage id="pc.contacts.messengers" />}>
             <a href="https://telegram.org/" target="blank">
               <TelegramIcon className={styles.contacts_icon} />
             </a>
@@ -30,7 +32,7 @@ const Contacts: FC<ContactsProps> = () => {
           <Descriptions.Item label={<FormattedMessage id="pc.contacts.email" />}>
             123@123.ru
           </Descriptions.Item>
-          <Descriptions.Item label={<FormattedMessage id="pc.contacts.address" />} span={5}>
+          <Descriptions.Item label={<FormattedMessage id="pc.contacts.address" />}>
             <FormattedMessage id="pc.company_address" />
           </Descriptions.Item>
         </Descriptions>
