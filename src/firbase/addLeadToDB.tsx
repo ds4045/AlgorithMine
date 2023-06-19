@@ -17,6 +17,5 @@ export const addLeadToDB: any = async (
     name,
     quiz: quiz ? quiz : {},
   };
-  const res = await addDataForDB('leads', newLead);
-  console.log(res);
+  await addDataForDB('leads', newLead);
 };

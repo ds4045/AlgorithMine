@@ -40,7 +40,7 @@ const SingleCartItem: FC<SingleCartItemProps> = ({ item }) => {
   return (
     <div className={styles.cart}>
       {contextHolder}
-      <Image width={200} src={item.images[0]} />
+      <Image width={200} src={item?.images[0]} />
       <Card className={styles.cart_options}>
         {isLoading ? (
           <Spin className={styles.spinner} />

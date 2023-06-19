@@ -24,7 +24,6 @@ import { fetchItems } from './api/fetchItems';
 import OrderSuccess from './components/cart/OrderSuccess';
 import { PhoneOutlined } from '@ant-design/icons';
 import Quiz from './components/carousel/quiz/Quiz';
-import AboutUs from './components/about_us/aboutUs';
 import ButtonScrollUp from './components/UI/button_scroll_up/buttonScrollUp';
 import PostPage from './components/blog/posts/PostPage';
 import { fetchPosts } from './api/fetchPosts';
@@ -32,6 +31,7 @@ import GetLead from './components/lead/GetLead';
 import Services from './components/services/Services';
 import Calculator from './components/carousel/calculator/Calculator';
 import Delivery from './components/carousel/delivery/Delivery';
+import AboutUs from './components/about_us/AboutUs';
 const Blog = lazy(() => import('./components/blog/Blog'));
 const App = () => {
   useAutoSignIn();

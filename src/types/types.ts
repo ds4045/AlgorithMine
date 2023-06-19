@@ -129,7 +129,7 @@ export type AddOrderType = (
   name: string,
   phone: string,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
-  me?: UserFirestoreDB,
+  me: UserFirestoreDB | null,
 ) => void;
 export type LeadType = {
   id: string;

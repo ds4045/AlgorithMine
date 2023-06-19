@@ -67,7 +67,7 @@ const ConfirmOrder: FC<ConfirmOrderProps> = ({ totalPrice, items }) => {
         value.name,
         value.phone,
         dispatch,
-        me ?? undefined,
+        me,
       );
       setConfirmLoading(false);
       handleCancel();

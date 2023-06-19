@@ -8,7 +8,9 @@ import useAlert from '../../hooks/useAlert';
 import { useAppSelector } from '../../redux/hooks';
 import ConfirmOrder from './ConfirmOrder';
 import EmptyCart from './EmptyCart';
+
 const promo = ['new10'];
+
 const Cart: FC = () => {
   const navigate = useNavigate();
   const addedItems = useAppSelector((state) => state.cart.addedItems);
