@@ -31,7 +31,7 @@ import GetLead from './components/lead/GetLead';
 import Services from './components/services/Services';
 import Calculator from './components/carousel/calculator/Calculator';
 import Delivery from './components/carousel/delivery/Delivery';
-import AboutUs from './components/about_us/AboutUs';
+import AboutUs from './components/about_us/aboutUs';
 const Blog = lazy(() => import('./components/blog/Blog'));
 const App = () => {
   useAutoSignIn();
